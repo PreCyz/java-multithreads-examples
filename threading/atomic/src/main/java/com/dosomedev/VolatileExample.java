@@ -19,12 +19,7 @@ public class VolatileExample implements Runnable {
     @Override
     public void run() {
         // Define Euler's Number calculation.
-        Callable<BigDecimal> eulersNumberCalculation = new Callable<BigDecimal>() {
-            @Override
-            public BigDecimal call() throws Exception {
-                return calculateEulersNumber();
-            }
-        };
+        Callable<BigDecimal> eulersNumberCalculation = this::calculateEulersNumber;
 
         // Execute calculation.
         ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -49,6 +44,7 @@ public class VolatileExample implements Runnable {
         }
 
         executor.shutdown();
+        executor.close();
     }
 
     private BigDecimal calculateEulersNumber() {

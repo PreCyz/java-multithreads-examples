@@ -1,46 +1,37 @@
 package com.dosomedev;
 
+import java.io.PrintStream;
 import java.util.Vector;
 
-/**
- * Vector example.
- *
- */
 public class App {
+
+    public static final PrintStream OUT = System.out;
+
     public static void main(String[] args) {
-        /*
-         * Define and output.
-         */
         Vector<String> names = new Vector<>();
         names.add("David");
         names.add("Jennifer");
         names.add("Elizabeth");
-        System.out.println("Vector values: " + names);
-        System.out.println("Name at index 1: " + names.get(1));
-        System.out.println("Getting values using for-loop:");
+        OUT.println("Vector values: " + names);
+        OUT.println("Name at index 1: " + names.get(1));
+        OUT.println("Getting values using for-loop:");
         for (int i = 0; i < names.size(); i++) {
-            System.out.println("   Value " + i + ": " + names.get(i));
+            OUT.println("   Value " + i + ": " + names.get(i));
         }
 
-        /*
-         * Change and output.
-         */
         names.set(1, "Rebecca");
-        System.out.println("Changed name at index 1: " + names);
+        OUT.println("Changed name at index 1: " + names);
 
         names.set(2, "Tony");
-        System.out.println("Changed name at index 2: " + names);
-
-        /*
-         * Remove and output.
-         */
-        names.remove(1);
-        System.out.println("Removed name at index 1: " + names);
+        OUT.println("Changed name at index 2: " + names);
 
         names.remove(1);
-        System.out.println("Removed name at index 1: " + names);
+        OUT.println("Removed name at index 1: " + names);
+
+        names.remove(1);
+        OUT.println("Removed name at index 1: " + names);
 
         names.clear();
-        System.out.println("Cleared all names: " + names);
+        OUT.println("Cleared all names: " + names);
     }
 }

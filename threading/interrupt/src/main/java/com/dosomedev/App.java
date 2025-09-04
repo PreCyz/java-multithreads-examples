@@ -1,13 +1,13 @@
 package com.dosomedev;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Threading example.
- *
- */
 public class App {
+
+    public static final PrintStream OUT = System.out;
+
     public static void main(String[] args) throws InterruptedException {
         stateExample();
         priorityExample();
@@ -15,7 +15,7 @@ public class App {
     }
 
     private static void stateExample() throws InterruptedException {
-        System.out.println("State Example:");
+        OUT.println("State Example:");
 
         // Sprinter steve = new Sprinter("Steve", 250);
         // Sprinter chuck = new Sprinter("Chuck", 650);
@@ -39,12 +39,12 @@ public class App {
 
         coach.join();
 
-        System.out.println("The race is done!");
+        OUT.println("The race is done!");
     }
 
     private static void priorityExample() throws InterruptedException {
-        System.out.println("Priority Example:");
-        System.out.printf("Number of processors: %s%n", Runtime.getRuntime().availableProcessors());
+        OUT.println("Priority Example:");
+        OUT.printf("Number of processors: %s%n", Runtime.getRuntime().availableProcessors());
 
         // Create sprinters.
         List<Sprinter> sprinters = new ArrayList<>();
@@ -65,20 +65,20 @@ public class App {
             unfinishedThreads = false;
             for (Sprinter sprinter : sprinters) {
                 if (sprinter.getState() == Thread.State.TERMINATED) {
-                    System.out.print("-");
+                    OUT.print("-");
                 } else {
-                    System.out.print("o");
+                    OUT.print("o");
                     unfinishedThreads = true;
                 }
             }
-            System.out.println();
+            OUT.println();
 
             Thread.sleep(500);
         }
     }
 
     private static void interruptionExample() throws InterruptedException {
-        System.out.println("Interruption Example:");
+        OUT.println("Interruption Example:");
 
         Runnable r = new Runnable() {
             @Override
@@ -101,7 +101,7 @@ public class App {
                     count++;
                 }
 
-                System.out.printf("%s counter: %s%n", name, String.format("%,d", count));
+                OUT.printf("%s counter: %s%n", name, String.format("%,d", count));
             }
         };
 

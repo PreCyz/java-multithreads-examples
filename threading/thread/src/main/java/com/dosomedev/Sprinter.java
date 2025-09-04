@@ -29,7 +29,7 @@ public class Sprinter extends Thread {
             try {
                 Thread.sleep(this.stepTime);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                e.printStackTrace(System.err);
             }
         }
     }

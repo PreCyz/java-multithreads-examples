@@ -1,6 +1,9 @@
 package com.dosomedev;
 
+import java.io.PrintStream;
+
 public class Matrix {
+    public static final PrintStream OUT = System.out;
     private final int[][] matrix;
 
     public Matrix(int nrows, int ncols) {
@@ -26,10 +29,10 @@ public class Matrix {
     public static void dump(Matrix m) {
         for (int i = 0; i < m.getRows(); i++) {
             for (int j = 0; j < m.getCols(); j++) {
-                System.out.printf("%d ", m.getValue(i, j));
+                OUT.printf("%d ", m.getValue(i, j));
             }
-            System.out.println();
+            OUT.println();
         }
-        System.out.println();
+        OUT.println();
     }
 }

@@ -67,14 +67,14 @@ public class ReentrantReadWriteLockExample implements Runnable {
             try {
                 reader.join();
             } catch (InterruptedException ex) {
-                ex.printStackTrace();
+                ex.printStackTrace(System.err);
             }
         }
         for (Thread writer : writers) {
             try {
                 writer.join();
             } catch (InterruptedException ex) {
-                ex.printStackTrace();
+                ex.printStackTrace(System.err);
             }
         }
     }

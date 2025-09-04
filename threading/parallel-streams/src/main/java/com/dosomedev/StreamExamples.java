@@ -9,10 +9,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamExamples {
-    private BabyNames babyNames;
+    private final BabyNames babyNames;
 
     public StreamExamples(StreamType streamType) {
-        // Print welcome message.
         String message = String.format("Stream Examples with %s.", streamType.toString());
         System.out.println();
         System.out.println("#".repeat(message.length() + 4));
@@ -20,7 +19,6 @@ public class StreamExamples {
         System.out.println("#".repeat(message.length() + 4));
         System.out.println();
 
-        // Load baby names.
         this.babyNames = new BabyNames(streamType);
         this.babyNames.loadBabyNames();
         warmUp();
@@ -35,10 +33,9 @@ public class StreamExamples {
         startTime = System.nanoTime();
         List<String> filteredList = maleStream
                 .filter(s -> s.startsWith("A"))
-                .collect(Collectors.toList());
+                .toList();
         endTime = System.nanoTime();
 
-        // Print message.
         String message = String.format("Names before filter: %s, names after filter: %s", babyNames.getMaleNames().count(), filteredList.size());
         printElapsedTime("Filter elements", startTime, endTime, message);
     }
@@ -49,10 +46,9 @@ public class StreamExamples {
         long startTime = System.nanoTime();
         List<Integer> transformedList = maleStream
                 .map(String::length)
-                .collect(Collectors.toList());
+                .toList();
         long endTime = System.nanoTime();
 
-        // Print message.
         int lengthSum = transformedList.stream()
                                        .mapToInt(Integer::intValue)
                                        .sum();
@@ -67,10 +63,9 @@ public class StreamExamples {
         long startTime = System.nanoTime();
         List<String> sortedList = maleStream
                 .sorted()
-                .collect(Collectors.toList());
+                .toList();
         long endTime = System.nanoTime();
 
-        // Print message.
         printElapsedTime("Sort elements", startTime, endTime);
     }
 
@@ -80,10 +75,9 @@ public class StreamExamples {
         long startTime = System.nanoTime();
         List<String> sortedList = maleStream
                 .sorted()
-                .collect(Collectors.toList());
+                .toList();
         long endTime = System.nanoTime();
 
-        // Print message.
         printElapsedTime("Custom sort elements", startTime, endTime);
     }
 
@@ -95,7 +89,6 @@ public class StreamExamples {
         Stream<String> concatenateStream = Stream.concat(maleStream, femaleStream);
         long endTime = System.nanoTime();
 
-        // Print message.
         String message =
                 String.format("Male names: %s, female names: %s, total names: %s", babyNames.getMaleNames().count(), babyNames.getFemaleNames().count(),
                         concatenateStream.count());
@@ -110,10 +103,9 @@ public class StreamExamples {
         long startTime = System.nanoTime();
         List<String> distinctNames = concatenatedStream
                 .distinct()
-                .collect(Collectors.toList());
+                .toList();
         long endTime = System.nanoTime();
 
-        // Print message.
         String message = String.format("Total names: %s, distinct names: %s", babyNames.getMaleNames().count() + babyNames.getFemaleNames().count(),
                 distinctNames.size());
         printElapsedTime("Remove duplicates", startTime, endTime, message);
@@ -133,7 +125,6 @@ public class StreamExamples {
                 });
         long endTime = System.nanoTime();
 
-        // Print message.
         printElapsedTime("Terminal operation forEach", startTime, endTime);
     }
 
@@ -144,7 +135,6 @@ public class StreamExamples {
         long countResult = maleStream.count();
         long endTime = System.nanoTime();
 
-        // Print message.
         String message = String.format("Counted a total of %s male names.", countResult);
         printElapsedTime("Count elements", startTime, endTime, message);
     }
@@ -153,11 +143,9 @@ public class StreamExamples {
         // Collect elements.
         Stream<String> maleStream = babyNames.getMaleNames();
         long startTime = System.nanoTime();
-        List<String> collectedElements = maleStream
-                .collect(Collectors.toList());
+        List<String> collectedElements = maleStream.toList();
         long endTime = System.nanoTime();
 
-        // Print message.
         printElapsedTime("Collect elements", startTime, endTime);
     }
 
@@ -169,7 +157,6 @@ public class StreamExamples {
                 .collect(Collectors.groupingBy(String::length));
         long endTime = System.nanoTime();
 
-        // Print message.
         printElapsedTime("Group elements", startTime, endTime);
     }
 
@@ -181,7 +168,6 @@ public class StreamExamples {
                 .collect(Collectors.partitioningBy(s -> s.length() > 3));
         long endTime = System.nanoTime();
 
-        // Print message.
         printElapsedTime("Partition elements", startTime, endTime);
     }
 
@@ -195,7 +181,6 @@ public class StreamExamples {
                 .collect(Collectors.joining(", ", "[[[", "]]]"));
         long endTime = System.nanoTime();
 
-        // Print message.
         printElapsedTime("Collect and join elements", startTime, endTime, concatenatedString);
     }
 
@@ -209,11 +194,10 @@ public class StreamExamples {
                 .peek(s -> System.out.println("peek1: " + s))
                 .sorted()
                 // .peek(s -> System.out.println("peek2: " + s)) // No order guaranteed in parallel.
-                .collect(Collectors.toList());
+                .toList();
         processedElements.forEach(s -> System.out.println("peek2: " + s));
         long endTime = System.nanoTime();
 
-        // Print message.
         printElapsedTime("Peeked at elements", startTime, endTime);
     }
 
@@ -226,7 +210,6 @@ public class StreamExamples {
                 .anyMatch(s -> s.startsWith(searchKey));
         long endTime = System.nanoTime();
 
-        // Print message.
         String message = String.format("any match of '%s', result: %s", searchKey, matchResult);
         printElapsedTime("Check any match", startTime, endTime, message);
     }
@@ -240,7 +223,6 @@ public class StreamExamples {
                 .allMatch(s -> s.length() >= compareValue);
         long endTime = System.nanoTime();
 
-        // Print message.
         String message = String.format("all name lengths at minimum %s, result: %s", compareValue, matchResult);
         printElapsedTime("Check all match", startTime, endTime, message);
     }
@@ -254,7 +236,6 @@ public class StreamExamples {
                 .noneMatch(s -> s.length() == compareValue);
         long endTime = System.nanoTime();
 
-        // Print message.
         String message = String.format("no name length is %s, result: %s", compareValue, matchResult);
         printElapsedTime("Check none match", startTime, endTime, message);
     }
@@ -266,7 +247,6 @@ public class StreamExamples {
         Optional<String> findFirstResult = maleStream.findFirst();
         long endTime = System.nanoTime();
 
-        // Print message.
         String message = String.format("find first, result: %s", findFirstResult.orElse(""));
         printElapsedTime("Find first", startTime, endTime, message);
     }
@@ -278,7 +258,6 @@ public class StreamExamples {
         Optional<String> findAnyResult = maleStream.findAny();
         long endTime = System.nanoTime();
 
-        // Print message.
         String message = String.format("find any result: %s", findAnyResult.orElse(""));
         printElapsedTime("Find any", startTime, endTime, message);
     }
@@ -296,7 +275,6 @@ public class StreamExamples {
         }
         // System.out.println(concatenatedString);
 
-        // Print message.
         printElapsedTime("Reduce to single string", startTime, endTime);
     }
 
@@ -308,7 +286,6 @@ public class StreamExamples {
                 .reduce((name1, name2) -> name1.length() > name2.length() ? name1 : name2);
         long endTime = System.nanoTime();
 
-        // Print message.
         String message = "longest name result: ";
         if (longestName.isPresent()) {
             message += longestName.get();
@@ -326,7 +303,6 @@ public class StreamExamples {
                 .reduce((s1, s2) -> s1.compareTo(s2) <= 0 ? s1 : s2);
         long endTime = System.nanoTime();
 
-        // Print message.
         String message = "first alphabetically result: ";
         if (firstNameAlphabetically.isPresent()) {
             message += firstNameAlphabetically.get();
@@ -343,17 +319,16 @@ public class StreamExamples {
         long startTime = System.nanoTime();
         List<Integer> maleNameLengths = maleStream
                 .map(String::length)
-                .collect(Collectors.toList());
+                .toList();
         List<Integer> femaleNameLengths = femaleStream
                 .map(String::length)
-                .collect(Collectors.toList());
+                .toList();
         IntSummaryStatistics maleNameStatistics = maleNameLengths.stream()
                                                                  .collect(Collectors.summarizingInt(Integer::intValue));
         IntSummaryStatistics femaleNameStatistics = femaleNameLengths.stream()
                                                                      .collect(Collectors.summarizingInt(Integer::intValue));
         long endTime = System.nanoTime();
 
-        // Print message.
         String message = String.format(
                 "Male Names [count: %s, sum: %s, min: %s, average: %s, max: %s], Female Names: [count: %s, sum: %s, min: %s, average: %s, max: %s]",
                 maleNameStatistics.getCount(),
@@ -379,7 +354,6 @@ public class StreamExamples {
         List<String> warmUpDummyList = babyNames.getMaleNames().collect(Collectors.toList());
         endTime = System.nanoTime();
 
-        // Print message.
         printElapsedTime("Warm-up", startTime, endTime);
     }
 

@@ -1,10 +1,12 @@
 package com.dosomedev;
 
+import java.io.PrintStream;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ConditionExample implements Runnable {
+    public static final PrintStream OUT = System.out;
     private final Lock lock = new ReentrantLock();
 
     private final Condition isProduced = lock.newCondition();
@@ -74,7 +76,7 @@ public class ConditionExample implements Runnable {
                 try {
                     pc.produce(i);
                 } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+                    ex.printStackTrace(System.err);
                 }
             }
         });
@@ -84,7 +86,7 @@ public class ConditionExample implements Runnable {
                 try {
                     pc.consume();
                 } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+                    ex.printStackTrace(System.err);
                 }
             }
         });
@@ -96,13 +98,13 @@ public class ConditionExample implements Runnable {
             producer.join();
             consumer.join();
         } catch (InterruptedException ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(System.err);
         }
     }
 
     private void printStatus(String name, int item) {
         String itemString = String.format("%" + this.itemDigits + "s", item);
         String bufferSizeString = String.format("%" + this.capacityDigits + "s", this.bufferSize);
-        System.out.printf("%s %s, Buffer %s/%s%n", name, itemString, bufferSizeString, this.bufferCapacity);
+        OUT.printf("%s %s, Buffer %s/%s%n", name, itemString, bufferSizeString, this.bufferCapacity);
     }
 }

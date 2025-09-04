@@ -8,13 +8,8 @@ import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-/**
- * Threading example.
- *
- */
 public class App {
     public static void main(String[] args) {
-        // Stream from array.
         int[] numbers = {1, 2, 3, 4, 5};
         IntStream arrayStream = Arrays.stream(numbers);
         List<Integer> array = arrayStream
@@ -22,7 +17,6 @@ public class App {
                 .collect(Collectors.toList());
         System.out.printf("ArrayStream: %s%n", array);
 
-        // Stream of values.
         Stream<String> valuesStream = Stream.of("Maggie", "Amelia", "Charlotte");
         List<String> valueArray = valuesStream
                 .collect(Collectors.toList());

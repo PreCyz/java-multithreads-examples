@@ -17,34 +17,31 @@ public class CountDownLatchExample implements Runnable {
         final CountDownLatch redFinishLine = new CountDownLatch(THREAD_QTY);
 
         // Define runner todos.
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    // Wait for first starter's signal.
-                    printMessage("Wait for first starter's signal.");
-                    firstStartersSignal.await();
+        Runnable r = () -> {
+            try {
+                // Wait for first starter's signal.
+                printMessage("Wait for first starter's signal.");
+                firstStartersSignal.await();
 
-                    // Run to yellow finish line.
-                    printMessage("Run to yellow finish line.");
-                    Thread.sleep((int) Math.random() * 1000);
-                    printMessage("Reached yellow finish line.");
-                    yellowFinishLine.countDown();
+                // Run to yellow finish line.
+                printMessage("Run to yellow finish line.");
+                Thread.sleep((int) Math.random() * 1000);
+                printMessage("Reached yellow finish line.");
+                yellowFinishLine.countDown();
 
 
 
-                    // Wait for second starter's signal.
-                    printMessage("Wait for second starter's signal.");
-                    secondStartersSignal.await();
+                // Wait for second starter's signal.
+                printMessage("Wait for second starter's signal.");
+                secondStartersSignal.await();
 
-                    // Run to red finish line.
-                    printMessage("Run to red finish line.");
-                    Thread.sleep((int) Math.random() * 1000);
-                    printMessage("Reached red finish line.");
-                    redFinishLine.countDown();
-                } catch (InterruptedException ex) {
-                    printMessage(ex.getMessage());
-                }
+                // Run to red finish line.
+                printMessage("Run to red finish line.");
+                Thread.sleep((int) Math.random() * 1000);
+                printMessage("Reached red finish line.");
+                redFinishLine.countDown();
+            } catch (InterruptedException ex) {
+                printMessage(ex.getMessage());
             }
         };
 

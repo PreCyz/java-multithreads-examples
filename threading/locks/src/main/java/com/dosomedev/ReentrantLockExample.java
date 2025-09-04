@@ -45,7 +45,7 @@ public class ReentrantLockExample implements Runnable {
             thread1.join();
             thread2.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
 
         System.out.println("Count: " + counter.getCount());

@@ -1,9 +1,9 @@
 package com.dosomedev;
 
 public class Sprinter extends Thread {
-    private String name;
+    private final String name;
 
-    private int stepTime;
+    private final int stepTime;
 
     public Sprinter(String name, int stepTime) {
         this.name = name;
@@ -21,7 +21,7 @@ public class Sprinter extends Thread {
                 try {
                     Thread.sleep(this.stepTime);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    e.printStackTrace(System.err);
                 }
             } else {
                 calculatePi(10000000);

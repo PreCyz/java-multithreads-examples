@@ -1,10 +1,14 @@
 package com.dosomedev;
 
+import java.io.PrintStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 public class SemaphoreExample implements Runnable {
+
+    public static final PrintStream OUT = System.out;
+
     @Override
     public void run() {
         // Create a semaphore with X permits.
@@ -18,16 +22,16 @@ public class SemaphoreExample implements Runnable {
             executor.submit(() -> {
                 try {
                     // Acquire a permit.
-                    System.out.printf("%s --- request.%n", Thread.currentThread().getName());
+                    OUT.printf("%s --- request.%n", Thread.currentThread().getName());
                     semaphore.acquire();
-                    System.out.printf("%s <-- permit.%n", Thread.currentThread().getName());
+                    OUT.printf("%s <-- permit.%n", Thread.currentThread().getName());
 
                     // Simulate work.
                     Thread.sleep(1000);
 
                     // Release the permit.
                     semaphore.release();
-                    System.out.printf("%s --> release.%n", Thread.currentThread().getName());
+                    OUT.printf("%s --> release.%n", Thread.currentThread().getName());
                 } catch (InterruptedException ex) {
                     System.err.println(ex.getMessage());
                 }
@@ -36,5 +40,6 @@ public class SemaphoreExample implements Runnable {
 
         // Shutdown the executor.
         executor.shutdown();
+        executor.close();
     }
 }

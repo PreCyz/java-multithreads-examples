@@ -5,10 +5,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Threading example.
- *
- */
 public class App {
     private static final int NUMBER_OF_TASKS = 1000;
 
@@ -37,15 +33,12 @@ public class App {
 
     private static void runIOTest(String name, ExecutorService executor) {
         try {
-            // Remember start time.
             long startTime = System.currentTimeMillis();
 
-            // Submit tasks.
             for (int i = 0; i < NUMBER_OF_TASKS; i++) {
                 executor.submit(new IoBoundTask(i));
             }
 
-            // Wait for termination.
             executor.shutdown();
             executor.awaitTermination(1, TimeUnit.MINUTES);
 

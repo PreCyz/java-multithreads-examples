@@ -1,15 +1,13 @@
 package com.dosomedev;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class BabyNames {
+    public static final PrintStream OUT = System.out;
     private StreamType streamType;
 
     private List<String> maleNames;
@@ -23,17 +21,17 @@ public class BabyNames {
     }
 
     public void loadBabyNames() {
-        System.out.print("Loading baby names...");
-        try {
-            InputStream inputStream = BabyNames.class.getClassLoader().getResourceAsStream("baby-names.csv");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        OUT.print("Loading baby names...");
+        try (InputStream inputStream = BabyNames.class.getClassLoader().getResourceAsStream("baby-names.csv");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+
             String line;
 
             int indexName = 0;
             int indexSex = 1;
 
             while ((line = reader.readLine()) != null) {
-                if (line.length() > 0) {
+                if (!line.isEmpty()) {
                     String[] parts = line.split(",");
                     String sex = parts[indexSex];
                     String name = parts[indexName];
@@ -49,9 +47,9 @@ public class BabyNames {
                 }
             }
         } catch (IOException ex) {
-            System.out.println("The baby database could not be loaded.");
+            OUT.println("The baby database could not be loaded.");
         }
-        System.out.println("done!");
+        OUT.println("done!");
     }
 
     public Stream<String> getMaleNames() {
@@ -63,13 +61,10 @@ public class BabyNames {
     }
 
     private Stream<String> createStream(List<String> names) {
-        switch (this.streamType) {
-            case SEQUENTIAL:
-                return names.stream();
-            case PARALLEL:
-                return names.parallelStream();
-            default:
-                throw new IllegalArgumentException("No stream type chosen.");
-        }
+        return switch (this.streamType) {
+            case SEQUENTIAL -> names.stream();
+            case PARALLEL -> names.parallelStream();
+            default -> throw new IllegalArgumentException("No stream type chosen.");
+        };
     }
 }

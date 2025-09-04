@@ -26,7 +26,7 @@ public class StampedLockExample implements Runnable {
             }
         }
 
-        System.out.println("Reader " + Thread.currentThread().getName() + " read: " + value);
+        System.out.printf("Reader %s read: %s%n", Thread.currentThread().getName(), value);
         return value;
     }
 
@@ -79,14 +79,14 @@ public class StampedLockExample implements Runnable {
             try {
                 reader.join();
             } catch (InterruptedException ex) {
-                ex.printStackTrace();
+                ex.printStackTrace(System.err);
             }
         }
         for (Thread writer : writers) {
             try {
                 writer.join();
             } catch (InterruptedException ex) {
-                ex.printStackTrace();
+                ex.printStackTrace(System.err);
             }
         }
     }

@@ -1,9 +1,5 @@
 package com.dosomedev;
 
-/**
- * Threading example.
- *
- */
 public class App {
     public static void main(String[] args) {
         ReentrantLockExample example1 = new ReentrantLockExample();

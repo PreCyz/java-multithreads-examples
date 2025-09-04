@@ -1,32 +1,27 @@
 package com.dosomedev;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Threading example.
- *
- */
 public class App {
+
+    public static final PrintStream OUT = System.out;
+
     public static void main(String[] args) throws InterruptedException {
         synchronizedCounterExample();
         deadlockExample();
     }
 
     private static void synchronizedCounterExample() throws InterruptedException {
-        // Define system load.
         final long incrementNumber = 1000000;
         final long threadNumber = 100;
 
         final Counter counter = new Counter();
 
-        // Define what to do.
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 1; i <= incrementNumber; i++) {
-                    counter.incrementNumber();
-                }
+        Runnable r = () -> {
+            for (int i = 1; i <= incrementNumber; i++) {
+                counter.incrementNumber();
             }
         };
 
@@ -44,41 +39,35 @@ public class App {
         }
 
         // Print results.
-        System.out.printf("Counter should be: %s%n",
+        OUT.printf("Counter should be: %s%n",
                 String.format("%,d", incrementNumber * threadNumber));
-        System.out.printf("Counter is:        %s%n",
+        OUT.printf("Counter is:        %s%n",
                 String.format("%,d", counter.getNumber()));
     }
 
     private static void deadlockExample() {
         final DeadLockCounter counter = new DeadLockCounter();
 
-        Runnable r1 = new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    counter.incrementA();
+        Runnable r1 = () -> {
+            while (true) {
+                counter.incrementA();
 
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace(System.err);
                 }
             }
         };
 
-        Runnable r2 = new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    counter.incrementB();
+        Runnable r2 = () -> {
+            while (true) {
+                counter.incrementB();
 
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace(System.err);
                 }
             }
         };

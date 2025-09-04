@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Coach extends Thread {
-    private List<Sprinter> sprinters;
+    private final List<Sprinter> sprinters;
 
     public Coach(List<Sprinter> sprinters) {
         this.sprinters = sprinters;
@@ -34,7 +34,7 @@ public class Coach extends Thread {
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                e.printStackTrace(System.err);
             }
         }
 
