@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>pawg.dosomedev</groupId>
+    <artifactId>java-multithreads-example</artifactId>
+    <version>1.0</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>pawg.dosomedev.threading</groupId>
+  <artifactId>threading</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+
+  <name>threading</name>
+
+  <modules>
+    <module>thread</module>
+    <module>interrupt</module>
+    <module>synchronization</module>
+    <module>notify</module>
+    <module>timer</module>
+    <module>executors</module>
+    <module>synchronizers</module>
+    <module>locks</module>
+    <module>atomic</module>
+    <module>fork-join</module>
+    <module>completion-service</module>
+    <module>parallel-streams</module>
+    <module>virtual-threads</module>
+
+  </modules>
+
+</project>

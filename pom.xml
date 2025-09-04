@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>pawg.dosomedev</groupId>
+  <artifactId>java-multithreads-example</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+
+  <name>java-multithreads-example</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+  </properties>
+
+  <modules>
+    <module>arrayblockingqueue-app</module>
+    <module>arraydeque-app</module>
+    <module>arraylist-app</module>
+    <module>completablefuture-app</module>
+    <module>concurrenthashmap-app</module>
+    <module>dateformatting-app</module>
+    <module>delayqueue-app</module>
+    <module>enummap-app</module>
+    <module>enumset-app</module>
+    <module>future-app</module>
+    <module>hashmap-app</module>
+    <module>hashset-app</module>
+    <module>identityhashmap-app</module>
+    <module>linkedblockingqueue-app</module>
+    <module>linkedhashmap-app</module>
+    <module>linkedhashset-app</module>
+    <module>linkedlist-app</module>
+    <module>networking</module>
+    <module>optional-app</module>
+    <module>priorityblockingqueue-app</module>
+    <module>priorityqueue-app</module>
+    <module>stack-app</module>
+    <module>stringbuffer-app</module>
+    <module>stringbuilder-app</module>
+    <module>synchronousqueue-app</module>
+    <module>threading</module>
+    <module>treemap-app</module>
+    <module>treeset-app</module>
+    <module>vector-app</module>
+    <module>weakhashmap-app</module>
+  </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>3.6.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.14.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
