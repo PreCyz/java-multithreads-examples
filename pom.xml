@@ -18,36 +18,36 @@
   </properties>
 
   <modules>
-    <module>arrayblockingqueue-app</module>
-    <module>arraydeque-app</module>
-    <module>arraylist-app</module>
-    <module>completablefuture-app</module>
-    <module>concurrenthashmap-app</module>
-    <module>dateformatting-app</module>
-    <module>delayqueue-app</module>
-    <module>enummap-app</module>
-    <module>enumset-app</module>
-    <module>future-app</module>
-    <module>hashmap-app</module>
-    <module>hashset-app</module>
-    <module>identityhashmap-app</module>
-    <module>linkedblockingqueue-app</module>
-    <module>linkedhashmap-app</module>
-    <module>linkedhashset-app</module>
-    <module>linkedlist-app</module>
+    <module>array-blocking-queue</module>
+    <module>array-deque</module>
+    <module>array-list</module>
+    <module>completable-future</module>
+    <module>concurrent-hashmap</module>
+    <module>date-formatting</module>
+    <module>delay-queue</module>
+    <module>enum-map</module>
+    <module>enum-set</module>
+    <module>future</module>
+    <module>hash-map</module>
+    <module>hash-set</module>
+    <module>identity-hashmap</module>
+    <module>linked-blocking-queue</module>
+    <module>linked-hashmap</module>
+    <module>linked-hashset</module>
+    <module>linked-list</module>
     <module>networking</module>
-    <module>optional-app</module>
-    <module>priorityblockingqueue-app</module>
-    <module>priorityqueue-app</module>
-    <module>stack-app</module>
-    <module>stringbuffer-app</module>
-    <module>stringbuilder-app</module>
-    <module>synchronousqueue-app</module>
+    <module>optional</module>
+    <module>priority-blocking-queue</module>
+    <module>priority-queue</module>
+    <module>stack</module>
+    <module>string-buffer</module>
+    <module>string-builder</module>
+    <module>synchronous-queue</module>
     <module>threading</module>
-    <module>treemap-app</module>
-    <module>treeset-app</module>
-    <module>vector-app</module>
-    <module>weakhashmap-app</module>
+    <module>tree-map</module>
+    <module>tree-set</module>
+    <module>vector</module>
+    <module>weak-hashmap</module>
   </modules>
 
   <build>
