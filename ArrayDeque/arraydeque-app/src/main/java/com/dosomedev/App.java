@@ -4,10 +4,8 @@ package com.dosomedev;
  * ArrayDeque example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         Basket basket = new Basket();
 
         /*
@@ -25,7 +23,7 @@ public class App
         basket.takeTopPlate();
         basket.takeBottomPlate();
         basket.takeBottomPlate();
-        
+
         basket.addTopPlate("White Plate");
         basket.addTopPlate("White Plate");
         basket.addTopPlate("White Plate");

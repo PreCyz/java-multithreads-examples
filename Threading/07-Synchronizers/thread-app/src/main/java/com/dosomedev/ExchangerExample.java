@@ -38,7 +38,8 @@ public class ExchangerExample implements Runnable {
 
         try {
             Thread.sleep(5);
-        } catch (InterruptedException ex) {}
+        } catch (InterruptedException ex) {
+        }
 
         producer.interrupt();
         consumer.interrupt();

@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cd weakhashmap-app/target
-java -jar ./weakhashmap-app-1.0.jar

@@ -9,25 +9,25 @@ public class Coach extends Thread {
     public Coach(List<Sprinter> sprinters) {
         this.sprinters = sprinters;
     }
-    
+
     @Override
     public void run() {
         System.out.println("===> Coach starts watching.");
-        
+
         boolean runningSprintersExist = true;
         while (runningSprintersExist) {
             // Check if all sprinters are done.
             runningSprintersExist = this.sprinters
-                .stream()
-                .anyMatch(sprinter -> sprinter.getState() != Thread.State.TERMINATED);
+                    .stream()
+                    .anyMatch(sprinter -> sprinter.getState() != Thread.State.TERMINATED);
 
             // Print status.
             String sprinterStates = this.sprinters
-                .stream()
-                .map(sprinter -> sprinter.getSprinterName() + "/" +
-                                sprinter.getState().toString() + "/" +
-                                sprinter.isAlive())
-                .collect(Collectors.joining(", "));
+                    .stream()
+                    .map(sprinter -> sprinter.getSprinterName() + "/" +
+                                     sprinter.getState().toString() + "/" +
+                                     sprinter.isAlive())
+                    .collect(Collectors.joining(", "));
             System.out.printf("Coach note: %s%n", sprinterStates);
 
             // Limit coach checking speed.

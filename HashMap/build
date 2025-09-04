@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cd hashmap-app
-mvn clean package

@@ -13,7 +13,7 @@ public class TimeZoneExample implements Runnable {
         // Get UTC time.
         Instant now = Instant.now();
         System.out.println("Now:                 " + now);
-        
+
         // Create time zones.
         ZoneId losAngelesZoneId = ZoneId.of("America/Los_Angeles");
         ZoneId rioZoneId = ZoneId.of("America/Sao_Paulo");
@@ -21,7 +21,7 @@ public class TimeZoneExample implements Runnable {
         ZoneId mumbaiZoneId = ZoneId.of("Asia/Kolkata");
         ZoneId tokioZoneId = ZoneId.of("Asia/Tokyo");
         ZoneId sydneyZoneId = ZoneId.of("Australia/Sydney");
-        
+
         // Convert UTC time to time zones.
         LocalDateTime losAngelesTime = now.atZone(losAngelesZoneId).toLocalDateTime();
         LocalDateTime rioTime = now.atZone(rioZoneId).toLocalDateTime();
@@ -29,10 +29,10 @@ public class TimeZoneExample implements Runnable {
         LocalDateTime mumbaiTime = now.atZone(mumbaiZoneId).toLocalDateTime();
         LocalDateTime tokioTime = now.atZone(tokioZoneId).toLocalDateTime();
         LocalDateTime sydneyTime = now.atZone(sydneyZoneId).toLocalDateTime();
-        
+
         // Format date.
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
-        
+
         // Print times.
         System.out.println("Los Angeles Time:    " + losAngelesTime.format(formatter));
         System.out.println("Rio de Janeiro Time: " + rioTime.format(formatter));

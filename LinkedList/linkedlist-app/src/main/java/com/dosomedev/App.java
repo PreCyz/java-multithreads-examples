@@ -6,10 +6,8 @@ import java.util.LinkedList;
  * LinkedList example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         /*
          * Define and output.
          */
@@ -46,7 +44,7 @@ public class App
 
         names.remove("David");
         System.out.println("Removed David: " + names);
-        
+
         names.add(0, "Marc");
         names.add(2, "Marc");
         names.add("Marc");

@@ -1,7 +1,7 @@
 package com.dosomedev.DateExample;
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DateExample implements Runnable {
     @Override

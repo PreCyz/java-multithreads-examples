@@ -7,10 +7,8 @@ import java.util.List;
  * Threading example.
  *
  */
-public class App 
-{
-    public static void main( String[] args ) throws InterruptedException
-    {
+public class App {
+    public static void main(String[] args) throws InterruptedException {
         stateExample();
         priorityExample();
         interruptionExample();
@@ -50,7 +48,7 @@ public class App
 
         // Create sprinters.
         List<Sprinter> sprinters = new ArrayList<>();
-        for (int i=1; i<=100; i++) {
+        for (int i = 1; i <= 100; i++) {
             Sprinter sprinter = new Sprinter(String.valueOf(i), 0);
             sprinter.setPriority(i <= 10 ? Thread.MIN_PRIORITY : Thread.MAX_PRIORITY);
             sprinters.add(sprinter);
@@ -102,7 +100,7 @@ public class App
 
                     count++;
                 }
-                
+
                 System.out.printf("%s counter: %s%n", name, String.format("%,d", count));
             }
         };

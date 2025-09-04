@@ -22,10 +22,10 @@ public class Matrix {
     public void setValue(int row, int col, int value) {
         matrix[row][col] = value;
     }
-    
+
     public static void dump(Matrix m) {
-        for (int i=0; i<m.getRows(); i++) {
-            for (int j=0; j<m.getCols(); j++) {
+        for (int i = 0; i < m.getRows(); i++) {
+            for (int j = 0; j < m.getCols(); j++) {
                 System.out.printf("%d ", m.getValue(i, j));
             }
             System.out.println();

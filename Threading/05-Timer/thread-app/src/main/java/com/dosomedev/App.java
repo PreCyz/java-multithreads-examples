@@ -4,8 +4,7 @@ package com.dosomedev;
  * Threading example.
  *
  */
-public class App 
-{
+public class App {
     public static void main(String[] args) {
         ThreadLocalExample example1 = new ThreadLocalExample();
         example1.run();

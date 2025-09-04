@@ -13,26 +13,26 @@ import java.util.concurrent.TimeUnit;
  * ConcurrentHashMap example.
  *
  */
-public class App
-{
+public class App {
     private static final int ROUNDS = 6;
+
     private static final int THREAD_COUNT = 16;
+
     private static final int ITERATIONS = 1000000;
 
-    public static void main(String[] args) throws InterruptedException
-    {
+    public static void main(String[] args) throws InterruptedException {
         // Control variables.
         long avgHashtableMapMillis = 0;
         long avgSynchronizedHashMapMillis = 0;
         long avgConcurrentHashMapMillis = 0;
-        
+
         // Benchmark loop.
-        for (int i=0; i<ROUNDS; i++) {
+        for (int i = 0; i < ROUNDS; i++) {
             // Define maps.
             Map<String, Integer> hashtableMap = new Hashtable<>();
             Map<String, Integer> synchronizedHashMap = Collections.synchronizedMap(new HashMap<>());
             Map<String, Integer> concurrentHashMap = new ConcurrentHashMap<>();
-            
+
             // Perform benchmarks.
             avgHashtableMapMillis += benchmark(hashtableMap, i + 1);
             avgSynchronizedHashMapMillis += benchmark(synchronizedHashMap, i + 1);
@@ -59,11 +59,11 @@ public class App
         long start = System.nanoTime();
 
         // Run through all threads.
-        for (int i=0; i<THREAD_COUNT; i++) {
+        for (int i = 0; i < THREAD_COUNT; i++) {
             // Create thread.
             executor.submit(() -> {
                 // Fill map with dummy data.
-                for (int j=0; j<ITERATIONS; j++) {
+                for (int j = 0; j < ITERATIONS; j++) {
                     String key = "thread " + j;
                     map.put(key, j);
                     map.get(key);

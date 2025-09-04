@@ -6,6 +6,7 @@ import java.util.concurrent.RecursiveAction;
 
 public class MatrixMultiplicationForkJoin extends RecursiveAction {
     private final Matrix a, b, c;
+
     private final int row;
 
     public MatrixMultiplicationForkJoin(Matrix a, Matrix b, Matrix c) {
@@ -28,10 +29,10 @@ public class MatrixMultiplicationForkJoin extends RecursiveAction {
         if (row == -1) {
             List<MatrixMultiplicationForkJoin> tasks = new ArrayList<>();
 
-            for (int row=0; row<a.getRows(); row++) {
+            for (int row = 0; row < a.getRows(); row++) {
                 tasks.add(new MatrixMultiplicationForkJoin(a, b, c, row));
             }
-            
+
             invokeAll(tasks);
         } else {
             multiplyRowByColumn(a, b, c, row);
@@ -39,8 +40,8 @@ public class MatrixMultiplicationForkJoin extends RecursiveAction {
     }
 
     private void multiplyRowByColumn(Matrix a, Matrix b, Matrix c, int row) {
-        for (int j=0; j<b.getCols(); j++) {
-            for (int k=0; k<a.getCols(); k++) {
+        for (int j = 0; j < b.getCols(); j++) {
+            for (int k = 0; k < a.getCols(); k++) {
                 c.setValue(row, j, c.getValue(row, j) + a.getValue(row, k) * b.getValue(k, j));
             }
         }

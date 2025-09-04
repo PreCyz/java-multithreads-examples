@@ -1,4 +1,0 @@
-@echo off
-
-cd synchronousqueue-app\target
-java -jar synchronousqueue-app-1.0.jar

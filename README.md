@@ -62,20 +62,8 @@ Welcome to the **Do Some Dev** code repository for Java examples. This meticulou
 | **Java Multithreading - 11 - Completion Service** <br> [![Link to YouTube](https://github.com/dosomedev/java/blob/main/img/Threading-12.png?raw=true)](https://www.youtube.com/watch?v=W36j4pDNWmE&list=PLX1UpgTeV9a72qwFniza3BY1JDa5yoBhJ&index=12) | - [Code Example](./Threading) <br> - [YouTube Video](https://www.youtube.com/watch?v=W36j4pDNWmE&list=PLX1UpgTeV9a72qwFniza3BY1JDa5yoBhJ&index=12) |
 | **Java Multithreading - 12 - Parallel Streams** <br> [![Link to YouTube](https://github.com/dosomedev/java/blob/main/img/Threading-11.png?raw=true)](https://www.youtube.com/watch?v=K-M_Q4EtWTc&list=PLX1UpgTeV9a72qwFniza3BY1JDa5yoBhJ) | - [Code Example](./Threading) <br> - [YouTube Video](https://www.youtube.com/watch?v=K-M_Q4EtWTc&list=PLX1UpgTeV9a72qwFniza3BY1JDa5yoBhJ) |
 
-## GUI
-
-| Topic | Links |
-| :--- | :--- |
-| **Java GUI - Simple GUI Tutorial in 13 Minutes** <br> [![Link to YouTube](https://github.com/dosomedev/java/blob/main/img/GUI-1.png?raw=true)](https://www.youtube.com/watch?v=eg69gkxu18Y&list=PLX1UpgTeV9a5jnLHKhCn27jB72_9CpoNg&index=2) | - [Code Example](./GUI) <br> - [YouTube Video](https://www.youtube.com/watch?v=eg69gkxu18Y&list=PLX1UpgTeV9a5jnLHKhCn27jB72_9CpoNg&index=2) |
-| **Java GUI - The BEST Layout Manager for Java Swing** <br> [![Link to YouTube](https://github.com/dosomedev/java/blob/main/img/GUI-2.png?raw=true)](https://www.youtube.com/watch?v=yeETmBZXglc&list=PLX1UpgTeV9a5jnLHKhCn27jB72_9CpoNg&index=1) | - [Code Example](./GUI) <br> - [YouTube Video](https://www.youtube.com/watch?v=yeETmBZXglc&list=PLX1UpgTeV9a5jnLHKhCn27jB72_9CpoNg&index=1) |
-| **Java GUI - 3 - BEYOND Basic ActionListener** <br> [![Link to YouTube](https://github.com/dosomedev/java/blob/main/img/GUI-3.png?raw=true)](https://www.youtube.com/watch?v=Xdfl84xd1LQ&list=PLX1UpgTeV9a5jnLHKhCn27jB72_9CpoNg&index=3) | - [Code Example](./GUI) <br> - [YouTube Video](https://www.youtube.com/watch?v=Xdfl84xd1LQ&list=PLX1UpgTeV9a5jnLHKhCn27jB72_9CpoNg&index=3) |
-| **Java GUI - 4 - FASTEST Table Setup - Ready in 12 Minutes** <br> [![Link to YouTube](https://github.com/dosomedev/java/blob/main/img/GUI-4.png?raw=true)](https://www.youtube.com/watch?v=NnG9GivG7hM&list=PLX1UpgTeV9a5jnLHKhCn27jB72_9CpoNg&index=1) | - [Code Example](./GUI) <br> - [YouTube Video](https://www.youtube.com/watch?v=NnG9GivG7hM&list=PLX1UpgTeV9a5jnLHKhCn27jB72_9CpoNg&index=1) |
-
 ## Networking
 
 | Topic | Links |
 | :--- | :--- |
 | **Java Sockets vs. RMI: How Does Data Transfer REALLY Work?** <br> [![Link to YouTube](https://github.com/dosomedev/java/blob/main/img/Networking-1.png?raw=true)](https://www.youtube.com/watch?v=unIQz-TOye0&list=PLX1UpgTeV9a5-T4AxYRWi3W7CzDytLXE3&index=1) | - [Code Example](./Networking) <br> - [YouTube Video](https://www.youtube.com/watch?v=unIQz-TOye0&list=PLX1UpgTeV9a5-T4AxYRWi3W7CzDytLXE3&index=1) |
-
-# Meet Me Here
-* [All my other channels](https://dosomedev.com/contact)

@@ -10,7 +10,7 @@ public class CyclicBarrierExample implements Runnable {
             System.out.println("All workers have reached the checkpoint!");
         });
 
-        for (int i=1; i<=3; i++) {
+        for (int i = 1; i <= 3; i++) {
             final int sleepTimeMillis = 1000 * i;
 
             new Thread(() -> {

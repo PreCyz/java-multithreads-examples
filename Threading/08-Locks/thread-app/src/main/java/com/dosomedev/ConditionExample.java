@@ -6,16 +6,25 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ConditionExample implements Runnable {
     private final Lock lock = new ReentrantLock();
+
     private final Condition isProduced = lock.newCondition();
+
     private final Condition isConsumed = lock.newCondition();
 
     private final int bufferCapacity = 10;
+
     private final int itemQuantity = 100;
+
     private int capacityDigits = 0;
+
     private int itemDigits = 0;
+
     private int[] buffer = new int[bufferCapacity];
+
     private int bufferSize = 0;
+
     private int in = 0;
+
     private int out = 0;
 
     public ConditionExample() {

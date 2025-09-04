@@ -4,10 +4,8 @@ package com.dosomedev;
  * CompletableFuture example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         CombinationExample combinationExample = new CombinationExample();
         combinationExample.run();
         System.out.println();

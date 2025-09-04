@@ -6,10 +6,8 @@ import java.util.Optional;
  * Optional example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         OptionalExamples optionalExamples = new OptionalExamples();
 
 
@@ -68,7 +66,7 @@ public class App
         String catNameWithFlatMap = optionalExamples.getValuesWithFlatMap();
         System.out.println("Get cat name with map():     " + catNameWithMap);
         System.out.println("Get cat name with flatMap(): " + catNameWithFlatMap);
-        
+
         optionalExamples.getValuesWithIfPresentOrElse("Nala");
         optionalExamples.getValuesWithIfPresentOrElse(null);
 

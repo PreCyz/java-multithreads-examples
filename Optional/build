@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cd optional-app
-mvn clean package

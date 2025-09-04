@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cd enumset-app
-mvn clean package

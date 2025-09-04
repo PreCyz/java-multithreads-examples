@@ -5,6 +5,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ReentrantReadWriteLockExample implements Runnable {
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
+
     private int value;
 
     public int getValue() {
@@ -33,10 +34,10 @@ public class ReentrantReadWriteLockExample implements Runnable {
 
         // Create all reader threads.
         Thread[] readers = new Thread[10];
-        for (int i=0; i<readers.length; i++) {
+        for (int i = 0; i < readers.length; i++) {
             // Add new reader thread.
             readers[i] = new Thread(() -> {
-                for (int j=0; j<100; j++) {
+                for (int j = 0; j < 100; j++) {
                     data.getValue();
                 }
             });
@@ -44,10 +45,10 @@ public class ReentrantReadWriteLockExample implements Runnable {
 
         // Create all writer threads.
         Thread[] writers = new Thread[5];
-        for (int i=0; i<writers.length; i++) {
+        for (int i = 0; i < writers.length; i++) {
             // Add new writer thread.
             writers[i] = new Thread(() -> {
-                for (int j=1; j<=10; j++) {
+                for (int j = 1; j <= 10; j++) {
                     data.setValue(j);
                 }
             });

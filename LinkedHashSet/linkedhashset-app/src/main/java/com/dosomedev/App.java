@@ -6,10 +6,8 @@ import java.util.LinkedHashSet;
  * LinkedHashSet example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         /*
          * Create a LinkedHashSet to store unique names.
          */

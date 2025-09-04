@@ -6,10 +6,8 @@ import java.util.HashSet;
  * HashSet example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         /*
          * Create a HashSet to store unique names.
          */
@@ -72,7 +70,7 @@ public class App
         /*
          * Iterate through the names.
          */
-        
+
         System.out.println("List of names:");
         for (String name : names) {
             System.out.println("- " + name);

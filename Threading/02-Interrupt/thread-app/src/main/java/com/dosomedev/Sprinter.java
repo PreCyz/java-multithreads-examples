@@ -2,6 +2,7 @@ package com.dosomedev;
 
 public class Sprinter extends Thread {
     private String name;
+
     private int stepTime;
 
     public Sprinter(String name, int stepTime) {
@@ -15,7 +16,7 @@ public class Sprinter extends Thread {
 
     @Override
     public void run() {
-        for (int i=1; i<=10; i++) {
+        for (int i = 1; i <= 10; i++) {
             if (this.stepTime > 0) {
                 try {
                     Thread.sleep(this.stepTime);

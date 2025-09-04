@@ -17,12 +17,12 @@ public class TimerOneShotExample implements Runnable {
             public void run() {
                 // Print info.
                 System.out.printf("One-shot task at: %s%n", currentTime());
-                
+
                 // Cancel timer.
                 timer.cancel();
             }
         };
-        
+
         // Schedule one-shot timer execution.
         System.out.printf("Timing one-shot at: %s%n", currentTime());
         timer.schedule(task, 1000);

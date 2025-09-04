@@ -6,10 +6,8 @@ import java.util.concurrent.DelayQueue;
  * DelayQueue example.
  *
  */
-public class App 
-{
-    public static void main(String[] args) throws InterruptedException
-    {
+public class App {
+    public static void main(String[] args) throws InterruptedException {
         DelayQueue<DelayedTask> delayQueue = new DelayQueue<>();
 
         // Add tasks with different delays.
@@ -20,7 +18,7 @@ public class App
 
         // Process tasks as they become available.
         long startTimeMillis = System.currentTimeMillis();
-        
+
         while (!delayQueue.isEmpty()) {
             System.out.print("Get task...");
 
@@ -28,7 +26,7 @@ public class App
             long stopTimeMillis = System.currentTimeMillis();
 
             System.out.println("done in " + (stopTimeMillis - startTimeMillis)
-                + " ms! Message: " + task.getMessage());
+                               + " ms! Message: " + task.getMessage());
         }
     }
 }

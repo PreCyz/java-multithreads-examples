@@ -4,10 +4,8 @@ package com.dosomedev;
  * LinkedBlockingQueue example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         // Run example 1.
         ExampleOne exampleOne = new ExampleOne();
         exampleOne.run();

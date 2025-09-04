@@ -14,7 +14,7 @@ public class SemaphoreExample implements Runnable {
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
         // Submit tasks to the pool.
-        for (int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             executor.submit(() -> {
                 try {
                     // Acquire a permit.

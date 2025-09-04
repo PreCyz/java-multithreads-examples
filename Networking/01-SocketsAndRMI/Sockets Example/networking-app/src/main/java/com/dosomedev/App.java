@@ -4,8 +4,7 @@ package com.dosomedev;
  * Sockets example.
  *
  */
-public class App 
-{
+public class App {
     public static void main(String[] args) {
         if (args.length > 0) {
             // Get the first param from the command line.
@@ -30,7 +29,7 @@ public class App
                         System.err.println("Error: incomplete param 'client': [server|client <servername>]");
                     }
                     break;
-            
+
                 default:
                     System.err.println("Error: unknown param '" + firstParam + "': [server|client <servername>]");
                     break;

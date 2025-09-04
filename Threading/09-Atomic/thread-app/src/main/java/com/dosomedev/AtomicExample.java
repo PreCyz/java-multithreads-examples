@@ -18,12 +18,19 @@ import java.util.concurrent.atomic.LongAdder;
 
 public class AtomicExample implements Runnable {
     private final MathContext PRECISION = new MathContext(20000, RoundingMode.HALF_UP);
+
     private final int THREADPACKETS = 20;
+
     private final int ITERATIONSPERPACKET = 300;
+
     private final AtomicInteger counter = new AtomicInteger(0);
+
     private final AtomicInteger counter2 = new AtomicInteger(0);
+
     private final LongAccumulator minDuration = new LongAccumulator(Math::min, Long.MAX_VALUE);
+
     private final LongAccumulator maxDuration = new LongAccumulator(Math::max, Long.MIN_VALUE);
+
     private final LongAdder totalCalculationDuration = new LongAdder();
 
     @Override
@@ -43,7 +50,7 @@ public class AtomicExample implements Runnable {
         int cores = Runtime.getRuntime().availableProcessors();
         ExecutorService executor = Executors.newFixedThreadPool(cores);
         List<Future<BigDecimal>> eulersNumberFutures = new ArrayList<>();
-        for (int i=0; i<THREADPACKETS; i++) {
+        for (int i = 0; i < THREADPACKETS; i++) {
             eulersNumberFutures.add(executor.submit(eulersNumberCalculation));
         }
 
@@ -55,7 +62,7 @@ public class AtomicExample implements Runnable {
                 BigDecimal eulersNumberPart = eulersNumberFuture.get();
                 eulersNumber = eulersNumber.add(eulersNumberPart);
             }
-            
+
             System.out.printf("Euler's Number: %s%n", eulersNumber);
         } catch (InterruptedException | ExecutionException e) {
             System.err.println("Calculation of Euler's Number interrupted!");
@@ -78,24 +85,24 @@ public class AtomicExample implements Runnable {
     private BigDecimal calculateEulersNumber() {
         // Remember start time.
         Instant startTime = Instant.now();
-        
+
         // Get calculation range.
         BigDecimal result = BigDecimal.ZERO;
         int lastIteration = this.counter.addAndGet(ITERATIONSPERPACKET);
         int firstIteration = lastIteration - ITERATIONSPERPACKET;
-        
+
         // Calculate range.
-        for (int i=firstIteration; i<lastIteration; i++) {
+        for (int i = firstIteration; i < lastIteration; i++) {
             BigDecimal factorial = factorial(BigDecimal.valueOf(i));
             BigDecimal inverse = BigDecimal.ONE.divide(factorial, PRECISION);
             result = result.add(inverse);
 
             counter2.incrementAndGet();
         }
-        
+
         // Set result to precision.
         result = result.setScale(PRECISION.getPrecision(), PRECISION.getRoundingMode());
-        
+
         // Remember end time.
         Instant endTime = Instant.now();
         Long duration = Duration.between(startTime, endTime).toMillis();
@@ -110,7 +117,7 @@ public class AtomicExample implements Runnable {
     private BigDecimal factorial(BigDecimal n) {
         // Calculate factorial of n.
         BigDecimal result = BigDecimal.ONE;
-        
+
         for (BigDecimal i = BigDecimal.valueOf(2); i.compareTo(n) <= 0; i = i.add(BigDecimal.ONE)) {
             result = result.multiply(i);
         }

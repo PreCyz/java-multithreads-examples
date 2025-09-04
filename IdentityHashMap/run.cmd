@@ -1,4 +1,0 @@
-@echo off
-
-cd identityhashmap-app\target
-java -jar identityhashmap-app-1.0.jar

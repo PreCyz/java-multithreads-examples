@@ -13,12 +13,12 @@ public class OtherCalendarExample implements Runnable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM, yyyy");
         String gregorianDateString = gregorianDate.format(formatter);
         System.out.println("Christian / Gregorian Date: " + gregorianDateString);
-        
+
         // Jewish Calendar.
         JewishCalendar jewishCalendar = new JewishCalendar();
         String jewishDateString = jewishCalendar.getJewishDate(gregorianDate);
         System.out.println("Jewish / Hebrew Date:       " + jewishDateString);
-        
+
         // Muslim Calendar.
         MuslimCalendar muslimCalendar = new MuslimCalendar();
         String muslimDateString = muslimCalendar.getMuslimDate(gregorianDate);

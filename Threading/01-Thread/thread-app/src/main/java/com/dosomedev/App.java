@@ -4,10 +4,8 @@ package com.dosomedev;
  * Threading example.
  *
  */
-public class App 
-{
-    public static void main( String[] args ) throws InterruptedException
-    {
+public class App {
+    public static void main(String[] args) throws InterruptedException {
         // Runnable r = new Runnable() {
         //     @Override
         //     public void run() {
@@ -22,7 +20,7 @@ public class App
         //         }
         //     }
         // };
-        
+
         // Thread t1 = new Thread(r);
         // t1.start();
 

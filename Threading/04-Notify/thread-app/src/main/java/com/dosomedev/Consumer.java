@@ -12,8 +12,8 @@ public class Consumer extends Thread {
         int i = 0;
         while (i < 10) {
             //synchronized (this.together) {
-                i = together.getNumber();
-                System.out.printf("Consumed %s%n", i);
+            i = together.getNumber();
+            System.out.printf("Consumed %s%n", i);
             //}
         }
     }

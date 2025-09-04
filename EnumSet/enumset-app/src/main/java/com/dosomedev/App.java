@@ -10,22 +10,29 @@ import java.util.concurrent.TimeUnit;
  * EnumSet example.
  *
  */
-public class App 
-{
+public class App {
     private static final int ROUNDS = 6;
+
     private static final int ITERATIONS = 100000000;
 
 
     private enum Color {
-        RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE
+        RED,
+        GREEN,
+        BLUE,
+        YELLOW,
+        ORANGE,
+        PURPLE
     }
+
 
     private enum BenchmarkType {
-        ADD, CONTAINS, REMOVE
+        ADD,
+        CONTAINS,
+        REMOVE
     }
 
-    public static void main( String[] args )
-    {
+    public static void main(String[] args) {
         runBenchmarkType(BenchmarkType.ADD);
         runBenchmarkType(BenchmarkType.CONTAINS);
         runBenchmarkType(BenchmarkType.REMOVE);
@@ -42,7 +49,7 @@ public class App
         long avgHashSet = 0;
 
         // Benchmark loop.
-        for (int i=0; i<ROUNDS; i++) {
+        for (int i = 0; i < ROUNDS; i++) {
             avgEnumSet += benchmark(enumSet, i + 1, type);
             avgHashSet += benchmark(hashSet, i + 1, type);
         }
@@ -63,15 +70,15 @@ public class App
         long start = System.nanoTime();
 
         if (type == BenchmarkType.ADD) {
-            for (int i=0; i<ITERATIONS; i++) {
+            for (int i = 0; i < ITERATIONS; i++) {
                 set.add(colors[i % colors.length]);
             }
         } else if (type == BenchmarkType.CONTAINS) {
-            for (int i=0; i<ITERATIONS; i++) {
+            for (int i = 0; i < ITERATIONS; i++) {
                 set.contains(colors[i % colors.length]);
             }
         } else if (type == BenchmarkType.REMOVE) {
-            for (int i=0; i<ITERATIONS; i++) {
+            for (int i = 0; i < ITERATIONS; i++) {
                 set.remove(colors[i % colors.length]);
             }
         }

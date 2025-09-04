@@ -8,7 +8,7 @@ public class Counter {
     }
 
     public void incrementNumber() {
-    //public synchronized void incrementNumber() {
+        //public synchronized void incrementNumber() {
         this.number++;
     }
 }

@@ -2,6 +2,7 @@ package com.dosomedev;
 
 public class Together {
     private int number;
+
     private volatile boolean writable = true;
 
     public synchronized void setNumber(int number) {
@@ -9,7 +10,8 @@ public class Together {
         while (!this.writable) {
             try {
                 wait();
-            } catch (InterruptedException ex) {}
+            } catch (InterruptedException ex) {
+            }
         }
 
         // Perform some work.
@@ -25,7 +27,8 @@ public class Together {
         while (this.writable) {
             try {
                 wait();
-            } catch (InterruptedException ex) {}
+            } catch (InterruptedException ex) {
+            }
         }
 
         // Perform some work.

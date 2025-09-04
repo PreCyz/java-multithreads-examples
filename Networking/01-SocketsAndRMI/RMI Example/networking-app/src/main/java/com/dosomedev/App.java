@@ -4,8 +4,7 @@ package com.dosomedev;
  * RMI example.
  *
  */
-public class App 
-{
+public class App {
     public static void main(String[] args) {
         // Differentiate between server and client.
         if (args.length > 0) {
@@ -30,7 +29,7 @@ public class App
                         System.err.println("Error: incomplete param 'client': [server|client <servername>]");
                     }
                     break;
-            
+
                 default:
                     System.err.println("Error: unknown param '" + firstParam + "': [server|client <servername>]");
                     break;

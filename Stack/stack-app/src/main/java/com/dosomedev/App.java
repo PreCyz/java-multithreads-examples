@@ -4,10 +4,8 @@ package com.dosomedev;
  * Stack example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         Basket basket = new Basket();
 
         /*

@@ -12,10 +12,10 @@ public class SimpleClient {
         int portNumber = 12345;
 
         try (
-            Socket socket = new Socket(serverName, portNumber);
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            Scanner scanner = new Scanner(System.in);
+                Socket socket = new Socket(serverName, portNumber);
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                Scanner scanner = new Scanner(System.in);
         ) {
             String userInput;
             String serverResponse;

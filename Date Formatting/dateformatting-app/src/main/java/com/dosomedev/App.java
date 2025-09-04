@@ -12,10 +12,8 @@ import com.dosomedev.TimeZoneExample.TimeZoneExample;
  * Date formatting example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         DateExample dateExample = new DateExample();
         dateExample.run();
 

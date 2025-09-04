@@ -5,6 +5,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class ProducerConsumerNonBlocking implements ProducerConsumerQueue {
     private final int capacity = 10;
+
     private final BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(capacity);
 
     public void produce() {

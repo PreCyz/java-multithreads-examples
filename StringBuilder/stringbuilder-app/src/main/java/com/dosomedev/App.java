@@ -4,10 +4,8 @@ package com.dosomedev;
  * StringBuilder example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         // Create StringBuilder.
         StringBuilder sb = new StringBuilder();
 

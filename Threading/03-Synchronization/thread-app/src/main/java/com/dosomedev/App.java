@@ -7,8 +7,7 @@ import java.util.List;
  * Threading example.
  *
  */
-public class App 
-{
+public class App {
     public static void main(String[] args) throws InterruptedException {
         synchronizedCounterExample();
         deadlockExample();
@@ -25,7 +24,7 @@ public class App
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                for (int i=1; i<=incrementNumber; i++) {
+                for (int i = 1; i <= incrementNumber; i++) {
                     counter.incrementNumber();
                 }
             }
@@ -33,7 +32,7 @@ public class App
 
         // Start all threads.
         List<Thread> threads = new ArrayList<>();
-        for (int i=1; i<=threadNumber; i++) {
+        for (int i = 1; i <= threadNumber; i++) {
             Thread t = new Thread(r);
             threads.add(t);
             t.start();
@@ -46,9 +45,9 @@ public class App
 
         // Print results.
         System.out.printf("Counter should be: %s%n",
-            String.format("%,d", incrementNumber * threadNumber));
+                String.format("%,d", incrementNumber * threadNumber));
         System.out.printf("Counter is:        %s%n",
-            String.format("%,d", counter.getNumber()));
+                String.format("%,d", counter.getNumber()));
     }
 
     private static void deadlockExample() {
@@ -57,7 +56,7 @@ public class App
         Runnable r1 = new Runnable() {
             @Override
             public void run() {
-                while(true) {
+                while (true) {
                     counter.incrementA();
 
                     try {
@@ -72,7 +71,7 @@ public class App
         Runnable r2 = new Runnable() {
             @Override
             public void run() {
-                while(true) {
+                while (true) {
                     counter.incrementB();
 
                     try {

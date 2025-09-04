@@ -2,6 +2,7 @@ package com.dosomedev;
 
 public class Task {
     private int priority;
+
     private String description;
 
     public Task(int priority, String description) {
@@ -12,7 +13,7 @@ public class Task {
     public int getPriority() {
         return priority;
     }
-   
+
     public String getDescription() {
         return description;
     }
@@ -20,8 +21,8 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "priority=" + priority +
-                ", description='" + description +
-                "'}";
+               "priority=" + priority +
+               ", description='" + description +
+               "'}";
     }
 }

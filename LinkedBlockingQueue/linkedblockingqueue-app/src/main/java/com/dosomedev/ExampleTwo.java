@@ -7,7 +7,9 @@ import java.util.concurrent.PriorityBlockingQueue;
 
 public class ExampleTwo implements Runnable {
     private static final int NUM_ELEMENTS = 1000;
+
     private static final int NUM_PRODUCERS = 4000;
+
     private static final int NUM_CONSUMERS = 4000;
 
     @Override
@@ -31,7 +33,7 @@ public class ExampleTwo implements Runnable {
                         queue.put(j);
                     } catch (InterruptedException ex) {
                         System.out.println("Producer interrupted. Message: "
-                            + ex.getMessage());
+                                           + ex.getMessage());
                     }
                 }
             });
@@ -46,7 +48,7 @@ public class ExampleTwo implements Runnable {
                         queue.take();
                     } catch (InterruptedException ex) {
                         System.out.println("Consumer interrupted. Message: "
-                            + ex.getMessage());
+                                           + ex.getMessage());
                     }
                 }
             });
@@ -76,6 +78,6 @@ public class ExampleTwo implements Runnable {
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
         System.out.println(queue.getClass().getSimpleName()
-            + " took " + duration / 1000000 + " ms");
+                           + " took " + duration / 1000000 + " ms");
     }
 }

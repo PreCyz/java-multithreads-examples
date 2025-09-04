@@ -11,9 +11,9 @@ public class FutureListExample implements Runnable {
         System.out.println("Example with a List of Futures run through another Future:");
 
         List<CompletableFuture<String>> futures = Arrays.asList(
-            CompletableFuture.supplyAsync(() -> "Future A result!"),
-            CompletableFuture.supplyAsync(() -> "Future B result!"),
-            CompletableFuture.supplyAsync(() -> "Future C result!")
+                CompletableFuture.supplyAsync(() -> "Future A result!"),
+                CompletableFuture.supplyAsync(() -> "Future B result!"),
+                CompletableFuture.supplyAsync(() -> "Future C result!")
         );
 
         CompletableFuture<Void> combinedFuture = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));

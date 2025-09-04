@@ -9,10 +9,11 @@ import java.util.concurrent.TimeUnit;
  * Threading example.
  *
  */
-public class App 
-{
+public class App {
     private static final int NUMBER_OF_TASKS = 1000;
+
     private static final int CPU_CORES = Runtime.getRuntime().availableProcessors();
+
     private static final int PRIME_NUMBER = 1000000000;
 
     public static void main(String[] args) {

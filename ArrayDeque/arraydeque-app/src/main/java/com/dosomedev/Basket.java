@@ -9,20 +9,20 @@ public class Basket {
     public void addTopPlate(String plate) {
         this.plates.addFirst(plate);
         System.out.println("Added top plate: " + plate
-            + ". Total number of plates: " + this.plates.size());
+                           + ". Total number of plates: " + this.plates.size());
     }
 
     public void addBottomPlate(String plate) {
         this.plates.addLast(plate);
         System.out.println("Added bottom plate: " + plate
-            + ". Total number of plates: " + this.plates.size());
+                           + ". Total number of plates: " + this.plates.size());
     }
 
     public String takeTopPlate() {
         String plate = this.plates.pollFirst();
         if (plate != null) {
             System.out.println("Took top plate: " + plate
-                + ". Total number of plates: " + this.plates.size());
+                               + ". Total number of plates: " + this.plates.size());
         } else {
             System.out.println("Tried to take top plate, but no plates left.");
         }
@@ -33,7 +33,7 @@ public class Basket {
         String plate = this.plates.pollLast();
         if (plate != null) {
             System.out.println("Took bottom plate: " + plate
-                + ". Total number of plates: " + this.plates.size());
+                               + ". Total number of plates: " + this.plates.size());
         } else {
             System.out.println("Tried to take bottom plate, but no plates left.");
         }
@@ -43,7 +43,7 @@ public class Basket {
     public void listPlates() {
         System.out.println("List of plates:");
         if (this.plates.size() > 0) {
-            int index = this.plates.size()-1;
+            int index = this.plates.size() - 1;
             for (String plate : this.plates) {
                 System.out.println("[" + index-- + "] " + plate);
             }

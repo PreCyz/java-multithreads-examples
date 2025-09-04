@@ -19,7 +19,7 @@ public class ExampleTwo implements Runnable {
                 resultHolder.set(42);
             } catch (InterruptedException ex) {
                 System.err.println("Settting result holder interrupted! Message: "
-                    + ex.getMessage());
+                                   + ex.getMessage());
             }
         };
 

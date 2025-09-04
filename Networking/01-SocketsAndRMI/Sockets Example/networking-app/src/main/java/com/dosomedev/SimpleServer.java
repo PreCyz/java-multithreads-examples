@@ -10,7 +10,7 @@ import java.net.Socket;
 public class SimpleServer {
     public void run() {
         int portNumber = 12345;
-        
+
         try (ServerSocket socket = new ServerSocket(portNumber)) {
             System.out.println("Simple server listening on port " + portNumber + ".");
 
@@ -20,8 +20,8 @@ public class SimpleServer {
 
             // Input from the client.
             try (
-                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                    BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             ) {
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {

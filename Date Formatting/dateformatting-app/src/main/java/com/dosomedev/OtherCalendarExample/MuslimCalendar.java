@@ -1,5 +1,8 @@
 package com.dosomedev.OtherCalendarExample;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -8,17 +11,13 @@ import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 /*
  * This class makes use of the REST API of https://aladhan.com.
  */
 public class MuslimCalendar {
     public String getMuslimDate(LocalDate gregorianDate) {
         String dateString = null;
-        
+
         // Build the HTTP request.
         URI apiUri = this.getApiUri(gregorianDate);
         // Request API JSON.
@@ -67,13 +66,13 @@ public class MuslimCalendar {
 
     private String parseJsonResponse(String json) {
         String dateString = null;
-        
+
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode rootNode = mapper.readTree(json);
             JsonNode dataNode = rootNode.get("data");
             JsonNode hijriNode = dataNode.get("hijri");
-            
+
             String day = hijriNode.get("day").asText();
             String monthEn = hijriNode.get("month").get("en").asText();
             String monthAr = hijriNode.get("month").get("ar").asText();

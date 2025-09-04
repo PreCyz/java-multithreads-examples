@@ -6,10 +6,8 @@ import java.util.ArrayList;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         /*
         Define and output.
         */
@@ -21,7 +19,7 @@ public class App
         trees[3] = "Pine";
 
         System.out.println("Array values:");
-        for (int i=0; i<trees.length; i++) {
+        for (int i = 0; i < trees.length; i++) {
             System.out.println(trees[i]);
         }
         System.out.println();
@@ -31,9 +29,9 @@ public class App
         pets.add("Charlie");
         pets.add("Bunny");
         pets.add("Sunshine");
-        
+
         System.out.println("ArrayList values:");
-        for (int i=0; i<pets.size(); i++) {
+        for (int i = 0; i < pets.size(); i++) {
             System.out.println(pets.get(i));
         }
         System.out.println();
@@ -45,15 +43,15 @@ public class App
         trees[1] = "Cherry";
 
         System.out.println("Array values:");
-        for (int i=0; i<trees.length; i++) {
+        for (int i = 0; i < trees.length; i++) {
             System.out.println(trees[i]);
         }
         System.out.println();
 
         pets.set(1, "Max");
-        
+
         System.out.println("ArrayList values:");
-        for (int i=0; i<pets.size(); i++) {
+        for (int i = 0; i < pets.size(); i++) {
             System.out.println(pets.get(i));
         }
         System.out.println();
@@ -65,9 +63,9 @@ public class App
         // Not possible with arrays.
 
         pets.remove(1);
-        
+
         System.out.println("ArrayList values:");
-        for (int i=0; i<pets.size(); i++) {
+        for (int i = 0; i < pets.size(); i++) {
             System.out.println(pets.get(i));
         }
         System.out.println();
@@ -79,9 +77,9 @@ public class App
         // Not possible with arrays.
 
         pets.clear();
-        
+
         System.out.println("ArrayList values:");
-        for (int i=0; i<pets.size(); i++) {
+        for (int i = 0; i < pets.size(); i++) {
             System.out.println(pets.get(i));
         }
         System.out.println();

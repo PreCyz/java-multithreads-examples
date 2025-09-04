@@ -19,7 +19,7 @@ public class InheritableThreadLocalExample implements Runnable {
 
             // Get thread name.
             String name = Thread.currentThread().getName();
-            
+
             // Print parent values.
             System.out.printf("Thread name: %s, InheritableThreadLocal value: %d%n", name, intVal.get());
 

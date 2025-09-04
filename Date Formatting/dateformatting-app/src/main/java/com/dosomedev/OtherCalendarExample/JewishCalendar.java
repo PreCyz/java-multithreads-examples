@@ -1,5 +1,8 @@
 package com.dosomedev.OtherCalendarExample;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -8,17 +11,13 @@ import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 /*
  * This class makes use of the REST API of https://www.hebcal.com.
  */
 public class JewishCalendar {
     public String getJewishDate(LocalDate gregorianDate) {
         String dateString = null;
-        
+
         // Build the HTTP request.
         URI apiUri = this.getApiUri(gregorianDate);
         // Request API JSON.
@@ -49,7 +48,7 @@ public class JewishCalendar {
                 // Get JSON response.
                 json = response.body();
             }
-            
+
         } catch (IOException | InterruptedException ex) {
             System.err.println("Jewish Calendar Error: " + ex.getMessage());
         }
@@ -68,7 +67,7 @@ public class JewishCalendar {
 
     private String parseJsonResponse(String json) {
         String dateString = null;
-        
+
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode rootNode = mapper.readTree(json);

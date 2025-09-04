@@ -11,7 +11,9 @@ import java.util.stream.Stream;
 
 public class BabyNames {
     private StreamType streamType;
+
     private List<String> maleNames;
+
     private List<String> femaleNames;
 
     public BabyNames(StreamType streamType) {

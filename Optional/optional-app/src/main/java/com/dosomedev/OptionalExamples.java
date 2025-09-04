@@ -13,14 +13,14 @@ public class OptionalExamples {
             return firstName + " " + lastName;
         }
     }
-    
+
     /*
      * Get full name using Optional.
      */
     public String getFullName(Optional<String> firstName, Optional<String> lastName) {
         return firstName
-            .flatMap(first -> lastName.map(last -> first + " " + last))
-            .orElse("Cannot provide full name.");
+                .flatMap(first -> lastName.map(last -> first + " " + last))
+                .orElse("Cannot provide full name.");
     }
 
     /*
@@ -30,7 +30,7 @@ public class OptionalExamples {
         Animal animal = new Animal();
         animal.setName("Nala");
         Optional<Animal> animalOptional = Optional.ofNullable(animal);
-        
+
         Optional<String> nameOptionalWithMap = animalOptional.map(Animal::getName);
         if (nameOptionalWithMap.isPresent()) {
             return "Animal name (map): " + nameOptionalWithMap.get();
@@ -65,7 +65,7 @@ public class OptionalExamples {
         Optional<String> a3 = Optional.ofNullable("Maxi"); // Taking a value that might be null.
         Optional<String> a4 = Optional.ofNullable(null);   // Taking a value that is null.
         Optional<String> a5 = Optional.empty();                  // Creating an empty Optional.
-        
+
         System.out.println("a1: " + a1);
         //System.out.println("a2: " + a2);
         System.out.println("a3: " + a3);
@@ -80,8 +80,8 @@ public class OptionalExamples {
         Optional<String> maybeName = Optional.ofNullable(name);
 
         maybeName.ifPresentOrElse(
-            theName -> System.out.println("name: " + theName),
-            () -> System.out.println("name is null")
+                theName -> System.out.println("name: " + theName),
+                () -> System.out.println("name is null")
         );
     }
 
@@ -92,9 +92,9 @@ public class OptionalExamples {
         Optional<String> maybeName = Optional.ofNullable(name);
 
         String result = maybeName
-            .map(String::toUpperCase)
-            .filter(nameString -> nameString.length() > 5)
-            .orElse("Default Name");
+                .map(String::toUpperCase)
+                .filter(nameString -> nameString.length() > 5)
+                .orElse("Default Name");
 
         return result;
     }

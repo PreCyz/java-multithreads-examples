@@ -1,4 +1,0 @@
-@echo off
-
-cd enummap-app\target
-java -jar enummap-app-1.0.jar

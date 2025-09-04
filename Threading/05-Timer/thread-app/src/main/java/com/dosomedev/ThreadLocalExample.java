@@ -32,7 +32,7 @@ public class ThreadLocalExample implements Runnable {
         Thread t1 = new Thread(r);
         Thread t2 = new Thread(r);
         Thread t3 = new Thread(r);
-        
+
         t1.setName("A");
         t2.setName("B");
 

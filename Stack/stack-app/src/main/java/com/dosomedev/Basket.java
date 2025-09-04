@@ -3,7 +3,7 @@ package com.dosomedev;
 import java.util.Stack;
 
 public class Basket {
-    
+
     private Stack<String> plates = new Stack<>();
 
     public void addPlate(String plate) {
@@ -25,7 +25,7 @@ public class Basket {
     public void listPlates() {
         System.out.println("List of plates:");
         if (this.plates.size() > 0) {
-            for (int i=this.plates.size()-1; i>=0; i--) {
+            for (int i = this.plates.size() - 1; i >= 0; i--) {
                 System.out.println("[" + i + "] " + this.plates.get(i));
             }
         } else {

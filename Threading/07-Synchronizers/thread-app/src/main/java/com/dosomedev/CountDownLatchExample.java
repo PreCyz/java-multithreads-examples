@@ -47,14 +47,14 @@ public class CountDownLatchExample implements Runnable {
                 }
             }
         };
-        
+
         try {
             // Define thread pool.
             ExecutorService executor = Executors.newFixedThreadPool(THREAD_QTY);
-            
+
             // Add and run all threads.
             printMessage("Start race.");
-            for (int i=0; i<THREAD_QTY; i++) {
+            for (int i = 0; i < THREAD_QTY; i++) {
                 executor.execute(r);
             }
 
@@ -85,7 +85,7 @@ public class CountDownLatchExample implements Runnable {
             // Wait for runners to reach red finish line.
             redFinishLine.await();
             printMessage("All runners reached red finish line.");
-            
+
             // Shutdown executor.
             printMessage("Race is over.");
             executor.shutdownNow();
@@ -96,7 +96,7 @@ public class CountDownLatchExample implements Runnable {
 
     private static void printMessage(String message) {
         System.out.println(LocalDateTime.now() + ": " +
-                            Thread.currentThread() + ": " + 
-                            message);
+                           Thread.currentThread() + ": " +
+                           message);
     }
 }

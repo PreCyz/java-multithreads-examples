@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cd identityhashmap-app
-mvn clean package

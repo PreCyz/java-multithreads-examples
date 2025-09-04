@@ -20,7 +20,7 @@ public class FutureHoliday {
     public LocalDate getFutureWorkday(LocalDate startDate, int daysToAdd) {
         int daysDistance = 0;
 
-        for (int i=1; i<=daysToAdd; i++) {
+        for (int i = 1; i <= daysToAdd; i++) {
             daysDistance++;
             LocalDate checkDate = startDate.plusDays(daysDistance);
             if (this.isWeekend(checkDate) || this.isHoliday(checkDate)) {

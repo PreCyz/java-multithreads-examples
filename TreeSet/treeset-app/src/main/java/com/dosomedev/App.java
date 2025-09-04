@@ -6,10 +6,8 @@ import java.util.TreeSet;
  * TreeSet example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         /*
          * Create a TreeSet to store unique names.
          */
@@ -68,7 +66,7 @@ public class App
 
         names.clear();
         System.out.println("Emptied the set.");
-        
+
         System.out.println("List of names:");
         for (String name : names) {
             System.out.println("- " + name);

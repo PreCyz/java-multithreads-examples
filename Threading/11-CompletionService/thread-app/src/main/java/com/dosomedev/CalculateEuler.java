@@ -17,12 +17,12 @@ public class CalculateEuler implements Callable<BigDecimal> {
         MathContext precision = new MathContext(100, RoundingMode.HALF_UP);
         BigDecimal result = BigDecimal.ZERO;
 
-        for (int i=0; i<=iterations; i++) {
+        for (int i = 0; i <= iterations; i++) {
             BigDecimal factorial = factorial(new BigDecimal(i));
             BigDecimal inverse = BigDecimal.ONE.divide(factorial, precision);
             result = result.add(inverse);
         }
-        
+
         return result;
     }
 

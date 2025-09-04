@@ -6,7 +6,7 @@ public class ExampleOne implements Runnable {
     @Override
     public void run() {
         System.out.println("Running example one:");
-        
+
         LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<>();
 
         // Producer.

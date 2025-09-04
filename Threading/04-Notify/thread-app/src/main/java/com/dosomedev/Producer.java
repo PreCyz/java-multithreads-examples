@@ -11,8 +11,8 @@ public class Producer extends Thread {
     public void run() {
         for (int i = 1; i <= 10; i++) {
             //synchronized (this.together) {
-                together.setNumber(i);
-                System.out.printf("Produced %s%n", i);
+            together.setNumber(i);
+            System.out.printf("Produced %s%n", i);
             //}
         }
     }

@@ -7,10 +7,8 @@ import java.util.HashMap;
  * EnumMap example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         // Define EnumMap.
         EnumMap<DayOfWeek, Double> temperatures = new EnumMap<>(DayOfWeek.class);
 
@@ -66,7 +64,7 @@ public class App
 
         // Measure EnumMap speed.
         long enumMapStart = System.nanoTime();
-        for (int i=0; i<numTests; i++) {
+        for (int i = 0; i < numTests; i++) {
             for (DayOfWeek day : DayOfWeek.values()) {
                 enumMap.get(day);
             }
@@ -75,7 +73,7 @@ public class App
 
         // Measure HashMap speed.
         long hashMapStart = System.nanoTime();
-        for (int i=0; i<numTests; i++) {
+        for (int i = 0; i < numTests; i++) {
             for (DayOfWeek day : DayOfWeek.values()) {
                 hashMap.get(day);
             }

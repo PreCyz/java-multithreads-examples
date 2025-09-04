@@ -1,4 +1,0 @@
-@echo off
-
-cd priorityqueue-app\target
-java -jar priorityqueue-app-1.0.jar

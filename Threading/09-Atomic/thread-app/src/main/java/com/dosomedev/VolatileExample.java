@@ -11,7 +11,9 @@ import java.util.concurrent.Future;
 
 public class VolatileExample implements Runnable {
     private final MathContext PRECISION = new MathContext(10000, RoundingMode.HALF_UP);
+
     private final int CALCULATIONTIME = 1000;
+
     private volatile boolean isInterrupted = false;
 
     @Override
@@ -27,7 +29,7 @@ public class VolatileExample implements Runnable {
         // Execute calculation.
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<BigDecimal> eulersNumberFuture = executor.submit(eulersNumberCalculation);
-        
+
         // Wait for a moment.
         System.out.println("Stop Watch start.");
         try {
@@ -52,7 +54,7 @@ public class VolatileExample implements Runnable {
     private BigDecimal calculateEulersNumber() {
         BigDecimal result = BigDecimal.ZERO;
         int counter = 0;
-        
+
         while (!this.isInterrupted) {
             BigDecimal factorial = factorial(BigDecimal.valueOf(counter));
             BigDecimal inverse = BigDecimal.ONE.divide(factorial, PRECISION);
@@ -62,7 +64,7 @@ public class VolatileExample implements Runnable {
 
         result = result.setScale(PRECISION.getPrecision(), PRECISION.getRoundingMode());
         System.out.println("Iteration count: " + counter);
-        
+
         return result;
     }
 

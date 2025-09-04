@@ -5,6 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ReentrantLockExample implements Runnable {
 
     private final ReentrantLock lock = new ReentrantLock();
+
     private int count = 0;
 
     public void increment() {
@@ -12,7 +13,7 @@ public class ReentrantLockExample implements Runnable {
         try {
             count++;
         } finally {
-            lock.unlock(); 
+            lock.unlock();
         }
     }
 
@@ -47,6 +48,6 @@ public class ReentrantLockExample implements Runnable {
             e.printStackTrace();
         }
 
-        System.out.println("Count: " + counter.getCount()); 
+        System.out.println("Count: " + counter.getCount());
     }
 }

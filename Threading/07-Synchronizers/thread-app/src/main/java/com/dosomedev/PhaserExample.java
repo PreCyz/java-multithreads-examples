@@ -12,10 +12,10 @@ public class PhaserExample implements Runnable {
         Phaser phaser = new Phaser(3);
         ExecutorService executor = Executors.newFixedThreadPool(3);
 
-        for (int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             executor.submit(() -> {
                 String threadName = Thread.currentThread().getName();
-                
+
                 // Do some work.
                 try {
                     int workDuration = (int) (Math.random() * 1000);

@@ -4,8 +4,7 @@ package com.dosomedev;
  * Threading example.
  *
  */
-public class App 
-{
+public class App {
     public static void main(String[] args) {
         ReentrantLockExample example1 = new ReentrantLockExample();
         example1.run();

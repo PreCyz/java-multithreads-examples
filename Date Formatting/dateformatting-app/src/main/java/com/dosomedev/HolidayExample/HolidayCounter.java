@@ -32,7 +32,7 @@ public class HolidayCounter {
                     workdays++;
                 }
             }
-            
+
             startDate = startDate.plusDays(1);
         }
 

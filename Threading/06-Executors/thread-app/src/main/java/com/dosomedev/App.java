@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -16,11 +15,13 @@ import java.util.concurrent.ThreadPoolExecutor;
  * Threading example.
  *
  */
-public class App 
-{
+public class App {
     final static int PRECISION = 100;
+
     final static int TERMS = 4000;
+
     final static int POOL = 2;
+
     final static int THREADS = 10;
 
     public static void main(String[] args) {
@@ -42,7 +43,7 @@ public class App
                 MathContext mc = new MathContext(PRECISION, RoundingMode.HALF_UP);
 
                 BigDecimal result = BigDecimal.ZERO;
-                for (int i=0; i<=TERMS; i++) {
+                for (int i = 0; i <= TERMS; i++) {
                     // Calculate factorial.
                     BigDecimal factorial = factorial(new BigDecimal(i));
                     // Calculate inverse.
@@ -66,13 +67,13 @@ public class App
 
         // Create task list.
         List<Future<BigDecimal>> tasks = new ArrayList<>();
-        for (int i=1; i<=THREADS; i++) {
+        for (int i = 1; i <= THREADS; i++) {
             // Submit task to executor.
             Future<BigDecimal> task = executor.submit(callable);
             // Remember task in list.
             tasks.add(task);
         }
-        
+
         // Tell executor to shutdown after executing all tasks.
         executor.shutdown();
 
@@ -83,7 +84,7 @@ public class App
             if (executor.isTerminated()) {
                 executorTerminated = true;
             }
-            
+
             // Print stats.
             boolean shutdown = executor.isShutdown();
             boolean terminated = executor.isTerminated();

@@ -6,10 +6,8 @@ import java.util.WeakHashMap;
  * WeakHashMap example.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class App {
+    public static void main(String[] args) {
         /*
          * Define the map.
          */

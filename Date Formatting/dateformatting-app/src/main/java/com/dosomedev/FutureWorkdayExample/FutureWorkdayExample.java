@@ -35,18 +35,18 @@ public class FutureWorkdayExample implements Runnable {
 
         // Format date.
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        
+
         System.out.println("Start date:       " + startDate.format(formatter));
         System.out.println("Future Workday A: " + futureWorkdayA.format(formatter)
-            + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayA) + ")");
+                           + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayA) + ")");
         System.out.println("Future Workday B: " + futureWorkdayB.format(formatter)
-            + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayB) + ")");
+                           + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayB) + ")");
         System.out.println("Future Workday C: " + futureWorkdayC.format(formatter)
-            + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayC) + ")");
+                           + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayC) + ")");
         System.out.println("Future Workday D: " + futureWorkdayD.format(formatter)
-            + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayD) + ")");
+                           + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayD) + ")");
         System.out.println("Future Workday E: " + futureWorkdayE.format(formatter)
-            + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayE) + ")");
+                           + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayE) + ")");
 
         System.out.println();
     }

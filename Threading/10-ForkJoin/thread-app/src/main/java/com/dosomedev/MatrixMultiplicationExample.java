@@ -32,9 +32,9 @@ public class MatrixMultiplicationExample implements Runnable {
         }
 
         Matrix result = new Matrix(a.getRows(), b.getCols());
-        for (int i=0; i<a.getRows(); i++) {
-            for (int j=0; j<b.getCols(); j++) {
-                for (int k=0; k<a.getCols(); k++) {
+        for (int i = 0; i < a.getRows(); i++) {
+            for (int j = 0; j < b.getCols(); j++) {
+                for (int k = 0; k < a.getCols(); k++) {
                     result.setValue(i, j, result.getValue(i, j) + a.getValue(i, k) * b.getValue(k, j));
                 }
             }

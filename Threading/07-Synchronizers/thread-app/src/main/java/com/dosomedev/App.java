@@ -4,8 +4,7 @@ package com.dosomedev;
  * Threading example.
  *
  */
-public class App 
-{
+public class App {
     public static void main(String[] args) {
         CountDownLatchExample example1 = new CountDownLatchExample();
         example1.run();

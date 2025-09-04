@@ -1,4 +1,0 @@
-@echo off
-
-cd future-app\target
-java -jar future-app-1.0.jar
