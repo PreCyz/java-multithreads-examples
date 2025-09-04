@@ -1,5 +1,6 @@
 # Maven build files
 target/
+*/target/
 
 # IDE or editor files
 *.iml
@@ -20,3 +21,4 @@ build/
 out/
 
 *.ps1
+*/dependency-reduced-pom.xml
