@@ -2,14 +2,8 @@ package com.dosomedev;
 
 import java.util.PriorityQueue;
 
-/**
- * PriorityQueue example.
- */
 public class App {
     public static void main(String[] args) {
-        /*
-         * Define and output.
-         */
         PriorityQueue<Cat> cats = new PriorityQueue<>();
         cats.add(new Cat("Marmalade", 10));
         cats.add(new Cat("Luna", 6));
@@ -27,9 +21,7 @@ public class App {
             System.out.println(cats.poll());
         }
 
-        /*
-         * Peek and output.
-         */
+
         cats.add(new Cat("Marmalade", 10));
         cats.add(new Cat("Luna", 6));
         cats.add(new Cat("Claws", 0));
@@ -40,9 +32,7 @@ public class App {
         System.out.println("First cat in the list: " + cats.peek());
         System.out.println("First cat in the list: " + cats.peek());
 
-        /*
-         * Clear and output.
-         */
+
         cats.add(new Cat("Marmalade", 10));
         cats.add(new Cat("Luna", 6));
         cats.add(new Cat("Claws", 0));

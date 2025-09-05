@@ -1,9 +1,8 @@
 package com.dosomedev;
 
 public class Cat implements Comparable<Cat> {
-    private String name;
-
-    private int likability;
+    private final String name;
+    private final int likability;
 
     public Cat(String name, int likability) {
         this.name = name;

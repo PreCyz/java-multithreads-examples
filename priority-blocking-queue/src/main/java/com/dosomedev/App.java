@@ -2,10 +2,6 @@ package com.dosomedev;
 
 import java.util.concurrent.PriorityBlockingQueue;
 
-/**
- * PriorityBlockingQueue example.
- *
- */
 public class App {
     public static void main(String[] args) throws InterruptedException {
         PriorityBlockingQueue<Task> queue =

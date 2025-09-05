@@ -3,9 +3,6 @@ package com.dosomedev;
 import java.util.Optional;
 
 public class OptionalExamples {
-    /*
-     * Get full name using null check.
-     */
     public String getFullName(String firstName, String lastName) {
         if (firstName == null || lastName == null) {
             return "Cannot provide full name.";
@@ -14,18 +11,12 @@ public class OptionalExamples {
         }
     }
 
-    /*
-     * Get full name using Optional.
-     */
     public String getFullName(Optional<String> firstName, Optional<String> lastName) {
         return firstName
                 .flatMap(first -> lastName.map(last -> first + " " + last))
                 .orElse("Cannot provide full name.");
     }
 
-    /*
-     * Get values using map and map().
-     */
     public String getValuesWithMap() {
         Animal animal = new Animal();
         animal.setName("Nala");
@@ -39,9 +30,6 @@ public class OptionalExamples {
         }
     }
 
-    /*
-     * Get values using flatMap().
-     */
     public String getValuesWithFlatMap() {
         Animal animal = new Animal();
         animal.setName("Nala");
@@ -56,9 +44,6 @@ public class OptionalExamples {
         }
     }
 
-    /*
-     * Taking values.
-     */
     public void takingValues() {
         Optional<String> a1 = Optional.of("Maxi");         // Taking a non-null value.
         //Optional<String> a2 = Optional.of(null);               // Error: Cannot take null values.
@@ -73,9 +58,6 @@ public class OptionalExamples {
         System.out.println("a5: " + a5);
     }
 
-    /*
-     * Get values with ifPresentOrElse.
-     */
     public void getValuesWithIfPresentOrElse(String name) {
         Optional<String> maybeName = Optional.ofNullable(name);
 
@@ -85,9 +67,6 @@ public class OptionalExamples {
         );
     }
 
-    /*
-     * Conditional chain.
-     */
     public String getNameConditional(String name) {
         Optional<String> maybeName = Optional.ofNullable(name);
 
@@ -99,18 +78,12 @@ public class OptionalExamples {
         return result;
     }
 
-    /*
-     * Provide default value with orElse.
-     */
     public String provideDefaultValueWithOrElse(String email) {
         Optional<String> maybeDefault = Optional.ofNullable(email);
 
         return maybeDefault.orElse("default@example.com");
     }
 
-    /*
-     * Provide default value with orElseGet.
-     */
     public String provideDefaultValueWithOrElseGet(String email) {
         Optional<String> maybeDefault = Optional.ofNullable(email);
 
@@ -120,9 +93,6 @@ public class OptionalExamples {
         });
     }
 
-    /*
-     * Throw default exception.
-     */
     public String throwDefaultException(String email) throws MyCustomException {
         Optional<String> maybeDefault = Optional.ofNullable(email);
 

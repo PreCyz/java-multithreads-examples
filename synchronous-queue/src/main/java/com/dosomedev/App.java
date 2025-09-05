@@ -2,10 +2,6 @@ package com.dosomedev;
 
 import java.util.concurrent.SynchronousQueue;
 
-/**
- * SynchronousQueue example.
- *
- */
 public class App {
     public static void main(String[] args) {
         SynchronousQueue<String> queue = new SynchronousQueue<>();

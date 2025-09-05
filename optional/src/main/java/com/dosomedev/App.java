@@ -2,19 +2,10 @@ package com.dosomedev;
 
 import java.util.Optional;
 
-/**
- * Optional example.
- *
- */
 public class App {
     public static void main(String[] args) {
         OptionalExamples optionalExamples = new OptionalExamples();
 
-
-
-        /*
-         * Enhanced code readability and intent.
-         */
         System.out.println("Enhanced code readability and intent:");
 
         String firstName = "John";
@@ -55,8 +46,6 @@ public class App {
 
         System.out.println();
 
-
-
         /*
          * Get values using map and flatMap.
          */
@@ -72,8 +61,6 @@ public class App {
 
         System.out.println();
 
-
-
         /*
          * Taking values.
          */
@@ -82,8 +69,6 @@ public class App {
         optionalExamples.takingValues();
 
         System.out.println();
-
-
 
         /*
          * Method chaining.
@@ -102,8 +87,6 @@ public class App {
 
         System.out.println();
 
-
-
         /*
          * Provide default.
          */
@@ -119,8 +102,6 @@ public class App {
         System.out.println("mail4: " + mail4);
 
         System.out.println();
-
-
 
         /*
          * Error handling.
