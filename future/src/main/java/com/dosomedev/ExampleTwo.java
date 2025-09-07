@@ -1,9 +1,6 @@
 package com.dosomedev;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ExampleTwo implements Runnable {
@@ -29,10 +26,11 @@ public class ExampleTwo implements Runnable {
             future.get();
             System.out.println("Result: " + resultHolder.get());
         } catch (InterruptedException | ExecutionException ex) {
-            System.err.println("Error occured! Message: " + ex.getMessage());
+            System.err.println("Error occurred! Message: " + ex.getMessage());
         }
 
         executor.shutdown();
+        executor.close();
         System.out.println();
     }
 }

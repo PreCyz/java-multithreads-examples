@@ -1,11 +1,15 @@
 package com.dosomedev;
 
+import java.io.PrintStream;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ExampleOne implements Runnable {
+
+    public static final PrintStream OUT = System.out;
+
     @Override
     public void run() {
-        System.out.println("Running example one:");
+        OUT.println("Running example one:");
 
         LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<>();
 
@@ -16,7 +20,7 @@ public class ExampleOne implements Runnable {
                 queue.put("Task B");
                 queue.put("Task C");
             } catch (InterruptedException ex) {
-                System.out.println("Producer interrupted!");
+                OUT.println("Producer interrupted!");
             }
         });
 
@@ -25,10 +29,10 @@ public class ExampleOne implements Runnable {
             try {
                 while (!queue.isEmpty()) {
                     String element = queue.take();
-                    System.out.println("Consuming " + element + ".");
+                    OUT.println("Consuming " + element + ".");
                 }
             } catch (InterruptedException ex) {
-                System.out.println("Consumer interrupted!");
+                OUT.println("Consumer interrupted!");
             }
         });
 

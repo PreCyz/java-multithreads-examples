@@ -1,6 +1,11 @@
 package com.dosomedev;
 
+import java.io.PrintStream;
+
 public class App {
+
+    public static final PrintStream ERR = System.err;
+
     public static void main(String[] args) {
         // Differentiate between server and client.
         if (args.length > 0) {
@@ -20,16 +25,16 @@ public class App {
                         CalculatorClient client = new CalculatorClient();
                         client.run(secondParam);
                     } else {
-                        System.err.println("Error: incomplete param 'client': [server|client <servername>]");
+                        ERR.println("Error: incomplete param 'client': [server|client <servername>]");
                     }
                     break;
 
                 default:
-                    System.err.println("Error: unknown param '" + firstParam + "': [server|client <servername>]");
+                    ERR.println("Error: unknown param '" + firstParam + "': [server|client <servername>]");
                     break;
             }
         } else {
-            System.err.println("Missing param: [server|client <servername>]");
+            ERR.println("Missing param: [server|client <servername>]");
         }
     }
 }

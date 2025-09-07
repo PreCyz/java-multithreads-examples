@@ -2,10 +2,6 @@ package com.dosomedev;
 
 import java.util.concurrent.DelayQueue;
 
-/**
- * DelayQueue example.
- *
- */
 public class App {
     public static void main(String[] args) throws InterruptedException {
         DelayQueue<DelayedTask> delayQueue = new DelayQueue<>();

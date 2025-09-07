@@ -1,18 +1,8 @@
 package com.dosomedev;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
+import java.util.concurrent.*;
 
-/**
- * ConcurrentHashMap example.
- *
- */
 public class App {
     private static final int ROUNDS = 6;
 

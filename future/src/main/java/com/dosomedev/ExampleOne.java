@@ -1,10 +1,6 @@
 package com.dosomedev;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class ExampleOne implements Runnable {
     @Override
@@ -27,10 +23,11 @@ public class ExampleOne implements Runnable {
             Integer result = future.get();
             System.out.println("Result: " + result);
         } catch (InterruptedException | ExecutionException ex) {
-            System.err.println("Error occured! Message: " + ex.getMessage());
+            System.err.println("Error occurred! Message: " + ex.getMessage());
         }
 
         executor.shutdown();
+        executor.close();
         System.out.println();
     }
 }

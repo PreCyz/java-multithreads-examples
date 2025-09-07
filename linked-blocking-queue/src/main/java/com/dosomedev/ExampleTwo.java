@@ -1,9 +1,7 @@
 package com.dosomedev;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.PriorityBlockingQueue;
+import java.io.PrintStream;
+import java.util.concurrent.*;
 
 public class ExampleTwo implements Runnable {
     private static final int NUM_ELEMENTS = 1000;
@@ -11,10 +9,11 @@ public class ExampleTwo implements Runnable {
     private static final int NUM_PRODUCERS = 4000;
 
     private static final int NUM_CONSUMERS = 4000;
+    public static final PrintStream OUT = System.out;
 
     @Override
     public void run() {
-        System.out.println("Running example two:");
+        OUT.println("Running example two:");
 
         testQueue(new LinkedBlockingQueue<>());
         testQueue(new ArrayBlockingQueue<>(NUM_ELEMENTS));
@@ -32,8 +31,7 @@ public class ExampleTwo implements Runnable {
                     try {
                         queue.put(j);
                     } catch (InterruptedException ex) {
-                        System.out.println("Producer interrupted. Message: "
-                                           + ex.getMessage());
+                        OUT.println("Producer interrupted. Message: " + ex.getMessage());
                     }
                 }
             });
@@ -47,8 +45,7 @@ public class ExampleTwo implements Runnable {
                     try {
                         queue.take();
                     } catch (InterruptedException ex) {
-                        System.out.println("Consumer interrupted. Message: "
-                                           + ex.getMessage());
+                        OUT.println("Consumer interrupted. Message: " + ex.getMessage());
                     }
                 }
             });
@@ -77,7 +74,6 @@ public class ExampleTwo implements Runnable {
         // Statistics.
         long endTime = System.nanoTime();
         long duration = endTime - startTime;
-        System.out.println(queue.getClass().getSimpleName()
-                           + " took " + duration / 1000000 + " ms");
+        OUT.printf("%s took %d ms%n", queue.getClass().getSimpleName(), duration / 1000000);
     }
 }

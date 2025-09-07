@@ -1,11 +1,6 @@
 package com.dosomedev;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class ExampleThree implements Runnable {
     @Override
@@ -41,10 +36,11 @@ public class ExampleThree implements Runnable {
         } catch (CancellationException e) {
             System.out.println("Task was canceled.");
         } catch (InterruptedException | ExecutionException ex) {
-            System.err.println("Error occured! Message: " + ex.getMessage());
+            System.err.println("Error occurred! Message: " + ex.getMessage());
         }
 
         executor.shutdown();
+        executor.close();
         System.out.println();
     }
 }

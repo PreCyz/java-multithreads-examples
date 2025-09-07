@@ -1,16 +1,8 @@
 package com.dosomedev;
 
-/**
- * ArrayDeque example.
- *
- */
 public class App {
     public static void main(String[] args) {
         Basket basket = new Basket();
-
-        /*
-         * Adding and taking plates.
-         */
 
         basket.addTopPlate("Red Plate");
         basket.addTopPlate("Orange Plate");
@@ -32,9 +24,6 @@ public class App {
         basket.takeTopPlate();
         basket.takeTopPlate();
 
-        /*
-         * Listing plates.
-         */
 
         basket.listPlates();
 
@@ -56,9 +45,6 @@ public class App {
 
         basket.listPlates();
 
-        /*
-         * Looking at plates.
-         */
 
         basket.lookAtTopPlate();
         basket.lookAtBottomPlate();
@@ -77,9 +63,6 @@ public class App {
         basket.lookAtTopPlate();
         basket.lookAtBottomPlate();
 
-        /*
-         * Emptying basket.
-         */
 
         basket.listPlates();
 
