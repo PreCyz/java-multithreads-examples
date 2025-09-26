@@ -3,10 +3,13 @@ package com.dosomedev;
 public class App {
     static void main(String[] args) throws InterruptedException {
         runThreads();
-        System.out.println("The race is done!\n===================\n");
+        System.out.printf("The race is done!%n===================%n%n");
 
         runRunnables();
-        System.out.println("The 2nd race is done!");
+        System.out.printf("The 2nd race is done!%n===================%n%n");
+
+        runThreadFactories();
+        System.out.println("The 3rd race is done!%n===================%n%n");
     }
 
     private static void runThreads() throws InterruptedException {
@@ -23,18 +26,42 @@ public class App {
     }
 
     private static void runRunnables() throws InterruptedException {
-        Thread andy = new Thread(new RunnableSprinter("Andre", 250, 2));
-        andy.setName("Andre");
-        Thread precyz = new Thread(new RunnableSprinter("Pawg", 500, 0));
-        precyz.setName("Pawg");
-        Thread santaClaus = new Thread(new RunnableSprinter("Claus", 150, 1));
-        santaClaus.setName("Claus");
+        Thread andre = new Thread(new RunnableSprinter("Andre", 250, 2));
+        andre.setName("Andre");
+        Thread me = new Thread(new RunnableSprinter("Pawg", 500, 0));
+        me.setName("Pawg");
+        Thread claus = new Thread(new RunnableSprinter("Claus", 150, 1));
+        claus.setName("Claus");
 
-        andy.start();
-        precyz.start();
-        santaClaus.start();
-        andy.join();
-        precyz.join();
-        santaClaus.join();
+        andre.start();
+        me.start();
+        claus.start();
+        andre.join();
+        me.join();
+        claus.join();
+    }
+
+    private static void runThreadFactories() throws InterruptedException {
+
+        Thread andre = Thread.ofPlatform()
+                             .daemon()
+                             .name("Andre")
+                             .start(new RunnableSprinter("Andre", 10, 0));
+
+        Thread me = Thread.ofPlatform()
+                          .daemon()
+                          .name("pawg")
+                          .start(new RunnableSprinter("Pawg", 100, 3));
+
+        Thread claus = Thread.ofPlatform()
+                             .daemon()
+                             .name("Claus")
+                             .unstarted(new RunnableSprinter("Claus", 65, 0));
+
+        andre.join();
+        me.join();
+
+        claus.start();
+        claus.join();
     }
 }
