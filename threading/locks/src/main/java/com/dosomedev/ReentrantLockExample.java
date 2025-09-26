@@ -48,6 +48,6 @@ public class ReentrantLockExample implements Runnable {
             e.printStackTrace(System.err);
         }
 
-        System.out.println("Count: " + counter.getCount());
+        IO.println("Count: " + counter.getCount());
     }
 }

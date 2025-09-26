@@ -1,12 +1,11 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class App {
 
-    public static final PrintStream OUT = System.out;
+
 
     public static void main(String[] args) throws InterruptedException {
         stateExample();
@@ -15,7 +14,7 @@ public class App {
     }
 
     private static void stateExample() throws InterruptedException {
-        OUT.println("State Example:");
+        IO.println("State Example:");
 
         // Sprinter steve = new Sprinter("Steve", 250);
         // Sprinter chuck = new Sprinter("Chuck", 650);
@@ -39,12 +38,12 @@ public class App {
 
         coach.join();
 
-        OUT.println("The race is done!");
+        IO.println("The race is done!");
     }
 
     private static void priorityExample() throws InterruptedException {
-        OUT.println("Priority Example:");
-        OUT.printf("Number of processors: %s%n", Runtime.getRuntime().availableProcessors());
+        IO.println("Priority Example:");
+        System.out.printf("Number of processors: %s%n", Runtime.getRuntime().availableProcessors());
 
         // Create sprinters.
         List<Sprinter> sprinters = new ArrayList<>();
@@ -65,20 +64,20 @@ public class App {
             unfinishedThreads = false;
             for (Sprinter sprinter : sprinters) {
                 if (sprinter.getState() == Thread.State.TERMINATED) {
-                    OUT.print("-");
+                    IO.print("-");
                 } else {
-                    OUT.print("o");
+                    IO.print("o");
                     unfinishedThreads = true;
                 }
             }
-            OUT.println();
+            IO.println();
 
             Thread.sleep(500);
         }
     }
 
     private static void interruptionExample() throws InterruptedException {
-        OUT.println("Interruption Example:");
+        IO.println("Interruption Example:");
 
         Runnable r = new Runnable() {
             @Override
@@ -101,7 +100,7 @@ public class App {
                     count++;
                 }
 
-                OUT.printf("%s counter: %s%n", name, String.format("%,d", count));
+                System.out.printf("%s counter: %s%n", name, String.format("%,d", count));
             }
         };
 

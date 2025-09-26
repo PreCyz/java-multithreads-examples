@@ -17,7 +17,7 @@ public class CalculatorServer {
             // Bind the remote object to the registry with a name.
             registry.bind("CalculatorService", calculator);
 
-            System.out.println("Calculator server started...");
+            IO.println("Calculator server started...");
         } catch (RemoteException e) {
             System.err.println("Error: Could not create registry.");
         } catch (AlreadyBoundException e) {

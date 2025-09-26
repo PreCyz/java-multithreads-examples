@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutionException;
 public class FutureListExample implements Runnable {
     @Override
     public void run() {
-        System.out.println("Example with a List of Futures run through another Future:");
+        IO.println("Example with a List of Futures run through another Future:");
 
         List<CompletableFuture<String>> futures = Arrays.asList(
                 CompletableFuture.supplyAsync(() -> "Future A result!"),
@@ -21,7 +21,7 @@ public class FutureListExample implements Runnable {
         combinedFuture.thenRun(() -> {
             futures.forEach(future -> {
                 try {
-                    System.out.println("Combined Future: " + future.get());
+                    IO.println("Combined Future: " + future.get());
                 } catch (ExecutionException | InterruptedException ex) {
                     System.err.println("Combined Future Error! Message: " + ex.getMessage());
                 }

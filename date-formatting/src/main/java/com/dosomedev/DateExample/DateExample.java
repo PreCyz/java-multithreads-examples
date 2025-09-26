@@ -6,7 +6,7 @@ import java.util.Date;
 public class DateExample implements Runnable {
     @Override
     public void run() {
-        System.out.println("Dates using Date class:");
+        IO.println("Dates using Date class:");
 
         // Create Date object.
         Date currentDate = new Date();
@@ -28,11 +28,11 @@ public class DateExample implements Runnable {
         String formattedDateC = formatterC.format(currentDate);
 
         // Print the dates.
-        System.out.println("Current date raw:           " + currentDate);
-        System.out.println("Current date formatted (A): " + formattedDateA);
-        System.out.println("Current date formatted (B): " + formattedDateB);
-        System.out.println("Current date formatted (C): " + formattedDateC);
+        IO.println("Current date raw:           " + currentDate);
+        IO.println("Current date formatted (A): " + formattedDateA);
+        IO.println("Current date formatted (B): " + formattedDateB);
+        IO.println("Current date formatted (C): " + formattedDateC);
 
-        System.out.println();
+        IO.println();
     }
 }

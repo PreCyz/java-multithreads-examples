@@ -12,7 +12,7 @@ public class Coach extends Thread {
 
     @Override
     public void run() {
-        System.out.println("===> Coach starts watching.");
+        IO.println("===> Coach starts watching.");
 
         boolean runningSprintersExist = true;
         while (runningSprintersExist) {
@@ -38,6 +38,6 @@ public class Coach extends Thread {
             }
         }
 
-        System.out.println("===> Coach stops watching.");
+        IO.println("===> Coach stops watching.");
     }
 }

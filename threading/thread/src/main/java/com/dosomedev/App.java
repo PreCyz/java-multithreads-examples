@@ -9,7 +9,7 @@ public class App {
         System.out.printf("The 2nd race is done!%n===================%n%n");
 
         runThreadFactories();
-        System.out.println("The 3rd race is done!%n===================%n%n");
+        IO.println("The 3rd race is done!%n===================%n%n");
     }
 
     private static void runThreads() throws InterruptedException {

@@ -1,6 +1,9 @@
 package com.dosomedev;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class App {
@@ -47,8 +50,8 @@ public class App {
         avgEnumSet /= ROUNDS;
         avgHashSet /= ROUNDS;
 
-        System.out.println("Average EnumSet-" + type.toString() + " millis: " + avgEnumSet + " ms");
-        System.out.println("Average HashSet-" + type.toString() + " millis: " + avgHashSet + " ms");
+        IO.println("Average EnumSet-" + type.toString() + " millis: " + avgEnumSet + " ms");
+        IO.println("Average HashSet-" + type.toString() + " millis: " + avgHashSet + " ms");
     }
 
     private static long benchmark(Set<Color> set, int round, BenchmarkType type) {
@@ -74,7 +77,7 @@ public class App {
         // Calculate elapsed time.
         long elapsedMillis = TimeUnit.NANOSECONDS.toMillis(end - start);
 
-        //System.out.println("Round " + round + ": " + set.getClass().getSimpleName() + " elapsed time: " + elapsedMillis + " ms");
+        //IO.println("Round " + round + ": " + set.getClass().getSimpleName() + " elapsed time: " + elapsedMillis + " ms");
 
         return elapsedMillis;
     }

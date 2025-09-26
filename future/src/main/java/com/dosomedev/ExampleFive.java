@@ -1,15 +1,18 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ExampleFive implements Runnable {
 
-    public static final PrintStream OUT = System.out;
+
 
     @Override
     public void run() {
-        OUT.println("Example Five (simple task, non-blocking completion):");
+        IO.println("Example Five (simple task, non-blocking completion):");
         ExecutorService executor = Executors.newSingleThreadExecutor();
 
         Callable<Integer> task = () -> {
@@ -24,23 +27,23 @@ public class ExampleFive implements Runnable {
         Future<Integer> future = executor.submit(task);
 
         while (!future.isDone()) {
-            OUT.println("Waiting for task to complete...");
+            IO.println("Waiting for task to complete...");
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
-                OUT.println("Thread sleep interrupted! Message: " + ex.getMessage());
+                IO.println("Thread sleep interrupted! Message: " + ex.getMessage());
             }
         }
 
         try {
             Integer result = future.get();
-            OUT.println("Result: " + result);
+            IO.println("Result: " + result);
         } catch (InterruptedException | ExecutionException ex) {
             System.err.println("Error occurred! Message: " + ex.getMessage());
         }
 
         executor.shutdown();
         executor.close();
-        OUT.println();
+        IO.println();
     }
 }

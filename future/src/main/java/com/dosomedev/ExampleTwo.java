@@ -1,12 +1,15 @@
 package com.dosomedev;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ExampleTwo implements Runnable {
     @Override
     public void run() {
-        System.out.println("Example Two (task setting atomic value, wait for completion):");
+        IO.println("Example Two (task setting atomic value, wait for completion):");
         ExecutorService executor = Executors.newSingleThreadExecutor();
         AtomicInteger resultHolder = new AtomicInteger();
 
@@ -24,13 +27,13 @@ public class ExampleTwo implements Runnable {
 
         try {
             future.get();
-            System.out.println("Result: " + resultHolder.get());
+            IO.println("Result: " + resultHolder.get());
         } catch (InterruptedException | ExecutionException ex) {
             System.err.println("Error occurred! Message: " + ex.getMessage());
         }
 
         executor.shutdown();
         executor.close();
-        System.out.println();
+        IO.println();
     }
 }

@@ -1,11 +1,10 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
 import java.util.TreeSet;
 
 public class App {
 
-    public static final PrintStream OUT = System.out;
+
 
     public static void main(String[] args) {
 
@@ -18,27 +17,27 @@ public class App {
         names.add("Olivia");
 
         if (names.contains("Riley")) {
-            OUT.println("Riley is in the set.");
+            IO.println("Riley is in the set.");
         } else {
-            OUT.println("Riley is not in the set.");
+            IO.println("Riley is not in the set.");
         }
 
-        OUT.println("Total names: " + names.size());
+        IO.println("Total names: " + names.size());
 
         names.remove("Noah");
-        OUT.println("Removed Noah.");
+        IO.println("Removed Noah.");
 
-        OUT.println("List of names:");
+        IO.println("List of names:");
         for (String name : names) {
-            OUT.println("- " + name);
+            IO.println("- " + name);
         }
 
         names.clear();
-        OUT.println("Emptied the set.");
+        IO.println("Emptied the set.");
 
-        OUT.println("List of names:");
+        IO.println("List of names:");
         for (String name : names) {
-            OUT.println("- " + name);
+            IO.println("- " + name);
         }
     }
 }

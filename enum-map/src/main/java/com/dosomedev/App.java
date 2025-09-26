@@ -1,12 +1,11 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
 import java.util.EnumMap;
 import java.util.HashMap;
 
 public class App {
 
-    public static final PrintStream OUT = System.out;
+
 
     public static void main(String[] args) {
         // Define EnumMap.
@@ -19,42 +18,42 @@ public class App {
 
         // Get value.
         Double mondayTemp = temperatures.get(DayOfWeek.MONDAY);
-        OUT.println("Temperature on Monday: " + mondayTemp);
+        IO.println("Temperature on Monday: " + mondayTemp);
 
         // Check value.
         boolean tuesdayHasTemperature = temperatures.containsKey(DayOfWeek.TUESDAY);
-        OUT.println("Does Tuesday have a temperature? " + (tuesdayHasTemperature ? "yes" : "no"));
+        IO.println("Does Tuesday have a temperature? " + (tuesdayHasTemperature ? "yes" : "no"));
 
         // Remove key-value pair.
-        OUT.println();
+        IO.println();
         int sizeBeforeRemoval = temperatures.size();
         temperatures.remove(DayOfWeek.WEDNESDAY);
         int sizeAfterRemoval = temperatures.size();
-        OUT.println("EnumMap size before removal: " + sizeBeforeRemoval);
-        OUT.println("EnumMap size after removal:  " + sizeAfterRemoval);
+        IO.println("EnumMap size before removal: " + sizeBeforeRemoval);
+        IO.println("EnumMap size after removal:  " + sizeAfterRemoval);
 
         // Loop over all entries.
-        OUT.println();
-        OUT.println("List of all entries:");
+        IO.println();
+        IO.println("List of all entries:");
         for (DayOfWeek day : temperatures.keySet()) {
             double temp = temperatures.get(day);
-            OUT.println("- Temperature on " + day + ": " + temp);
+            IO.println("- Temperature on " + day + ": " + temp);
         }
 
         // Clear the EnumMap.
-        OUT.println();
+        IO.println();
         int sizeBeforeClear = temperatures.size();
         temperatures.clear();
         int sizeAfterClear = temperatures.size();
-        OUT.println("EnumMap size before clear: " + sizeBeforeClear);
-        OUT.println("EnumMap size after clear:  " + sizeAfterClear);
+        IO.println("EnumMap size before clear: " + sizeBeforeClear);
+        IO.println("EnumMap size after clear:  " + sizeAfterClear);
 
         // Performance test between EnumMap and HashMap.
-        OUT.println();
+        IO.println();
         EnumMap<DayOfWeek, Integer> enumMap = new EnumMap<>(DayOfWeek.class);
         HashMap<DayOfWeek, Integer> hashMap = new HashMap<>();
         int numTests = 100000000;
-        OUT.printf("Performance test (quantity %,d) between EnumMap and HashMap:%n", numTests);
+        System.out.printf("Performance test (quantity %,d) between EnumMap and HashMap:%n", numTests);
 
         // Fill maps with data.
         for (DayOfWeek day : DayOfWeek.values()) {
@@ -83,7 +82,7 @@ public class App {
         // Calculate results.
         long enumMapTime = enumMapEnd - enumMapStart;
         long hashMapTime = hashMapEnd - hashMapStart;
-        OUT.println("EnumMap time: " + enumMapTime / numTests + " ms");
-        OUT.println("HashMap time: " + hashMapTime / numTests + " ms");
+        IO.println("EnumMap time: " + enumMapTime / numTests + " ms");
+        IO.println("HashMap time: " + hashMapTime / numTests + " ms");
     }
 }

@@ -11,7 +11,7 @@ public class ReentrantReadWriteLockExample implements Runnable {
     public int getValue() {
         this.lock.readLock().lock();
         try {
-            System.out.println("Reader " + Thread.currentThread().getName() + " read: " + this.value);
+            IO.println("Reader " + Thread.currentThread().getName() + " read: " + this.value);
             return this.value;
         } finally {
             this.lock.readLock().unlock();
@@ -21,7 +21,7 @@ public class ReentrantReadWriteLockExample implements Runnable {
     public void setValue(int value) {
         this.lock.writeLock().lock();
         try {
-            System.out.println("Writer " + Thread.currentThread().getName() + " wrote: " + value);
+            IO.println("Writer " + Thread.currentThread().getName() + " wrote: " + value);
             this.value = value;
         } finally {
             this.lock.writeLock().unlock();

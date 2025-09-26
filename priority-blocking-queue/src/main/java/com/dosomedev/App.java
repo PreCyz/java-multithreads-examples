@@ -13,7 +13,7 @@ public class App {
 
         while (!queue.isEmpty()) {
             Task task = queue.take();
-            System.out.println(task);
+            IO.println(task);
         }
     }
 }

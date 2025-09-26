@@ -1,12 +1,11 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class App {
 
-    public static final PrintStream OUT = System.out;
+
 
     public static void main(String[] args) throws InterruptedException {
         synchronizedCounterExample();
@@ -39,9 +38,9 @@ public class App {
         }
 
         // Print results.
-        OUT.printf("Counter should be: %s%n",
+        System.out.printf("Counter should be: %s%n",
                 String.format("%,d", incrementNumber * threadNumber));
-        OUT.printf("Counter is:        %s%n",
+        System.out.printf("Counter is:        %s%n",
                 String.format("%,d", counter.getNumber()));
     }
 

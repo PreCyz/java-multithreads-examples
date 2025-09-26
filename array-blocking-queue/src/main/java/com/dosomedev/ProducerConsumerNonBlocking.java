@@ -13,9 +13,9 @@ public class ProducerConsumerNonBlocking implements ProducerConsumerQueue {
             while (true) {
                 int producedItem = produceItem();
                 if (queue.offer(producedItem)) {
-                    System.out.println("Produced item: " + producedItem);
+                    IO.println("Produced item: " + producedItem);
                 } else {
-                    System.out.println("Produced item offer failed. Queue full. Waiting 1000 ms.");
+                    IO.println("Produced item offer failed. Queue full. Waiting 1000 ms.");
                     Thread.sleep(1000);
                 }
             }
@@ -29,9 +29,9 @@ public class ProducerConsumerNonBlocking implements ProducerConsumerQueue {
             while (true) {
                 Integer consumedItem = queue.poll();
                 if (consumedItem != null) {
-                    System.out.println("Consumed item: " + consumedItem);
+                    IO.println("Consumed item: " + consumedItem);
                 } else {
-                    System.out.println("Consumed item poll failed. Queue empty. Waiting 1000 ms.");
+                    IO.println("Consumed item poll failed. Queue empty. Waiting 1000 ms.");
                     Thread.sleep(1000);
                 }
             }

@@ -8,7 +8,7 @@ import java.util.List;
 public class FutureWorkdayExample implements Runnable {
     @Override
     public void run() {
-        System.out.println("Future workday with respect to weekends and holidays (Zürich / Switzerland):");
+        IO.println("Future workday with respect to weekends and holidays (Zürich / Switzerland):");
 
         List<LocalDate> holidays = new ArrayList<>();
         holidays.add(LocalDate.of(2024, 1, 1));   // Public holiday: Neujahr
@@ -36,18 +36,18 @@ public class FutureWorkdayExample implements Runnable {
         // Format date.
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        System.out.println("Start date:       " + startDate.format(formatter));
-        System.out.println("Future Workday A: " + futureWorkdayA.format(formatter)
+        IO.println("Start date:       " + startDate.format(formatter));
+        IO.println("Future Workday A: " + futureWorkdayA.format(formatter)
                            + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayA) + ")");
-        System.out.println("Future Workday B: " + futureWorkdayB.format(formatter)
+        IO.println("Future Workday B: " + futureWorkdayB.format(formatter)
                            + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayB) + ")");
-        System.out.println("Future Workday C: " + futureWorkdayC.format(formatter)
+        IO.println("Future Workday C: " + futureWorkdayC.format(formatter)
                            + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayC) + ")");
-        System.out.println("Future Workday D: " + futureWorkdayD.format(formatter)
+        IO.println("Future Workday D: " + futureWorkdayD.format(formatter)
                            + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayD) + ")");
-        System.out.println("Future Workday E: " + futureWorkdayE.format(formatter)
+        IO.println("Future Workday E: " + futureWorkdayE.format(formatter)
                            + " (Distance: " + FutureHoliday.getDayDistance(startDate, futureWorkdayE) + ")");
 
-        System.out.println();
+        IO.println();
     }
 }

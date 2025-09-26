@@ -1,6 +1,5 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -20,13 +19,13 @@ public class App {
     final static int POOL = 2;
 
     final static int THREADS = 10;
-    public static final PrintStream OUT = System.out;
+
 
     public static void main(String[] args) {
-        OUT.printf("Precision: %s%n", PRECISION);
-        OUT.printf("Terms:     %s%n", TERMS);
-        OUT.printf("Pool:      %s%n", POOL);
-        OUT.printf("Threads:   %s%n", THREADS);
+        System.out.printf("Precision: %s%n", PRECISION);
+        System.out.printf("Terms:     %s%n", TERMS);
+        System.out.printf("Pool:      %s%n", POOL);
+        System.out.printf("Threads:   %s%n", THREADS);
 
         // Define executor pool.
         //ExecutorService executor = Executors.newFixedThreadPool(POOL);
@@ -76,7 +75,7 @@ public class App {
             int pending = executor.getQueue().size();
             int active = executor.getActiveCount();
             long completed = executor.getCompletedTaskCount();
-            OUT.printf("pending: %s, active: %s, completed: %s, shutdown: %s, terminated: %s%n", pending, active, completed, shutdown, terminated);
+            System.out.printf("pending: %s, active: %s, completed: %s, shutdown: %s, terminated: %s%n", pending, active, completed, shutdown, terminated);
 
             try {
                 Thread.sleep(1000);
@@ -87,7 +86,7 @@ public class App {
 
         try {
             BigDecimal eulersNumber = tasks.get(0).get();
-            OUT.printf("First thread result: %s%n", eulersNumber);
+            System.out.printf("First thread result: %s%n", eulersNumber);
         } catch (InterruptedException | ExecutionException ex) {
             System.err.println("Could not grab result!");
         }

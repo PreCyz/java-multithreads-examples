@@ -8,11 +8,11 @@ import java.time.format.DateTimeFormatter;
 public class TimeZoneExample implements Runnable {
     @Override
     public void run() {
-        System.out.println("Dates of different time zones:");
+        IO.println("Dates of different time zones:");
 
         // Get UTC time.
         Instant now = Instant.now();
-        System.out.println("Now:                 " + now);
+        IO.println("Now:                 " + now);
 
         // Create time zones.
         ZoneId losAngelesZoneId = ZoneId.of("America/Los_Angeles");
@@ -34,13 +34,13 @@ public class TimeZoneExample implements Runnable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
 
         // Print times.
-        System.out.println("Los Angeles Time:    " + losAngelesTime.format(formatter));
-        System.out.println("Rio de Janeiro Time: " + rioTime.format(formatter));
-        System.out.println("London Time:         " + londonTime.format(formatter));
-        System.out.println("Mumbai Time:         " + mumbaiTime.format(formatter));
-        System.out.println("Tokio Time:          " + tokioTime.format(formatter));
-        System.out.println("Sydney Time:         " + sydneyTime.format(formatter));
+        IO.println("Los Angeles Time:    " + losAngelesTime.format(formatter));
+        IO.println("Rio de Janeiro Time: " + rioTime.format(formatter));
+        IO.println("London Time:         " + londonTime.format(formatter));
+        IO.println("Mumbai Time:         " + mumbaiTime.format(formatter));
+        IO.println("Tokio Time:          " + tokioTime.format(formatter));
+        IO.println("Sydney Time:         " + sydneyTime.format(formatter));
 
-        System.out.println();
+        IO.println();
     }
 }

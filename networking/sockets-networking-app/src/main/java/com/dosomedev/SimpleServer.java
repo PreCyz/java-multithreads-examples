@@ -12,11 +12,11 @@ public class SimpleServer {
         int portNumber = 12345;
 
         try (ServerSocket socket = new ServerSocket(portNumber)) {
-            System.out.println("Simple server listening on port " + portNumber + ".");
+            IO.println("Simple server listening on port " + portNumber + ".");
 
             // Wait for the client to connect.
             Socket clientSocket = socket.accept();
-            System.out.println("Client connected: " + clientSocket.getInetAddress());
+            IO.println("Client connected: " + clientSocket.getInetAddress());
 
             // Input from the client.
             try (
@@ -25,7 +25,7 @@ public class SimpleServer {
             ) {
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
-                    System.out.println("Server received: " + inputLine);
+                    IO.println("Server received: " + inputLine);
                     out.println("Server says: " + inputLine.toUpperCase());
                     if (inputLine.equalsIgnoreCase("bye")) {
                         break;

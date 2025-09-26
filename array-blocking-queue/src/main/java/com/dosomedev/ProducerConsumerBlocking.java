@@ -13,7 +13,7 @@ public class ProducerConsumerBlocking implements ProducerConsumerQueue {
             while (true) {
                 int producedItem = produceItem();
                 queue.put(producedItem);
-                System.out.println("Produced item: " + producedItem);
+                IO.println("Produced item: " + producedItem);
             }
         } catch (InterruptedException ex) {
             System.err.println("Producer was interrupted!");
@@ -24,7 +24,7 @@ public class ProducerConsumerBlocking implements ProducerConsumerQueue {
         try {
             while (true) {
                 int consumedItem = queue.take();
-                System.out.println("Consumed item: " + consumedItem);
+                IO.println("Consumed item: " + consumedItem);
             }
         } catch (InterruptedException ex) {
             System.err.println("Consumer was interrupted!");

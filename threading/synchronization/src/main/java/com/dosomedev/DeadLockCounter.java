@@ -1,9 +1,7 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
-
 public class DeadLockCounter {
-    public static final PrintStream OUT = System.out;
+
     private long counterA = 0;
 
     private long counterB = 0;
@@ -16,7 +14,7 @@ public class DeadLockCounter {
         synchronized (lockA) {
             synchronized (lockB) {
                 this.counterA++;
-                OUT.println("First lock: lockA, second lock: lockB - counterA: " + this.counterA);
+                IO.println("First lock: lockA, second lock: lockB - counterA: " + this.counterA);
             }
         }
     }
@@ -25,7 +23,7 @@ public class DeadLockCounter {
         synchronized (lockB) {
             synchronized (lockA) {
                 this.counterB++;
-                OUT.println("First lock: lockB, second lock: lockA - counterB: " + this.counterB);
+                IO.println("First lock: lockB, second lock: lockA - counterB: " + this.counterB);
             }
         }
     }

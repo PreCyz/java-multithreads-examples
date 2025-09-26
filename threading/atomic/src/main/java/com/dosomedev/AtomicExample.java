@@ -1,6 +1,5 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -18,7 +17,7 @@ import java.util.concurrent.atomic.LongAccumulator;
 import java.util.concurrent.atomic.LongAdder;
 
 public class AtomicExample implements Runnable {
-    public static final PrintStream OUT = System.out;
+
     private final MathContext PRECISION = new MathContext(20000, RoundingMode.HALF_UP);
 
     private final int THREADPACKETS = 20;
@@ -65,7 +64,7 @@ public class AtomicExample implements Runnable {
                 eulersNumber = eulersNumber.add(eulersNumberPart);
             }
 
-            OUT.printf("Euler's Number: %s%n", eulersNumber);
+            System.out.printf("Euler's Number: %s%n", eulersNumber);
         } catch (InterruptedException | ExecutionException e) {
             System.err.println("Calculation of Euler's Number interrupted!");
         }
@@ -76,12 +75,12 @@ public class AtomicExample implements Runnable {
         Instant endTime = Instant.now();
         Long totalTimeSpent = Duration.between(startTime, endTime).toMillis();
 
-        OUT.printf("Counter 1: %s%n", counter);
-        OUT.printf("Counter 2: %s%n", counter2);
-        OUT.printf("Min duration: %sms%n", minDuration);
-        OUT.printf("Max duration: %sms%n", maxDuration);
-        OUT.printf("Total calculation duration: %sms%n", totalCalculationDuration);
-        OUT.printf("Total time spent: %sms%n", totalTimeSpent);
+        System.out.printf("Counter 1: %s%n", counter);
+        System.out.printf("Counter 2: %s%n", counter2);
+        System.out.printf("Min duration: %sms%n", minDuration);
+        System.out.printf("Max duration: %sms%n", maxDuration);
+        System.out.printf("Total calculation duration: %sms%n", totalCalculationDuration);
+        System.out.printf("Total time spent: %sms%n", totalTimeSpent);
     }
 
     private BigDecimal calculateEulersNumber() {
@@ -111,7 +110,7 @@ public class AtomicExample implements Runnable {
         minDuration.accumulate(duration);
         maxDuration.accumulate(duration);
         totalCalculationDuration.add(duration);
-        OUT.printf("Calculation duration from %s to %s: %sms%n", firstIteration, lastIteration, duration);
+        System.out.printf("Calculation duration from %s to %s: %sms%n", firstIteration, lastIteration, duration);
 
         return result;
     }

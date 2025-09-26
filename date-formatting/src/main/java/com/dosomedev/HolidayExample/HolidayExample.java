@@ -7,7 +7,7 @@ import java.util.List;
 public class HolidayExample implements Runnable {
     @Override
     public void run() {
-        System.out.println("Holidays and work days (Zürich / Switzerland):");
+        IO.println("Holidays and work days (Zürich / Switzerland):");
 
         List<LocalDate> holidays = new ArrayList<>();
         holidays.add(LocalDate.of(2024, 1, 1));   // Public holiday: Neujahr
@@ -28,9 +28,9 @@ public class HolidayExample implements Runnable {
         int numPublicHolidays = counter.countHolidays(currentYear);
         int numWorkdays = counter.countWorkdays(currentYear);
 
-        System.out.println("Public holidays " + currentYear + ": " + numPublicHolidays);
-        System.out.println("Work days " + currentYear + ":       " + numWorkdays);
+        IO.println("Public holidays " + currentYear + ": " + numPublicHolidays);
+        IO.println("Work days " + currentYear + ":       " + numWorkdays);
 
-        System.out.println();
+        IO.println();
     }
 }

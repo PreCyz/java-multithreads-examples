@@ -21,7 +21,7 @@ public class App {
             DelayedTask task = delayQueue.take();
             long stopTimeMillis = System.currentTimeMillis();
 
-            System.out.println("done in " + (stopTimeMillis - startTimeMillis)
+            IO.println("done in " + (stopTimeMillis - startTimeMillis)
                                + " ms! Message: " + task.getMessage());
         }
     }

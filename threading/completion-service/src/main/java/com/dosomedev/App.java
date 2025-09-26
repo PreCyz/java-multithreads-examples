@@ -22,8 +22,8 @@ public class App {
         try {
             for (int i = 1; i <= 3; i++) {
                 Future<BigDecimal> result = completion.take();
-                System.out.println(result.get());
-                System.out.println();
+                IO.println(result.get());
+                IO.println();
             }
         } catch (InterruptedException | ExecutionException ex) {
             System.err.println("Error getting Future result!");

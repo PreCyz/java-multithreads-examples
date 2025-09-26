@@ -1,7 +1,13 @@
 package com.dosomedev;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class App {
     private static final int ROUNDS = 6;
@@ -28,7 +34,7 @@ public class App {
             avgSynchronizedHashMapMillis += benchmark(synchronizedHashMap, i + 1);
             avgConcurrentHashMapMillis += benchmark(concurrentHashMap, i + 1);
 
-            System.out.println();
+            IO.println();
         }
 
         // Calculate average millis.
@@ -37,9 +43,9 @@ public class App {
         avgConcurrentHashMapMillis /= ROUNDS;
 
         // Print statistics.
-        System.out.println("Average Hashtable millis:            " + avgHashtableMapMillis + " ms");
-        System.out.println("Average synchronized HashMap millis: " + avgSynchronizedHashMapMillis + " ms");
-        System.out.println("Average ConcurrentHashMap millis:    " + avgConcurrentHashMapMillis + " ms");
+        IO.println("Average Hashtable millis:            " + avgHashtableMapMillis + " ms");
+        IO.println("Average synchronized HashMap millis: " + avgSynchronizedHashMapMillis + " ms");
+        IO.println("Average ConcurrentHashMap millis:    " + avgConcurrentHashMapMillis + " ms");
     }
 
     private static long benchmark(Map<String, Integer> map, int round) throws InterruptedException {
@@ -71,7 +77,7 @@ public class App {
         long elapsedMillis = TimeUnit.NANOSECONDS.toMillis(end - start);
 
         // Print out time result.
-        System.out.println("Round " + round + ": " + map.getClass().getSimpleName() + " elapsed time: " + elapsedMillis + " ms");
+        IO.println("Round " + round + ": " + map.getClass().getSimpleName() + " elapsed time: " + elapsedMillis + " ms");
 
         return elapsedMillis;
     }

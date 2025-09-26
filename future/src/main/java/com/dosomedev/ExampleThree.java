@@ -1,11 +1,16 @@
 package com.dosomedev;
 
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ExampleThree implements Runnable {
     @Override
     public void run() {
-        System.out.println("Example Three (simple task, completion cancellation):");
+        IO.println("Example Three (simple task, completion cancellation):");
         ExecutorService executor = Executors.newSingleThreadExecutor();
 
         Callable<Integer> task = () -> {
@@ -23,7 +28,7 @@ public class ExampleThree implements Runnable {
         new Thread(() -> {
             try {
                 Thread.sleep(800);
-                System.out.println("Canceling task...");
+                IO.println("Canceling task...");
                 future.cancel(true);
             } catch (InterruptedException ex) {
                 System.err.println("Cancel thread interrupted! Message: " + ex.getMessage());
@@ -32,15 +37,15 @@ public class ExampleThree implements Runnable {
 
         try {
             Integer result = future.get();
-            System.out.println("Result: " + result);
+            IO.println("Result: " + result);
         } catch (CancellationException e) {
-            System.out.println("Task was canceled.");
+            IO.println("Task was canceled.");
         } catch (InterruptedException | ExecutionException ex) {
             System.err.println("Error occurred! Message: " + ex.getMessage());
         }
 
         executor.shutdown();
         executor.close();
-        System.out.println();
+        IO.println();
     }
 }

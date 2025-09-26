@@ -1,11 +1,15 @@
 package com.dosomedev;
 
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ExampleOne implements Runnable {
     @Override
     public void run() {
-        System.out.println("Example One (simple task, wait for completion):");
+        IO.println("Example One (simple task, wait for completion):");
         ExecutorService executor = Executors.newSingleThreadExecutor();
 
         Callable<Integer> task = () -> {
@@ -21,13 +25,13 @@ public class ExampleOne implements Runnable {
 
         try {
             Integer result = future.get();
-            System.out.println("Result: " + result);
+            IO.println("Result: " + result);
         } catch (InterruptedException | ExecutionException ex) {
             System.err.println("Error occurred! Message: " + ex.getMessage());
         }
 
         executor.shutdown();
         executor.close();
-        System.out.println();
+        IO.println();
     }
 }

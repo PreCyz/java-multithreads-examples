@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutionException;
 public class CombinationAsyncExample implements Runnable {
     @Override
     public void run() {
-        System.out.println("Example with two Futures with combined results:");
+        IO.println("Example with two Futures with combined results:");
 
         CompletableFuture<Integer> future1 = CompletableFuture.supplyAsync(() -> {
             try {
@@ -28,13 +28,13 @@ public class CombinationAsyncExample implements Runnable {
 
         CompletableFuture<Integer> futureResult = future1.thenCombineAsync(future2, (x, y) -> x + y);
 
-        System.out.println("This message is diplayed right after starting to combine the Futures.");
+        IO.println("This message is diplayed right after starting to combine the Futures.");
         try {
             Integer result = futureResult.get();
-            System.out.println("Result: " + result); // Output: 30
+            IO.println("Result: " + result); // Output: 30
         } catch (InterruptedException | ExecutionException ex) {
-            System.out.println("Cobined Future Error! Message: " + ex.getMessage());
+            IO.println("Cobined Future Error! Message: " + ex.getMessage());
         }
-        System.out.println("This message is diplayed after having waited for the combining Futures.");
+        IO.println("This message is diplayed after having waited for the combining Futures.");
     }
 }

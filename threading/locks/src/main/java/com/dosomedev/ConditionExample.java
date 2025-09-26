@@ -1,12 +1,11 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ConditionExample implements Runnable {
-    public static final PrintStream OUT = System.out;
+
     private final Lock lock = new ReentrantLock();
 
     private final Condition isProduced = lock.newCondition();
@@ -105,6 +104,6 @@ public class ConditionExample implements Runnable {
     private void printStatus(String name, int item) {
         String itemString = String.format("%" + this.itemDigits + "s", item);
         String bufferSizeString = String.format("%" + this.capacityDigits + "s", this.bufferSize);
-        OUT.printf("%s %s, Buffer %s/%s%n", name, itemString, bufferSizeString, this.bufferCapacity);
+        System.out.printf("%s %s, Buffer %s/%s%n", name, itemString, bufferSizeString, this.bufferCapacity);
     }
 }

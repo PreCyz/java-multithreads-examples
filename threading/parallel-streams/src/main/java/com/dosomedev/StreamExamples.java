@@ -13,11 +13,11 @@ public class StreamExamples {
 
     public StreamExamples(StreamType streamType) {
         String message = String.format("Stream Examples with %s.", streamType.toString());
-        System.out.println();
-        System.out.println("#".repeat(message.length() + 4));
-        System.out.println("# " + message + " #");
-        System.out.println("#".repeat(message.length() + 4));
-        System.out.println();
+        IO.println();
+        IO.println("#".repeat(message.length() + 4));
+        IO.println("# " + message + " #");
+        IO.println("#".repeat(message.length() + 4));
+        IO.println();
 
         this.babyNames = new BabyNames(streamType);
         this.babyNames.loadBabyNames();
@@ -191,11 +191,11 @@ public class StreamExamples {
         List<String> processedElements = maleStream
                 .filter(s -> s.startsWith("Alb"))
                 .distinct()
-                .peek(s -> System.out.println("peek1: " + s))
+                .peek(s -> IO.println("peek1: " + s))
                 .sorted()
-                // .peek(s -> System.out.println("peek2: " + s)) // No order guaranteed in parallel.
+                // .peek(s -> IO.println("peek2: " + s)) // No order guaranteed in parallel.
                 .toList();
-        processedElements.forEach(s -> System.out.println("peek2: " + s));
+        processedElements.forEach(s -> IO.println("peek2: " + s));
         long endTime = System.nanoTime();
 
         printElapsedTime("Peeked at elements", startTime, endTime);
@@ -273,7 +273,7 @@ public class StreamExamples {
         if (concatenatedString.startsWith(", ")) {
             concatenatedString = concatenatedString.substring(2);
         }
-        // System.out.println(concatenatedString);
+        // IO.println(concatenatedString);
 
         printElapsedTime("Reduce to single string", startTime, endTime);
     }

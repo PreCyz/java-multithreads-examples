@@ -6,8 +6,8 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("[1] for Blocking Queue");
-        System.out.println("[2] for Non-Blocking Queue");
+        IO.println("[1] for Blocking Queue");
+        IO.println("[2] for Non-Blocking Queue");
         System.out.print("Enter a number: ");
         int choice = scanner.nextInt();
 
@@ -22,7 +22,7 @@ public class App {
                 queue = new ProducerConsumerNonBlocking();
                 break;
             default:
-                System.out.println("Number not implemented.");
+                IO.println("Number not implemented.");
                 break;
         }
 

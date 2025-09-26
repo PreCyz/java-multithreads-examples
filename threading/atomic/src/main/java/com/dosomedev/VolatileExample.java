@@ -26,14 +26,14 @@ public class VolatileExample implements Runnable {
         Future<BigDecimal> eulersNumberFuture = executor.submit(eulersNumberCalculation);
 
         // Wait for a moment.
-        System.out.println("Stop Watch start.");
+        IO.println("Stop Watch start.");
         try {
             Thread.sleep(CALCULATIONTIME);
             this.isInterrupted = true;
         } catch (InterruptedException ex) {
             System.err.println("Stop watch was interrupted!");
         }
-        System.out.println("Stop Watch stop.");
+        IO.println("Stop Watch stop.");
 
         // Get the value.
         try {
@@ -59,7 +59,7 @@ public class VolatileExample implements Runnable {
         }
 
         result = result.setScale(PRECISION.getPrecision(), PRECISION.getRoundingMode());
-        System.out.println("Iteration count: " + counter);
+        IO.println("Iteration count: " + counter);
 
         return result;
     }

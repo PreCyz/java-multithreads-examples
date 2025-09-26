@@ -1,11 +1,10 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
 import java.util.Optional;
 
 public class OptionalExamples {
 
-    public static final PrintStream OUT = System.out;
+
 
     public String getFullName(String firstName, String lastName) {
         if (firstName == null || lastName == null) {
@@ -55,19 +54,19 @@ public class OptionalExamples {
         Optional<String> a4 = Optional.ofNullable(null);   // Taking a value that is null.
         Optional<String> a5 = Optional.empty();                  // Creating an empty Optional.
 
-        OUT.println("a1: " + a1);
-        //System.out.println("a2: " + a2);
-        OUT.println("a3: " + a3);
-        OUT.println("a4: " + a4);
-        OUT.println("a5: " + a5);
+        IO.println("a1: " + a1);
+        //IO.println("a2: " + a2);
+        IO.println("a3: " + a3);
+        IO.println("a4: " + a4);
+        IO.println("a5: " + a5);
     }
 
     public void getValuesWithIfPresentOrElse(String name) {
         Optional<String> maybeName = Optional.ofNullable(name);
 
         maybeName.ifPresentOrElse(
-                theName -> OUT.println("name: " + theName),
-                () -> OUT.println("name is null")
+                theName -> IO.println("name: " + theName),
+                () -> IO.println("name is null")
         );
     }
 
@@ -92,7 +91,7 @@ public class OptionalExamples {
         Optional<String> maybeDefault = Optional.ofNullable(email);
 
         return maybeDefault.orElseGet(() -> {
-            OUT.println("Given eMail was null. Generating default eMail.");
+            IO.println("Given eMail was null. Generating default eMail.");
             return "default@example.com";
         });
     }

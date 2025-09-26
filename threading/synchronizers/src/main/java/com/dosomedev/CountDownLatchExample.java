@@ -92,7 +92,7 @@ public class CountDownLatchExample implements Runnable {
     }
 
     private static void printMessage(String message) {
-        System.out.println(LocalDateTime.now() + ": " +
+        IO.println(LocalDateTime.now() + ": " +
                            Thread.currentThread() + ": " +
                            message);
     }

@@ -1,12 +1,11 @@
 package com.dosomedev;
 
-import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 
 public class App {
 
-    public static final PrintStream OUT = System.out;
+
 
     public static void main(String[] args) {
         HashMap<String, String> hashMap = new HashMap<>();
@@ -18,11 +17,11 @@ public class App {
         hashMap.put(str1, "World");
         identityHashMap.put(str1, "World");
 
-        OUT.println("HashMap (str1): " + hashMap.get(str1)); // Output: World
-        OUT.println("HashMap (str2): " + hashMap.get(str2)); // Output: World
-        OUT.println("IdentityHashMap (str1): " + identityHashMap.get(str1)); // Output: World
-        OUT.println("IdentityHashMap (str2): " + identityHashMap.get(str2)); // Output: null (IdentityHashMap uses reference equality)
-        OUT.println("IdentityHashCode str1: " + System.identityHashCode(str1));
-        OUT.println("IdentityHashCode str2: " + System.identityHashCode(str2));
+        IO.println("HashMap (str1): " + hashMap.get(str1)); // Output: World
+        IO.println("HashMap (str2): " + hashMap.get(str2)); // Output: World
+        IO.println("IdentityHashMap (str1): " + identityHashMap.get(str1)); // Output: World
+        IO.println("IdentityHashMap (str2): " + identityHashMap.get(str2)); // Output: null (IdentityHashMap uses reference equality)
+        IO.println("IdentityHashCode str1: " + System.identityHashCode(str1));
+        IO.println("IdentityHashCode str2: " + System.identityHashCode(str2));
     }
 }

@@ -8,9 +8,9 @@ public class App {
 
         Thread producer = new Thread(() -> {
             try {
-                System.out.println("Producer: Hello");
+                IO.println("Producer: Hello");
                 queue.put("Hello");
-                System.out.println("Producer: World");
+                IO.println("Producer: World");
                 queue.put("World");
             } catch (InterruptedException ex) {
                 System.err.println("Producer interrupted!");
@@ -20,9 +20,9 @@ public class App {
         Thread consumer = new Thread(() -> {
             try {
                 String message1 = queue.take();
-                System.out.println("Consumer: " + message1);
+                IO.println("Consumer: " + message1);
                 String message2 = queue.take();
-                System.out.println("Consumer: " + message2);
+                IO.println("Consumer: " + message2);
             } catch (InterruptedException ex) {
                 System.err.println("Consumer interrupted!");
             }

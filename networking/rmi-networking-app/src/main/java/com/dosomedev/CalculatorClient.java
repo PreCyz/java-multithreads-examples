@@ -18,9 +18,9 @@ public class CalculatorClient {
             int a = 5;
             int b = 3;
 
-            System.out.println("Sending request to the server = " + serverName + " to add a = " + a + " and b = " + b + ".");
+            IO.println("Sending request to the server = " + serverName + " to add a = " + a + " and b = " + b + ".");
             int result = calculator.add(a, b);
-            System.out.println("Response from the server = " + serverName + " with the result = " + result + ".");
+            IO.println("Response from the server = " + serverName + " with the result = " + result + ".");
         } catch (RemoteException e) {
             System.err.println("Error: Could not get registry.");
         } catch (NotBoundException e) {

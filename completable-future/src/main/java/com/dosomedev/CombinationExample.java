@@ -5,7 +5,7 @@ import java.util.concurrent.CompletableFuture;
 public class CombinationExample implements Runnable {
     @Override
     public void run() {
-        System.out.println("Example with two CompletableFutures that are combined:");
+        IO.println("Example with two CompletableFutures that are combined:");
 
         CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
             return "Hello";

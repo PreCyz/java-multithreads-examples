@@ -1,18 +1,21 @@
 package com.dosomedev;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class BabyNames {
-    public static final PrintStream OUT = System.out;
-    private StreamType streamType;
 
-    private List<String> maleNames;
+    private final StreamType streamType;
 
-    private List<String> femaleNames;
+    private final List<String> maleNames;
+
+    private final List<String> femaleNames;
 
     public BabyNames(StreamType streamType) {
         this.streamType = streamType;
@@ -21,7 +24,7 @@ public class BabyNames {
     }
 
     public void loadBabyNames() {
-        OUT.print("Loading baby names...");
+        IO.print("Loading baby names...");
         try (InputStream inputStream = BabyNames.class.getClassLoader().getResourceAsStream("baby-names.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
@@ -47,9 +50,9 @@ public class BabyNames {
                 }
             }
         } catch (IOException ex) {
-            OUT.println("The baby database could not be loaded.");
+            IO.println("The baby database could not be loaded.");
         }
-        OUT.println("done!");
+        IO.println("done!");
     }
 
     public Stream<String> getMaleNames() {

@@ -33,7 +33,7 @@ public class StampedLockExample implements Runnable {
     public void setValue(int value) {
         long stamp = this.lock.writeLock();
         try {
-            System.out.println("Writer " + Thread.currentThread().getName() + " wrote: " + value);
+            IO.println("Writer " + Thread.currentThread().getName() + " wrote: " + value);
             this.value = value;
         } finally {
             this.lock.unlockWrite(stamp);

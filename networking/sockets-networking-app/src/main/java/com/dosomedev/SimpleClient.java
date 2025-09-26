@@ -20,20 +20,20 @@ public class SimpleClient {
             String userInput;
             String serverResponse;
 
-            System.out.println("Connected to server " + serverName + ":" + portNumber);
+            IO.println("Connected to server " + serverName + ":" + portNumber);
             while (true) {
                 System.out.print("Enter message (or 'bye' to quit): ");
                 userInput = scanner.nextLine();
                 out.println(userInput);
 
                 serverResponse = in.readLine();
-                System.out.println("Server response: " + serverResponse);
+                IO.println("Server response: " + serverResponse);
 
                 if (userInput.equalsIgnoreCase("bye")) {
                     break;
                 }
             }
-            System.out.println("Disconnected from server.");
+            IO.println("Disconnected from server.");
         } catch (IOException ex) {
             System.err.println("Couldn't get I/O for the connection to " + serverName);
         }

@@ -11,14 +11,14 @@ public class App {
         cats.add(new Cat("Sherlock", 7));
         cats.add(new Cat("Scratchy", 2));
 
-        System.out.println("Cat list based on likability:");
+        IO.println("Cat list based on likability:");
         while (!cats.isEmpty()) {
-            System.out.println(cats.poll());
+            IO.println(cats.poll());
         }
 
-        System.out.println("Cat list based on likability:");
+        IO.println("Cat list based on likability:");
         while (!cats.isEmpty()) {
-            System.out.println(cats.poll());
+            IO.println(cats.poll());
         }
 
 
@@ -28,9 +28,9 @@ public class App {
         cats.add(new Cat("Sherlock", 7));
         cats.add(new Cat("Scratchy", 2));
 
-        System.out.println("First cat in the list: " + cats.peek());
-        System.out.println("First cat in the list: " + cats.peek());
-        System.out.println("First cat in the list: " + cats.peek());
+        IO.println("First cat in the list: " + cats.peek());
+        IO.println("First cat in the list: " + cats.peek());
+        IO.println("First cat in the list: " + cats.peek());
 
 
         cats.add(new Cat("Marmalade", 10));
@@ -39,10 +39,10 @@ public class App {
         cats.add(new Cat("Sherlock", 7));
         cats.add(new Cat("Scratchy", 2));
 
-        System.out.println("First cat before clearing: " + cats.peek());
-        System.out.println("Cat quantity: " + cats.size());
+        IO.println("First cat before clearing: " + cats.peek());
+        IO.println("Cat quantity: " + cats.size());
         cats.clear();
-        System.out.println("First cat after clearing: " + cats.peek());
-        System.out.println("Cat quantity: " + cats.size());
+        IO.println("First cat after clearing: " + cats.peek());
+        IO.println("Cat quantity: " + cats.size());
     }
 }

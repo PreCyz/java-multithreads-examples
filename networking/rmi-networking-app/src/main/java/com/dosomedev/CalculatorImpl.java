@@ -10,9 +10,9 @@ public class CalculatorImpl extends UnicastRemoteObject implements RemoteCalcula
 
     @Override
     public int add(int a, int b) throws RemoteException {
-        System.out.println("Incoming request for adding a = " + a + " and b = " + b + ".");
+        IO.println("Incoming request for adding a = " + a + " and b = " + b + ".");
         int result = a + b;
-        System.out.println("Calculation result = " + result + ".");
+        IO.println("Calculation result = " + result + ".");
 
         return result;
     }
