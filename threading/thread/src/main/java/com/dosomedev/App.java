@@ -1,43 +1,40 @@
 package com.dosomedev;
 
-/**
- * Threading example.
- *
- */
 public class App {
-    public static void main(String[] args) throws InterruptedException {
-        // Runnable r = new Runnable() {
-        //     @Override
-        //     public void run() {
-        //         for (int i=1; i<=10; i++) {
-        //             System.out.println(i);
+    static void main(String[] args) throws InterruptedException {
+        runThreads();
+        System.out.println("The race is done!\n===================\n");
 
-        //             try {
-        //                 Thread.sleep(300);
-        //             } catch (InterruptedException e) {
-        //                 e.printStackTrace();
-        //             }
-        //         }
-        //     }
-        // };
+        runRunnables();
+        System.out.println("The 2nd race is done!");
+    }
 
-        // Thread t1 = new Thread(r);
-        // t1.start();
+    private static void runThreads() throws InterruptedException {
+        Sprinter andre = new Sprinter("Andre", 250, 0);
+        Sprinter me = new Sprinter("Pawg", 650, 3);
+        Sprinter claus = new Sprinter("Claus", 150, 0);
 
-        // Thread t2 = new Thread(r);
-        // t2.start();
+        andre.start();
+        andre.join();
+        me.start();
+        me.join();
+        claus.start();
+        claus.join();
+    }
 
-        Sprinter steve = new Sprinter("Steve", 250, 0);
-        Sprinter chuck = new Sprinter("Chuck", 650, 3);
-        Sprinter eddie = new Sprinter("Eddie", 150, 0);
+    private static void runRunnables() throws InterruptedException {
+        Thread andy = new Thread(new RunnableSprinter("Andre", 250, 2));
+        andy.setName("Andre");
+        Thread precyz = new Thread(new RunnableSprinter("Pawg", 500, 0));
+        precyz.setName("Pawg");
+        Thread santaClaus = new Thread(new RunnableSprinter("Claus", 150, 1));
+        santaClaus.setName("Claus");
 
-        steve.start();
-        steve.join();
-        chuck.start();
-        chuck.join();
-        eddie.start();
-        eddie.join();
-
-        System.out.println("The race is done!");
+        andy.start();
+        precyz.start();
+        santaClaus.start();
+        andy.join();
+        precyz.join();
+        santaClaus.join();
     }
 }

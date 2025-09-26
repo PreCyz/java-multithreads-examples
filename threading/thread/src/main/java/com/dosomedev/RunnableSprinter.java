@@ -3,7 +3,7 @@ package com.dosomedev;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class Sprinter extends Thread {
+public class RunnableSprinter implements Runnable {
     private final String name;
 
     private final int stepTime;
@@ -18,11 +18,12 @@ public class Sprinter extends Thread {
             System.out.printf("%s runs %sm.%n", this.name, i);
 
             if (i == this.fallsDown) {
-                throw new RuntimeException("%s fell down! %d-%s completed %n".formatted(this.name, threadId(), getName()));
+                throw new RuntimeException("%s fell down!%n".formatted(this.name));
             }
 
-            if (i == 10)
+            if (i == 10) {
                 System.out.printf("===> %s finished!%n", this.name);
+            }
 
             try {
                 Thread.sleep(this.stepTime);

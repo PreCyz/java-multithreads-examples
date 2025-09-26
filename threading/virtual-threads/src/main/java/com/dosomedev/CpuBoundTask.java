@@ -1,11 +1,10 @@
 package com.dosomedev;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class CpuBoundTask implements Runnable {
     private final int number;
-
-    public CpuBoundTask(int number) {
-        this.number = number;
-    }
 
     @Override
     public void run() {
