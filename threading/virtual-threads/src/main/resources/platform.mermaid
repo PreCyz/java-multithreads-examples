@@ -1,0 +1,25 @@
+sequenceDiagram
+    participant AppThread as Application Code (Task)
+    participant PlatformThread as Platform Thread (OS Thread)
+    participant Kernel as OS Kernel / Scheduler
+    AppThread ->> PlatformThread: 1. Submits task to Platform Thread
+    activate PlatformThread
+    Note over AppThread, Kernel: Platform Thread Lifecycle
+    PlatformThread ->> Kernel: 2. Requests CPU time / Blocks (e.g., IO)
+
+    alt Platform Thread Blocks (e.g., I/O, Lock, Sleep)
+        Kernel ->> PlatformThread: 3a. Platform Thread blocks
+        Note over PlatformThread: Platform Thread is parked<br/>(consumes OS thread context)
+        Note over Kernel: OS schedules other Platform Threads
+        Kernel ->> PlatformThread: 4. I/O completes / Lock released / Timer expires
+        PlatformThread ->> Kernel: 5. Becomes runnable again
+        Kernel -->> PlatformThread: 6. OS re-assigns CPU time
+        PlatformThread -->> PlatformThread: Resumes execution
+    else Platform Thread Runs to Completion
+        PlatformThread ->> Kernel: 3a. Platform Thread completes its task
+        Kernel -->> PlatformThread: 3b. OS cleans up thread resources
+        Note over PlatformThread: Platform Thread is terminated
+    end
+
+    deactivate PlatformThread
+    AppThread -->> PlatformThread: 7. Receives result (if any)
