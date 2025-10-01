@@ -1,0 +1,40 @@
+sequenceDiagram
+    participant AppThread as Application Code (Virtual Thread Task)
+    participant VT as Virtual Thread (JVM)
+    participant Scheduler as ForkJoinPool Scheduler
+    participant OSThread as OS / Carrier Thread (Platform Thread)
+    AppThread ->> VT: 1. Submits task / blocks (e.g., IO)
+    activate VT
+    Note over AppThread, OSThread: Virtual Thread Lifecycle
+    VT ->> Scheduler: 2. Dispatches task (initial run)
+    activate Scheduler
+    Scheduler ->> OSThread: 3. Mounts VT on available Carrier Thread
+    activate OSThread
+    OSThread -->> VT: Executes Virtual Thread code
+    deactivate Scheduler
+
+    alt Virtual Thread Blocks (e.g., I/O, Lock)
+        OSThread ->> VT: 4a. VT blocks on I/O or Lock
+        VT ->> Scheduler: 4b. Scheduler detects block
+        Scheduler ->> OSThread: 4c. Unmounts VT from Carrier Thread
+        deactivate OSThread
+        Note over VT: VT is "parked" in memory<br/>(consumes no OS thread)
+        Note over Scheduler: Carrier Thread is free<br/>to run other tasks (VTs)
+        OSThread ->> OSThread: 5. Carrier Thread picks up another VT or task
+        Note over VT: ... sometime later ...
+        OSThread ->> OSThread: 6. I/O completes / Lock released
+        VT ->> Scheduler: 7. VT is "unparked" by event
+        Scheduler ->> OSThread: 8. Remounts VT on available Carrier Thread
+        activate OSThread
+        OSThread -->> VT: Resumes execution
+    else Virtual Thread Runs to Completion
+        OSThread ->> VT: 4a. VT completes its task
+        VT ->> Scheduler: 4b. Notifies Scheduler
+        Scheduler ->> OSThread: 4c. Unmounts VT (done)
+        deactivate OSThread
+        Note over VT: VT is terminated
+        OSThread ->> OSThread: 5. Carrier Thread picks up another VT or task
+    end
+
+    deactivate VT
+    AppThread -->> VT: 9. Receives result (if any)
