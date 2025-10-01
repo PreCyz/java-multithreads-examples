@@ -79,7 +79,7 @@ public class App {
         pawg.join();
 
         claus.start();
-        //        claus.join(); // if you want this demon thread completed, uncomment this code,
-        // otherwise, the result is going to be skipped.
+        // if you want this demon thread completed, uncomment this code, otherwise, the result is going to be skipped.
+//        claus.join();
     }
 }
