@@ -5,9 +5,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Sprinter extends Thread {
     private final String name;
-
     private final int stepTime;
-
     private final int fallsDown;
 
     @Override

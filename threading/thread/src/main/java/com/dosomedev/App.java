@@ -1,67 +1,85 @@
 package com.dosomedev;
 
 public class App {
+
+    //TODO: 1. Sprinter as Thread
+    //TODO: 2. RunnableSprinter
+    //TODO: 3. Deamon vs User
     static void main(String[] args) throws InterruptedException {
-        runThreads();
+        runThreadsInSequence();
         System.out.printf("The race is done!%n===================%n%n");
 
-        runRunnables();
+        runThreadsAllAtOnce();
         System.out.printf("The 2nd race is done!%n===================%n%n");
 
-        runThreadFactories();
+        deamonVsUserThreads();
         IO.println("The 3rd race is done!%n===================%n%n");
     }
 
-    private static void runThreads() throws InterruptedException {
+    /**
+     * Thread is started when the previous is finished.
+     */
+    private static void runThreadsInSequence() throws InterruptedException {
         Sprinter andre = new Sprinter("Andre", 250, 0);
-        Sprinter me = new Sprinter("Pawg", 650, 3);
+        Sprinter pawg = new Sprinter("Pawg", 650, 3);
         Sprinter claus = new Sprinter("Claus", 150, 0);
 
         andre.start();
         andre.join();
-        me.start();
-        me.join();
+        pawg.start();
+        pawg.join();
         claus.start();
         claus.join();
     }
 
-    private static void runRunnables() throws InterruptedException {
-        Thread andre = new Thread(new RunnableSprinter("Andre", 250, 2));
+    /**
+     * Thread are started at the same time (more/less). They're running at the simultaneously
+     */
+    private static void runThreadsAllAtOnce() throws InterruptedException {
+        Thread andre = new Thread(new RunnableSprinter("Andre", 250, 0));
         andre.setName("Andre");
-        Thread me = new Thread(new RunnableSprinter("Pawg", 500, 0));
-        me.setName("Pawg");
-        Thread claus = new Thread(new RunnableSprinter("Claus", 150, 1));
+        Thread pawg = new Thread(new RunnableSprinter("Pawg", 500, 0));
+        pawg.setName("Pawg");
+        Thread claus = new Thread(new RunnableSprinter("Claus", 150, 0));
         claus.setName("Claus");
 
         andre.start();
-        me.start();
+        pawg.start();
         claus.start();
         andre.join();
-        me.join();
+        pawg.join();
         claus.join();
     }
 
-    private static void runThreadFactories() throws InterruptedException {
+    /**
+     * Deamon vs User Thread
+     * TODO: JVM Lifecycle is Key: User threads are "blocking"; daemon threads are not.
+     * TODO: User Threads for Critical Work.
+     * TODO: Daemon Threads for Background Services.
+     * TODO: Beware the finally Block: Do not rely on finally blocks in daemon threads for resource cleanup. This is a common source of bugs.
+     */
+    private static void deamonVsUserThreads() throws InterruptedException {
 
         Thread andre = Thread.ofPlatform()
                              .daemon()
                              .name("Andre")
                              .start(new RunnableSprinter("Andre", 10, 0));
 
-        Thread me = Thread.ofPlatform()
-                          .daemon()
-                          .name("pawg")
-                          .start(new RunnableSprinter("Pawg", 100, 3));
+        //Non-deamon
+        Thread pawg = Thread.ofPlatform()
+                            .name("pawg")
+                            .start(new RunnableSprinter("Pawg", 100, 0));
 
         Thread claus = Thread.ofPlatform()
                              .daemon()
                              .name("Claus")
-                             .unstarted(new RunnableSprinter("Claus", 65, 0));
+                             .unstarted(new RunnableSprinter("Claus", 165, 0));
 
         andre.join();
-        me.join();
+        pawg.join();
 
         claus.start();
-        claus.join();
+        //        claus.join(); // if you want this demon thread completed, uncomment this code,
+        // otherwise, the result is going to be skipped.
     }
 }

@@ -5,9 +5,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RunnableSprinter implements Runnable {
     private final String name;
-
     private final int stepTime;
-
     private final int fallsDown;
 
     @Override
