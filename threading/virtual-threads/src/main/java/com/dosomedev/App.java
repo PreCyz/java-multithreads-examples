@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class App {
     private static final int NUMBER_OF_TASKS = 1000;
 
-    private static final int CPU_CORES = Runtime.getRuntime().availableProcessors();
+    private static final int CPU_CORES = Runtime.getRuntime().availableProcessors() - 1;
 
     private static final int PRIME_NUMBER = 1000000000;
 
