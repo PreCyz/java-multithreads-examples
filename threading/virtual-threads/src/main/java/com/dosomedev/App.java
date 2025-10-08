@@ -52,13 +52,11 @@ public class App {
                 executor.submit(new CpuBoundTask(PRIME_NUMBER));
             }
 
-            // Wait for termination.
             executor.shutdown();
             executor.awaitTermination(1, TimeUnit.MINUTES);
 
             long endTime = System.currentTimeMillis();
 
-            // Output statistics.
             IO.println(name + ": " + (endTime - startTime) + "ms");
         } catch (InterruptedException ex) {
             System.err.println("Error: interrupted!");
