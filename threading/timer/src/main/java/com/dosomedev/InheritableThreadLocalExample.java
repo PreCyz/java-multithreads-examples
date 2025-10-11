@@ -22,6 +22,8 @@ public class InheritableThreadLocalExample implements Runnable {
             Thread childThread = new Thread(child);
             childThread.setName("Child");
             childThread.start();
+
+            intVal.remove();
         };
 
         Thread parentThread = new Thread(parent);

@@ -5,28 +5,27 @@ public class ThreadLocalExample implements Runnable {
 
     @Override
     public void run() {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                // Get thread name.
-                String name = Thread.currentThread().getName();
+        Runnable r = () -> {
+            // Get thread name.
+            String name = Thread.currentThread().getName();
 
-                // Set ThreadLocal value.
-                switch (name) {
-                    case "A":
-                        userID.set("alpha");
-                        break;
-                    case "B":
-                        userID.set("beta");
-                        break;
-                    default:
-                        userID.set("nullus");
-                        break;
-                }
-
-                // Print values.
-                System.out.printf("Thread name: %s, ThreadLocal value: %s%n", name, userID.get());
+            // Set ThreadLocal value.
+            switch (name) {
+                case "A":
+                    userID.set("alpha");
+                    break;
+                case "B":
+                    userID.set("beta");
+                    break;
+                default:
+                    userID.set("nullus");
+                    break;
             }
+
+            // Print values.
+            System.out.printf("Thread name: %s, ThreadLocal value: %s%n", name, userID.get());
+
+            userID.remove();
         };
 
         Thread t1 = new Thread(r);
