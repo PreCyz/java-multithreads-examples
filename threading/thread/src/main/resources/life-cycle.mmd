@@ -1,0 +1,48 @@
+graph TD
+%% States
+    A[NEW] --> B(RUNNABLE)
+    B --> C(RUNNING)
+    C --> B
+    C --> D(BLOCKED)
+    C --> E(WAITING)
+    C --> F(TIMED_WAITING)
+    D --> B
+    E --> B
+    F --> B
+    C --> G(TERMINATED)
+    D --> G
+    E --> G
+    F --> G
+%% Transitions / Events
+    A -- start () --> B
+B -- OS scheduler picks --> C
+C -- CPU preemption / Yield --> B
+C -- Enters synchronized block / Waits for lock --> D
+C -- join () / wait() / LockSupport . park () --> E
+C -- sleep ( ms ) / wait (ms ) / join ( ms ) --> F
+D -- Lock acquired --> B
+E -- notify() / notifyAll () / LockSupport . unpark() --> B
+F -- Time expires / notify () / notifyAll () / LockSupport .unpark () --> B
+C -- run () method completes / Exception --> G
+D -- Lock acquired and run () completes --> G
+E -- notify () and run () completes --> G
+F -- Time expires and run () completes --> G
+
+%% Styling to make it look nicer (optional)
+linkStyle 0 stroke: #0f0, stroke-width: 2px;
+linkStyle 1 stroke: #0f0, stroke-width: 2px;
+linkStyle 2 stroke: #0f0, stroke-width: 2px;
+linkStyle 3 stroke: #f00, stroke-width: 2px;
+linkStyle 4 stroke: #f00, stroke-width: 2px;
+linkStyle 5 stroke: #f00, stroke-width:2px;
+linkStyle 6 stroke: #f00, stroke-width: 2px;
+linkStyle 7 stroke: #0f0,stroke-width: 2px;
+linkStyle 8 stroke: #0f0, stroke-width: 2px;
+linkStyle 9 stroke:#0f0, stroke-width: 2px;
+linkStyle 10 stroke: #00f, stroke-width: 2px;
+linkStyle 11 stroke: #00f, stroke-width: 2px;
+linkStyle 12 stroke: #00f, stroke-width: 2px;
+linkStyle 13 stroke: #00f, stroke-width: 2px;
+linkStyle 14 stroke: #00f, stroke-width: 2px;
+linkStyle 15 stroke: #00f, stroke-width:2px;
+linkStyle 16 stroke: #00f, stroke-width: 2px;
