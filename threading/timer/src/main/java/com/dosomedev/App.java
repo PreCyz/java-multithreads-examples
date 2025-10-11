@@ -1,10 +1,8 @@
 package com.dosomedev;
 
-/**
- * Threading example.
- */
+/** Threading example. */
 public class App {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         ThreadLocalExample example1 = new ThreadLocalExample();
         example1.run();
 
