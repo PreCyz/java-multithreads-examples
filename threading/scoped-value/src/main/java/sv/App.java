@@ -1,4 +1,4 @@
-package pawg.dosomedev.sv;
+package sv;
 
 import java.util.concurrent.StructuredTaskScope;
 
