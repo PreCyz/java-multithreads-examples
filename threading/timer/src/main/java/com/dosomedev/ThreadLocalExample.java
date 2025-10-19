@@ -6,10 +6,8 @@ public class ThreadLocalExample implements Runnable {
     @Override
     public void run() {
         Runnable r = () -> {
-            // Get thread name.
             String name = Thread.currentThread().getName();
 
-            // Set ThreadLocal value.
             switch (name) {
                 case "A":
                     userID.set("alpha");
@@ -22,9 +20,7 @@ public class ThreadLocalExample implements Runnable {
                     break;
             }
 
-            // Print values.
             System.out.printf("Thread name: %s, ThreadLocal value: %s%n", name, userID.get());
-
             userID.remove();
         };
 

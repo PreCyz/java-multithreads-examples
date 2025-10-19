@@ -6,28 +6,21 @@ public class InheritableThreadLocalExample implements Runnable {
     @Override
     public void run() {
         Runnable parent = () -> {
-            // Set inheritable thread local values.
             intVal.set(42);
 
-            Runnable child = () -> {
-                String name = Thread.currentThread().getName();
+            Runnable child = () -> System.out.printf("Thread name: %s, InheritableThreadLocal value: %d%n",
+                    Thread.currentThread().getName(),
+                    intVal.get());
 
-                System.out.printf("Thread name: %s, InheritableThreadLocal value: %d%n", name, intVal.get());
-            };
+            System.out.printf("Thread name: %s, InheritableThreadLocal value: %d%n",
+                    Thread.currentThread().getName(),
+                    intVal.get());
 
-            String name = Thread.currentThread().getName();
-
-            System.out.printf("Thread name: %s, InheritableThreadLocal value: %d%n", name, intVal.get());
-
-            Thread childThread = new Thread(child);
-            childThread.setName("Child");
-            childThread.start();
+            Thread.ofPlatform().name("Child").start(child);
 
             intVal.remove();
         };
 
-        Thread parentThread = new Thread(parent);
-        parentThread.setName("Parent");
-        parentThread.start();
+        Thread.ofPlatform().name("Parent").start(parent);
     }
 }
