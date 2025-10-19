@@ -32,7 +32,8 @@
     <module>completion-service</module>
     <module>parallel-streams</module>
     <module>virtual-threads</module>
-
+    <module>scoped-value</module>
+    <module>structured-concurrency</module>
   </modules>
 
 </project>

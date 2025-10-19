@@ -1,4 +1,4 @@
-package pawg.dosomedev.structured;
+package structured;
 
 import java.util.concurrent.StructuredTaskScope;
 
