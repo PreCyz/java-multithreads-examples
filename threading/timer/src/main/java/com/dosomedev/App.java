@@ -1,5 +1,7 @@
 package com.dosomedev;
 
+import java.time.LocalDateTime;
+
 /** Threading example. */
 public class App {
     static void main(String[] args) {
@@ -14,5 +16,9 @@ public class App {
 
         TimerIntervalExample example4 = new TimerIntervalExample();
         example4.run();
+    }
+
+    static String currentTime() {
+        return LocalDateTime.now().toLocalTime().toString();
     }
 }

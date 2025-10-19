@@ -1,7 +1,5 @@
 package com.dosomedev;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,7 +16,7 @@ public class TimerIntervalExample implements Runnable {
             @Override
             public void run() {
                 // Print info.
-                System.out.printf("Interval task at: %s%n", currentTime());
+                System.out.printf("Interval task at: %s%n", App.currentTime());
 
                 if (counter >= 5) {
                     // Cancel interval.
@@ -30,16 +28,7 @@ public class TimerIntervalExample implements Runnable {
         };
 
         // Schedule interval timer execution.
-        System.out.printf("Timing interval at: %s%n", currentTime());
+        System.out.printf("Timing interval at: %s%n", App.currentTime());
         timer.schedule(task, 0, 2000);
-    }
-
-    private String currentTime() {
-        // Get time.
-        LocalDateTime dateTime = LocalDateTime.now();
-        LocalTime time = dateTime.toLocalTime();
-
-        // Time to string.
-        return time.toString();
     }
 }
