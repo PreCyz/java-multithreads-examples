@@ -8,14 +8,13 @@
     <groupId>pawg.dosomedev.threading</groupId>
     <artifactId>threading</artifactId>
     <version>1.0</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>com.dosomedev</groupId>
   <artifactId>executors</artifactId>
   <version>1.0</version>
-
   <name>executors</name>
-  <url>https://www.dosomedev.com</url>
 
   <build>
     <plugins>
