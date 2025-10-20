@@ -24,15 +24,8 @@ public class ThreadLocalExample implements Runnable {
             userID.remove();
         };
 
-        Thread t1 = new Thread(r);
-        Thread t2 = new Thread(r);
-        Thread t3 = new Thread(r);
-
-        t1.setName("A");
-        t2.setName("B");
-
-        t1.start();
-        t2.start();
-        t3.start();
+        Thread.ofPlatform().name("A").start(r);
+        Thread.ofPlatform().name("B").start(r);
+        Thread.ofPlatform().start(r);
     }
 }
