@@ -10,18 +10,18 @@ import java.util.concurrent.*;
 public class App {
     final static int PRECISION = 100;
     final static int TERMS = 4000;
-    final static int POOL = 2;
-//    final static int POOL = Runtime.getRuntime().availableProcessors();
+    final static int POOL_SIZE = 2;
+//    final static int POOL_SIZE = Runtime.getRuntime().availableProcessors();
     final static int TASKS = 10;
 
     static void main(String[] args) {
         LocalDateTime now = LocalDateTime.now();
         System.out.printf("Precision: %s%n", PRECISION);
         System.out.printf("Terms:     %s%n", TERMS);
-        System.out.printf("Pool:      %s%n", POOL);
+        System.out.printf("Pool:      %s%n", POOL_SIZE);
         System.out.printf("Tasks:     %s%n", TASKS);
 
-        try (ExecutorService executor = Executors.newFixedThreadPool(POOL)) {
+        try (ExecutorService executor = Executors.newFixedThreadPool(POOL_SIZE)) {
 
             Callable<BigDecimal> callable = calculateEulerNumber();
 
