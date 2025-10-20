@@ -18,28 +18,17 @@
     </properties>
 
     <modules>
-        <module>array-blocking-queue</module>
-        <module>array-deque</module>
         <module>completable-future</module>
-        <module>concurrent-hashmap</module>
         <module>date-formatting</module>
-        <module>delay-queue</module>
-        <module>enum-map</module>
-        <module>enum-set</module>
         <module>future</module>
-        <module>identity-hashmap</module>
-        <module>linked-blocking-queue</module>
         <module>networking</module>
         <module>optional</module>
-        <module>priority-blocking-queue</module>
-        <module>priority-queue</module>
         <module>stack</module>
-        <module>synchronous-queue</module>
         <module>threading</module>
-        <module>tree-map</module>
-        <module>tree-set</module>
         <module>vector</module>
-        <module>weak-hashmap</module>
+        <module>map</module>
+        <module>queue</module>
+        <module>set</module>
     </modules>
 
     <dependencies>

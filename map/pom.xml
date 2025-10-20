@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>pawg.dosomedev</groupId>
+        <artifactId>java-multithreads-examples</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>pawg.dosomedev.map</groupId>
+    <artifactId>map</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
+    <name>map</name>
+
+    <modules>
+        <module>concurrent-hashmap</module>
+        <module>identity-hashmap</module>
+        <module>tree-map</module>
+        <module>enum-map</module>
+        <module>weak-hashmap</module>
+    </modules>
+
+</project>

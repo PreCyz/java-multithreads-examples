@@ -5,16 +5,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>pawg.dosomedev.threading</groupId>
-    <artifactId>threading</artifactId>
+    <groupId>pawg.dosomedev.queue</groupId>
+    <artifactId>queue</artifactId>
     <version>1.0</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.dosomedev</groupId>
-  <artifactId>virtual-threads</artifactId>
+  <artifactId>delay-queue</artifactId>
   <version>1.0</version>
 
-  <name>virtual-threads</name>
+  <name>delay-queue</name>
 
   <build>
     <plugins>
