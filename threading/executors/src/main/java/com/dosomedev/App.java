@@ -8,16 +8,12 @@ import java.util.List;
 import java.util.concurrent.*;
 
 public class App {
-    final static int PRECISION = 100;
-    final static int TERMS = 4000;
     final static int POOL_SIZE = 2;
 //    final static int POOL_SIZE = Runtime.getRuntime().availableProcessors();
     final static int TASKS = 10;
 
     static void main(String[] args) {
         LocalDateTime now = LocalDateTime.now();
-        System.out.printf("Precision: %s%n", PRECISION);
-        System.out.printf("Terms:     %s%n", TERMS);
         System.out.printf("Pool:      %s%n", POOL_SIZE);
         System.out.printf("Tasks:     %s%n", TASKS);
 
@@ -63,8 +59,7 @@ public class App {
         }
 
         try {
-            BigDecimal eulersNumber = tasks.getFirst().get();
-            System.out.printf("First thread result: %s%n", eulersNumber);
+            System.out.printf("First thread result: %s%n", tasks.getFirst().get());
         } catch (InterruptedException | ExecutionException ex) {
             System.err.println("Could not grab result!");
         }
@@ -72,6 +67,9 @@ public class App {
 
     private static Callable<BigDecimal> calculateEulerNumber() {
         return new Callable<>() {
+            final static int PRECISION = 100;
+            final static int TERMS = 4000;
+
             @Override
             public BigDecimal call() throws Exception {
                 MathContext mc = new MathContext(PRECISION, RoundingMode.HALF_UP);
