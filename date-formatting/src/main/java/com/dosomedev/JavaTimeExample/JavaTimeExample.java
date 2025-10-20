@@ -1,8 +1,6 @@
 package com.dosomedev.JavaTimeExample;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 public class JavaTimeExample implements Runnable {

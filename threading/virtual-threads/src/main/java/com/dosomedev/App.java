@@ -1,8 +1,6 @@
 package com.dosomedev;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class App {
     private static final int NUMBER_OF_TASKS = 1000;

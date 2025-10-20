@@ -1,8 +1,6 @@
 package com.dosomedev;
 
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.*;
 
 public class ConditionExample implements Runnable {
 

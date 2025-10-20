@@ -1,9 +1,7 @@
 package com.dosomedev;
 
 import java.time.LocalTime;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Phaser;
+import java.util.concurrent.*;
 
 public class PhaserExample implements Runnable {
     @Override

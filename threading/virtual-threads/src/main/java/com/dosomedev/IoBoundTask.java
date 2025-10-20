@@ -1,7 +1,8 @@
 package com.dosomedev;
 
-import java.util.concurrent.ThreadLocalRandom;
 import lombok.RequiredArgsConstructor;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 @RequiredArgsConstructor
 public class IoBoundTask implements Runnable {

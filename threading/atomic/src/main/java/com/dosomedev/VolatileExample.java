@@ -1,13 +1,7 @@
 package com.dosomedev;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.math.*;
+import java.util.concurrent.*;
 
 public class VolatileExample implements Runnable {
     private final MathContext PRECISION = new MathContext(10000, RoundingMode.HALF_UP);

@@ -1,9 +1,7 @@
 package com.dosomedev;
 
 import java.time.LocalDateTime;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class CountDownLatchExample implements Runnable {
     private final static int THREAD_QTY = 3;

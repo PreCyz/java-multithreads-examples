@@ -1,8 +1,6 @@
 package com.dosomedev;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
+import java.math.*;
 import java.util.concurrent.Callable;
 
 public class CalculateEuler implements Callable<BigDecimal> {
