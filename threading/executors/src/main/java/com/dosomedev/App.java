@@ -1,11 +1,19 @@
 package com.dosomedev;
 
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class App {
     final static int POOL_SIZE = 2;
@@ -18,6 +26,7 @@ public class App {
         System.out.printf("Tasks:     %s%n", TASKS);
 
         try (ExecutorService executor = Executors.newFixedThreadPool(POOL_SIZE)) {
+//        try (ExecutorService executor = Executors.newCachedThreadPool()) {
 
             Callable<BigDecimal> callable = calculateEulerNumber();
 
@@ -28,21 +37,38 @@ public class App {
             }
 
             executor.shutdown();
+//            executor.awaitTermination(10, TimeUnit.SECONDS);
+//            executor.shutdownNow();
 
-            processTasksWithThreadPoolExecutor((ThreadPoolExecutor) executor, tasks);
+            processTasksWithThreadPoolExecutor(executor, tasks);
 
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
         } finally {
             System.out.printf("%nDone in %d sec.%n", Duration.between(now, LocalDateTime.now()).toSeconds());
         }
     }
 
-    private static void processTasksWithThreadPoolExecutor(ThreadPoolExecutor executor, List<Future<BigDecimal>> tasks) {
+    private static void processTasksWithThreadPoolExecutor(ExecutorService executor, List<Future<BigDecimal>> tasks) {
         boolean executorTerminated = false;
         while (!executorTerminated) {
             if (executor.isTerminated()) {
                 executorTerminated = true;
             }
+            logProgress(executor);
+            sleep(1, TimeUnit.SECONDS);
+        }
 
+        try {
+            Future<BigDecimal> eulerNumber = tasks.getFirst();
+            System.out.printf("First thread result: %s%n", eulerNumber.get());
+        } catch (InterruptedException | ExecutionException ex) {
+            System.err.println("Could not grab result!");
+        }
+    }
+
+    private static void logProgress(ExecutorService executorService) {
+        if (executorService instanceof ThreadPoolExecutor executor) {
             boolean shutdown = executor.isShutdown();
             boolean terminated = executor.isTerminated();
             int pending = executor.getQueue().size();
@@ -50,18 +76,14 @@ public class App {
             long completed = executor.getCompletedTaskCount();
             System.out.printf("pending: %s, active: %s, completed: %s, shutdown: %s, terminated: %s%n",
                     pending, active, completed, shutdown, terminated);
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.err.println("Sleep interrupted!");
-            }
         }
+    }
 
+    private static void sleep(long value, TimeUnit timeUnit) {
         try {
-            System.out.printf("First thread result: %s%n", tasks.getFirst().get());
-        } catch (InterruptedException | ExecutionException ex) {
-            System.err.println("Could not grab result!");
+            Thread.sleep(timeUnit.toMillis(value));
+        } catch (InterruptedException e) {
+            System.err.println("Sleep interrupted!");
         }
     }
 
