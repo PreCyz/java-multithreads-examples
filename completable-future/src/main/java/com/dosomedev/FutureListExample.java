@@ -26,7 +26,7 @@ public class FutureListExample implements Runnable {
         /*List<CompletableFuture<String>> futures = Arrays.asList(
                 CompletableFuture.supplyAsync(createSupplier("Andre", Duration.ofSeconds(1)), executor),
                 CompletableFuture.supplyAsync(createSupplier("Pawel", Duration.ofSeconds(3)), executor),
-                CompletableFuture.supplyAsync(createSupplier("Clause", Duration.ofSeconds(2)), executor)
+                CompletableFuture.supplyAsync(createSupplier("Claus", Duration.ofSeconds(2)), executor)
         );*/
 
         List<CompletableFuture<String>> futures = Arrays.asList(
