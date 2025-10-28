@@ -22,7 +22,7 @@ public class CombinationAsyncExample implements Runnable {
         } catch (InterruptedException | ExecutionException ex) {
             IO.println("Combined Future Error! Message: " + ex.getMessage());
         }
-        IO.println("This message is displayed after having waited for the combining Futures.");
+        IO.println("This message is displayed after having waited for the combining Futures.\n");
     }
 
     private static Supplier<Integer> createIntegerSupplier(int seconds) {

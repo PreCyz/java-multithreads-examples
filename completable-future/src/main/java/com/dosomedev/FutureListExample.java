@@ -38,7 +38,7 @@ public class FutureListExample implements Runnable {
         CompletableFuture
                 .allOf(futures.toArray(CompletableFuture[]::new))
                 .thenRun(() -> doAfterAll(futures))
-                .whenComplete((_, _) -> IO.println("List compute completed!"));
+                .whenComplete((_, _) -> IO.println("List compute completed!\n"));
 
 //        App.sleep(Duration.ofSeconds(4));
 //        executor.shutdown();

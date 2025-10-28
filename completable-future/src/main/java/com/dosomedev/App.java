@@ -6,21 +6,13 @@ import java.time.Duration;
 public class App {
 
     static void main(String[] args) {
-        CombinationExample combinationExample = new CombinationExample();
-        combinationExample.run();
-        IO.println();
+        new CombinationExample().run();
 
-        CombinationAsyncExample combinationAsyncExample = new CombinationAsyncExample();
-        combinationAsyncExample.run();
-        IO.println();
+        new CombinationAsyncExample().run();
 
-        ThrowErrorExample throwErrorExample = new ThrowErrorExample();
-        throwErrorExample.run();
-        IO.println();
+        new ThrowErrorExample().run();
 
-        FutureListExample futureListExample = new FutureListExample();
-        futureListExample.run();
-        IO.println();
+        new FutureListExample().run();
     }
 
     static void sleep(Duration duration) {

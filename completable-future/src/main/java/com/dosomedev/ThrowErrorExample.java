@@ -24,6 +24,7 @@ public class ThrowErrorExample implements Runnable {
             } else {
                 return result;
             }
-        }).thenAccept((result) -> System.out.printf("Final result: %d%n", result));
+        }).thenAccept((result) -> System.out.printf("Final result: %d%n%n", result));
+
     }
 }

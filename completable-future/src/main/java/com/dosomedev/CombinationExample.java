@@ -12,5 +12,7 @@ public class CombinationExample implements Runnable {
 
         future1.thenCombine(future2, (s1, s2) -> s1 + " " + s2)
                .thenAccept(System.out::println);
+
+        IO.println();
     }
 }
