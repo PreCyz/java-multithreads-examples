@@ -1,19 +1,24 @@
 package com.dosomedev;
 
-import java.math.*;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.concurrent.Callable;
+import lombok.Getter;
 
-public class CalculateEuler implements Callable<BigDecimal> {
+@Getter
+public class CalculateEuler implements Callable<CalculateEuler> {
     private final int iterations;
+    private BigDecimal result;
 
     public CalculateEuler(int iterations) {
         this.iterations = iterations;
     }
 
     @Override
-    public BigDecimal call() throws Exception {
+    public CalculateEuler call() throws Exception {
         MathContext precision = new MathContext(100, RoundingMode.HALF_UP);
-        BigDecimal result = BigDecimal.ZERO;
+        result = BigDecimal.ZERO;
 
         for (int i = 0; i <= iterations; i++) {
             BigDecimal factorial = factorial(new BigDecimal(i));
@@ -21,7 +26,7 @@ public class CalculateEuler implements Callable<BigDecimal> {
             result = result.add(inverse);
         }
 
-        return result;
+        return this;
     }
 
     private BigDecimal factorial(BigDecimal n) {

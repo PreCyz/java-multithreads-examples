@@ -7,18 +7,11 @@ public class CombinationExample implements Runnable {
     public void run() {
         IO.println("Example with two CompletableFutures that are combined:");
 
-        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
-            return "Hello";
-        });
+        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Elektroniczny");
 
-        CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> {
-            return "welld!";
-        });
+        CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> "Mordulec!");
 
-        CompletableFuture<String> futureCombined = future1.thenCombine(future2, (s1, s2) -> {
-            return s1 + " " + s2;
-        });
-
-        futureCombined.thenAccept(System.out::println);
+        future1.thenCombine(future2, (s1, s2) -> s1 + " " + s2)
+               .thenAccept(System.out::println);
     }
 }

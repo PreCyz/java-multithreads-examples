@@ -1,11 +1,11 @@
 package com.dosomedev;
 
-/**
- * CompletableFuture example.
- *
- */
+import java.time.Duration;
+
+/** CompletableFuture example. */
 public class App {
-    public static void main(String[] args) {
+
+    static void main(String[] args) {
         CombinationExample combinationExample = new CombinationExample();
         combinationExample.run();
         IO.println();
@@ -21,5 +21,13 @@ public class App {
         FutureListExample futureListExample = new FutureListExample();
         futureListExample.run();
         IO.println();
+    }
+
+    static void sleep(Duration duration) {
+        try {
+            Thread.sleep(duration);
+        } catch (InterruptedException e) {
+            IO.println("Interrupted!");
+        }
     }
 }
