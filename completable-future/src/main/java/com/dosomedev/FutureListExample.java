@@ -8,10 +8,26 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
 
 public class FutureListExample implements Runnable {
+    /**
+     * TODO: 1. Show default behaviour discuss the result
+     * TODO: 2. Show default behaviour with sleep discuss the result
+     * TODO: 3. Show with virtual executor with shoutdown - compare with 1. What does it mean?
+     * TODO: 4. Show with platform executor without shoutdown?
+     * TODO: 5. Show with platform executor with shoutdown?
+    */
 
     @Override
     public void run() {
         IO.println("Example with a List of Futures run through another Future:");
+
+//        ExecutorService executor = Executors.newFixedThreadPool(3);
+//        ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+
+        /*List<CompletableFuture<String>> futures = Arrays.asList(
+                CompletableFuture.supplyAsync(createSupplier("Andre", Duration.ofSeconds(1)), executor),
+                CompletableFuture.supplyAsync(createSupplier("Pawel", Duration.ofSeconds(3)), executor),
+                CompletableFuture.supplyAsync(createSupplier("Clause", Duration.ofSeconds(2)), executor)
+        );*/
 
         List<CompletableFuture<String>> futures = Arrays.asList(
                 CompletableFuture.supplyAsync(createSupplier("Andre", Duration.ofSeconds(1))),
@@ -24,7 +40,8 @@ public class FutureListExample implements Runnable {
                 .thenRun(() -> doAfterAll(futures))
                 .whenComplete((_, _) -> IO.println("List compute completed!"));
 
-        App.sleep(Duration.ofSeconds(4));
+//        App.sleep(Duration.ofSeconds(4));
+//        executor.shutdown();
     }
 
     private static Supplier<String> createSupplier(String value, Duration duration) {
