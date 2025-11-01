@@ -1,5 +1,7 @@
 package com.dosomedev;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.concurrent.ForkJoinPool;
 
 public class MatrixMultiplicationForkJoinExample implements Runnable {
@@ -23,10 +25,18 @@ public class MatrixMultiplicationForkJoinExample implements Runnable {
         b.setValue(2, 1, 3);
         Matrix.dump(b);
 
+        LocalDateTime end = LocalDateTime.now();
+        LocalDateTime start = LocalDateTime.now();
         // Multiply using ForkJoinPool.
         Matrix c = new Matrix(a.getRows(), b.getCols());
-        ForkJoinPool pool = new ForkJoinPool();
-        pool.invoke(new MatrixMultiplicationForkJoin(a, b, c));
-        Matrix.dump(c);
+        try (ForkJoinPool pool = new ForkJoinPool()) {
+            pool.invoke(new MatrixMultiplicationForkJoin(a, b, c));
+            end = LocalDateTime.now();
+            Matrix.dump(c);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        } finally {
+            IO.println("Completed in " + Duration.between(start, end).toMillis() + "ms");
+        }
     }
 }

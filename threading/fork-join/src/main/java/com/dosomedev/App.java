@@ -1,11 +1,13 @@
 package com.dosomedev;
 
 public class App {
-    public static void main(String[] args) {
-        MatrixMultiplicationExample example1 = new MatrixMultiplicationExample();
-        example1.run();
+    static void main(String[] args) {
+        new MatrixMultiplicationExample().run();
+        new MatrixMultiplicationForkJoinExample().run();
 
-        MatrixMultiplicationForkJoinExample example2 = new MatrixMultiplicationForkJoinExample();
-        example2.run();
+        int nrows = 2000;
+        int ncols = 2000;
+        new MatrixMultiplicationBigExample(nrows, ncols).run();
+        new MatrixMultiplicationForkJoinBigExample(ncols, nrows).run();
     }
 }

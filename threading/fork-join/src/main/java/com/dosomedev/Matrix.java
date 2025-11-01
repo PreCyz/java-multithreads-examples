@@ -1,5 +1,7 @@
 package com.dosomedev;
 
+import java.util.Random;
+
 public class Matrix {
 
     private final int[][] matrix;
@@ -32,5 +34,15 @@ public class Matrix {
             IO.println();
         }
         IO.println();
+    }
+
+    public Matrix randomize() {
+        Random rand = new Random();
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                setValue(i, j, rand.nextInt(100));
+            }
+        }
+        return this;
     }
 }

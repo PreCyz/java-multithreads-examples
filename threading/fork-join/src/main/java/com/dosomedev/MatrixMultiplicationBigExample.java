@@ -2,34 +2,24 @@ package com.dosomedev;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import lombok.RequiredArgsConstructor;
 
-public class MatrixMultiplicationExample implements Runnable {
+@RequiredArgsConstructor
+public class MatrixMultiplicationBigExample implements Runnable {
+    private final int nrows;
+    private final int ncols;
+
     @Override
     public void run() {
-        Matrix a = new Matrix(2, 3);
-        a.setValue(0, 0, 1);
-        a.setValue(0, 1, 2);
-        a.setValue(0, 2, 3);
-        a.setValue(1, 0, 4);
-        a.setValue(1, 1, 5);
-        a.setValue(1, 2, 6);
-        Matrix.dump(a);
-
-        Matrix b = new Matrix(3, 2);
-        b.setValue(0, 0, 7);
-        b.setValue(1, 0, 8);
-        b.setValue(2, 0, 9);
-        b.setValue(0, 1, 1);
-        b.setValue(1, 1, 2);
-        b.setValue(2, 1, 3);
-        Matrix.dump(b);
+        Matrix a = new Matrix(nrows, ncols).randomize();
+        Matrix b = new Matrix(ncols, nrows).randomize();
 
         LocalDateTime start = LocalDateTime.now();
         // Multiply in this class.
         Matrix c = multiply(a, b);
         LocalDateTime end = LocalDateTime.now();
-        Matrix.dump(c);
-        IO.println("Completed in " + Duration.between(start, end).toMillis() + "ms");
+        Duration duration = Duration.between(start, end);
+        System.out.printf("Regular      completed in %d.%d sec%n", duration.toSecondsPart(), duration.toMillisPart());
     }
 
     private Matrix multiply(Matrix a, Matrix b) {
@@ -45,7 +35,6 @@ public class MatrixMultiplicationExample implements Runnable {
                 }
             }
         }
-
         return result;
     }
 }
