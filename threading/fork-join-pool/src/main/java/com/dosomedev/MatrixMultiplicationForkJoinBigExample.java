@@ -17,11 +17,11 @@ public class MatrixMultiplicationForkJoinBigExample implements Runnable {
 
         LocalDateTime end = LocalDateTime.now();
         LocalDateTime start = LocalDateTime.now();
-        // Multiply using ForkJoinPool.
         Matrix c = new Matrix(a.getRows(), b.getCols());
         try (ForkJoinPool pool = ForkJoinPool.commonPool()) {
             pool.invoke(new MatrixMultiplicationForkJoin(a, b, c));
             end = LocalDateTime.now();
+            pool.shutdown();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         } finally {

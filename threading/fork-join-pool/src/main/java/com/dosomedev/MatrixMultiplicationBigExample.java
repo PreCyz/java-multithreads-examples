@@ -15,11 +15,10 @@ public class MatrixMultiplicationBigExample implements Runnable {
         Matrix b = new Matrix(ncols, nrows).randomize();
 
         LocalDateTime start = LocalDateTime.now();
-        // Multiply in this class.
         Matrix c = multiply(a, b);
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
-        System.out.printf("Regular      completed in %d.%d sec%n", duration.toSecondsPart(), duration.toMillisPart());
+        System.out.printf("Multiplication completed in %d.%d sec%n", duration.toSecondsPart(), duration.toMillisPart());
     }
 
     private Matrix multiply(Matrix a, Matrix b) {

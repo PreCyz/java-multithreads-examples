@@ -13,7 +13,7 @@ public class MatrixMultiplicationExample implements Runnable {
         a.setValue(1, 0, 4);
         a.setValue(1, 1, 5);
         a.setValue(1, 2, 6);
-        Matrix.dump(a);
+//        Matrix.dump(a);
 
         Matrix b = new Matrix(3, 2);
         b.setValue(0, 0, 7);
@@ -22,14 +22,14 @@ public class MatrixMultiplicationExample implements Runnable {
         b.setValue(0, 1, 1);
         b.setValue(1, 1, 2);
         b.setValue(2, 1, 3);
-        Matrix.dump(b);
+//        Matrix.dump(b);
 
         LocalDateTime start = LocalDateTime.now();
         // Multiply in this class.
         Matrix c = multiply(a, b);
         LocalDateTime end = LocalDateTime.now();
-        Matrix.dump(c);
-        IO.println("Completed in " + Duration.between(start, end).toMillis() + "ms");
+//        Matrix.dump(c);
+        IO.println("Multiplication completed in " + Duration.between(start, end).toMillis() + "ms");
     }
 
     private Matrix multiply(Matrix a, Matrix b) {

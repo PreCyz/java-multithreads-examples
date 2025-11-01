@@ -11,7 +11,7 @@
   </parent>
 
   <groupId>com.dosomedev</groupId>
-  <artifactId>fork-join</artifactId>
+  <artifactId>fork-join-pool</artifactId>
   <version>1.0</version>
 
   <name>fork-join</name>

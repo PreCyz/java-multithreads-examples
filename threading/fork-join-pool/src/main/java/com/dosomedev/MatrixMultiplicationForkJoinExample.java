@@ -14,7 +14,7 @@ public class MatrixMultiplicationForkJoinExample implements Runnable {
         a.setValue(1, 0, 4);
         a.setValue(1, 1, 5);
         a.setValue(1, 2, 6);
-        Matrix.dump(a);
+//        Matrix.dump(a);
 
         Matrix b = new Matrix(3, 2);
         b.setValue(0, 0, 7);
@@ -23,20 +23,19 @@ public class MatrixMultiplicationForkJoinExample implements Runnable {
         b.setValue(0, 1, 1);
         b.setValue(1, 1, 2);
         b.setValue(2, 1, 3);
-        Matrix.dump(b);
+//        Matrix.dump(b);
 
-        LocalDateTime end = LocalDateTime.now();
         LocalDateTime start = LocalDateTime.now();
-        // Multiply using ForkJoinPool.
+
         Matrix c = new Matrix(a.getRows(), b.getCols());
         try (ForkJoinPool pool = new ForkJoinPool()) {
             pool.invoke(new MatrixMultiplicationForkJoin(a, b, c));
-            end = LocalDateTime.now();
-            Matrix.dump(c);
+//            Matrix.dump(c);
+            pool.shutdown();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         } finally {
-            IO.println("Completed in " + Duration.between(start, end).toMillis() + "ms");
+            IO.println("ForkJoinPool completed in " + Duration.between(start, LocalDateTime.now()).toMillis() + "ms");
         }
     }
 }

@@ -28,7 +28,7 @@
     <module>synchronizers</module>
     <module>locks</module>
     <module>atomic</module>
-    <module>fork-join</module>
+    <module>fork-join-pool</module>
     <module>completion-service</module>
     <module>parallel-streams</module>
     <module>virtual-threads</module>
