@@ -4,11 +4,11 @@ import java.util.concurrent.StructuredTaskScope;
 
 public class App {
 
-    static void main() {
+    static void main() throws InterruptedException {
         IO.println("=========All=========");
         execute(); // == default;
         IO.println("=========Any=========");
-        execute(StructuredTaskScope.Joiner.anySuccessfulResultOrThrow()); // == default;
+        execute(StructuredTaskScope.Joiner.anySuccessfulResultOrThrow());
     }
 
     private static void execute() {
@@ -17,12 +17,12 @@ public class App {
 
     private static void execute(StructuredTaskScope.Joiner joiner) {
         try (var scope = StructuredTaskScope.open(joiner)) {
-            scope.fork(new Game(1000, "God of War"));
-            scope.fork(new Game(2000, "Witcher"));
-            scope.fork(new Game(3000, "Jedi Survivor"));
+            scope.fork(new Game("God of War", 1));
+            scope.fork(new Game("Witcher", 2));
+            scope.fork(new Game("Jedi Survivor", 3));
 
             scope.join();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }
