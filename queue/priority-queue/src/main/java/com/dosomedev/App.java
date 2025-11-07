@@ -3,7 +3,7 @@ package com.dosomedev;
 import java.util.PriorityQueue;
 
 public class App {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         PriorityQueue<Cat> cats = new PriorityQueue<>();
         cats.add(new Cat("Marmalade", 10));
         cats.add(new Cat("Luna", 6));

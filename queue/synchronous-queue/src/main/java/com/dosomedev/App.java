@@ -1,9 +1,10 @@
 package com.dosomedev;
 
 import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.TimeUnit;
 
 public class App {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SynchronousQueue<String> queue = new SynchronousQueue<>();
 
         Thread producer = new Thread(() -> {
@@ -19,8 +20,11 @@ public class App {
 
         Thread consumer = new Thread(() -> {
             try {
+                TimeUnit.SECONDS.sleep(2);
                 String message1 = queue.take();
                 IO.println("Consumer: " + message1);
+
+                TimeUnit.SECONDS.sleep(1);
                 String message2 = queue.take();
                 IO.println("Consumer: " + message2);
             } catch (InterruptedException ex) {
