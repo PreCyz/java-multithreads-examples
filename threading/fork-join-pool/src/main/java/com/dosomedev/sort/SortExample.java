@@ -1,11 +1,12 @@
 package com.dosomedev.sort;
 
-import lombok.RequiredArgsConstructor;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Random;
-import java.util.concurrent.*;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.TimeUnit;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class SortExample implements Runnable {
@@ -21,7 +22,7 @@ public class SortExample implements Runnable {
         }
         Duration duration = Duration.between(start, LocalDateTime.now());
         System.out.printf("Random table created in %d.%dsec%n", duration.toSecondsPart(), duration.toMillisPart());
-        System.out.printf("Table: first [%d], last [%d]%n", data[0], data[data.length - 1]);
+        System.out.printf("Table[first]=%d, Table[last]=%d%n", data[0], data[data.length - 1]);
 
         try (ForkJoinPool pool = ForkJoinPool.commonPool()) {
             System.out.printf("Pool parallelism: %d%n", pool.getParallelism());
@@ -44,7 +45,7 @@ public class SortExample implements Runnable {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         } finally {
-            System.out.printf("Table sorted: first [%d], last [%d]%n", data[0], data[data.length - 1]);
+            System.out.printf("Sorted: Table[first]=%d, Table[last]=%d%n", data[0], data[data.length - 1]);
             duration = Duration.between(start, LocalDateTime.now());
             System.out.printf("ForkJoinPool completed in %d.%dsec%n", duration.toSecondsPart(), duration.toMillisPart());
         }

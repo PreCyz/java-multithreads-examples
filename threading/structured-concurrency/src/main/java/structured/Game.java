@@ -1,11 +1,10 @@
 package structured;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Game implements Runnable {
@@ -24,11 +23,11 @@ public class Game implements Runnable {
         try {
             timeUnit.sleep(wait);
 
-            System.out.printf("Game '%s' finished in %d seconds by thread id %d, isVirtual[%b], isDeamon[%b].%n",
+            System.out.printf("Game [%s] finished in %d seconds by thread id %d, isVirtual[%b], isDeamon[%b].%n",
                     title, Duration.between(start, LocalDateTime.now()).toSeconds(), thread.threadId(), thread.isVirtual(), thread.isDaemon());
         } catch (InterruptedException ex) {
             thread.interrupt();
-            System.out.printf("Game %s interrupted after %d seconds.%n",
+            System.out.printf("Game [%s] interrupted after %d seconds.%n",
                     title, Duration.between(start, LocalDateTime.now()).toSeconds());
         }
     }
