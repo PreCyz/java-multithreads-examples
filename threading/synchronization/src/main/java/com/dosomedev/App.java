@@ -1,35 +1,40 @@
 package com.dosomedev;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class App {
 
+    static void main(String[] args) throws InterruptedException {
+        synchronizedCounterExample((Counter c) -> { c.incrementNotSync(); return null;});
+        synchronizedCounterExample((Counter c) -> { c.incrementSyncThis(); return null;});
+        synchronizedCounterExample((Counter c) -> { c.incrementSyncMethod(); return null;});
+        synchronizedCounterExample((Counter c) -> { c.incrementSyncOnMonitorObject(); return null;});
 
+//        threadScheduling();
 
-    public static void main(String[] args) throws InterruptedException {
-        synchronizedCounterExample();
-        deadlockExample();
+//        deadlockExample();
     }
 
-    private static void synchronizedCounterExample() throws InterruptedException {
-        final long incrementNumber = 1000000;
-        final long threadNumber = 100;
-
-        final Counter counter = new Counter();
+    private static void synchronizedCounterExample(Function<Counter, Void> function) throws InterruptedException {
+        final var now = LocalDateTime.now();
+        final int incrementNumber = 1_000_000;
+        final int threadNumber = 100;
+        final var counter = new Counter();
 
         Runnable r = () -> {
             for (int i = 1; i <= incrementNumber; i++) {
-                counter.incrementNumber();
+                function.apply(counter);
             }
         };
 
         // Start all threads.
-        List<Thread> threads = new ArrayList<>();
+        List<Thread> threads = new ArrayList<>(threadNumber);
         for (int i = 1; i <= threadNumber; i++) {
-            Thread t = new Thread(r);
-            threads.add(t);
-            t.start();
+            threads.add(Thread.ofPlatform().start(r));
         }
 
         // Wait for all threads to terminate.
@@ -37,15 +42,35 @@ public class App {
             thread.join();
         }
 
+        var duration = Duration.between(now, LocalDateTime.now());
         // Print results.
-        System.out.printf("Counter should be: %s%n",
-                String.format("%,d", incrementNumber * threadNumber));
-        System.out.printf("Counter is:        %s%n",
-                String.format("%,d", counter.getNumber()));
+        System.out.printf("Counter should be: %s%n", String.format("%,d", incrementNumber * threadNumber));
+        System.out.printf("Counter is:        %s%n", String.format("%,d", counter.getNumber()));
+        System.out.printf("Duration: %d.%d sec%n", duration.toSecondsPart(), duration.toMillisPart());
+        IO.println("======================");
+    }
+
+    /** This method visualizes that there is no guarantee the exact order of the threads!
+     **/
+    private static void threadScheduling() {
+        final int incrementNumber = 1_000;
+
+        final var exchanger = new SynchronizedExchanger();
+
+        Thread.ofPlatform().start(() -> {
+            for (int i = 1; i <= incrementNumber; i++) {
+                exchanger.setObject(String.valueOf(i));
+            }
+        });
+        Thread.ofPlatform().start(() -> {
+            for (int i = 1; i <= incrementNumber; i++) {
+                System.out.println(exchanger.getObject());
+            }
+        });
     }
 
     private static void deadlockExample() {
-        final DeadLockCounter counter = new DeadLockCounter();
+        final var counter = new DeadLockCounter();
 
         Runnable r1 = () -> {
             while (true) {
@@ -71,9 +96,7 @@ public class App {
             }
         };
 
-        Thread t1 = new Thread(r1);
-        Thread t2 = new Thread(r2);
-        t1.start();
-        t2.start();
+        Thread.ofPlatform().start(r1);
+        Thread.ofPlatform().start(r2);
     }
 }

@@ -1,12 +1,11 @@
 package com.dosomedev.sort;
 
+import lombok.RequiredArgsConstructor;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Random;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
-import java.util.concurrent.TimeUnit;
-import lombok.RequiredArgsConstructor;
+import java.util.concurrent.*;
 
 @RequiredArgsConstructor
 public class SortExample implements Runnable {
@@ -27,16 +26,16 @@ public class SortExample implements Runnable {
         try (ForkJoinPool pool = ForkJoinPool.commonPool()) {
             System.out.printf("Pool parallelism: %d%n", pool.getParallelism());
 
-            QuickSortAction task = new QuickSortAction(data, 0, tableSize - 1);
             start = LocalDateTime.now();
+            QuickSortAction task = new QuickSortAction(data, 0, tableSize - 1);
             //`invoke` blocks program
-            pool.invoke(task);
+//            pool.invoke(task);
 
             //`submit` doesn't block program
 //            submit(pool, task);
 
             //'execute' doesn't block program - async execution
-//            execute(pool, task);
+            execute(pool, task);
 
             //according to the specification: if you use commonPool() then Any program that relies on asynchronous task
             //processing to complete before program termination should invoke commonPool().awaitQuiescence, before exit
