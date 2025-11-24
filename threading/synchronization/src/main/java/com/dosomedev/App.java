@@ -4,36 +4,39 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 public class App {
 
+    private static final int INCREMENT_NUMBER = 1_000_000;
+    private static final int THREAD_NUMBER = 2;
+
     static void main(String[] args) throws InterruptedException {
-        synchronizedCounterExample((Counter c) -> { c.incrementNotSync(); return null;});
-        synchronizedCounterExample((Counter c) -> { c.incrementSyncThis(); return null;});
-        synchronizedCounterExample((Counter c) -> { c.incrementSyncMethod(); return null;});
-        synchronizedCounterExample((Counter c) -> { c.incrementSyncOnMonitorObject(); return null;});
+        counterExample((Counter c) -> { c.increment(); return Optional.empty(); });
+
+//        synchronizedCounterExample((Counter c) -> { c.incrementSyncThis(); return null;});
+//        synchronizedCounterExample((Counter c) -> { c.incrementSyncMethod(); return null;});
+//        synchronizedCounterExample((Counter c) -> { c.incrementSyncOnMonitorObject(); return null;});
 
 //        threadScheduling();
 
 //        deadlockExample();
     }
 
-    private static void synchronizedCounterExample(Function<Counter, Void> function) throws InterruptedException {
+    private static void counterExample(Function<Counter, Optional<?>> function) throws InterruptedException {
         final var now = LocalDateTime.now();
-        final int incrementNumber = 1_000_000;
-        final int threadNumber = 100;
         final var counter = new Counter();
 
         Runnable r = () -> {
-            for (int i = 1; i <= incrementNumber; i++) {
+            for (int i = 1; i <= INCREMENT_NUMBER; i++) {
                 function.apply(counter);
             }
         };
 
         // Start all threads.
-        List<Thread> threads = new ArrayList<>(threadNumber);
-        for (int i = 1; i <= threadNumber; i++) {
+        List<Thread> threads = new ArrayList<>(THREAD_NUMBER);
+        for (int i = 1; i <= THREAD_NUMBER; i++) {
             threads.add(Thread.ofPlatform().start(r));
         }
 
@@ -44,14 +47,13 @@ public class App {
 
         var duration = Duration.between(now, LocalDateTime.now());
         // Print results.
-        System.out.printf("Counter should be: %s%n", String.format("%,d", incrementNumber * threadNumber));
+        System.out.printf("Counter should be: %s%n", String.format("%,d", INCREMENT_NUMBER * THREAD_NUMBER));
         System.out.printf("Counter is:        %s%n", String.format("%,d", counter.getNumber()));
         System.out.printf("Duration: %d.%d sec%n", duration.toSecondsPart(), duration.toMillisPart());
         IO.println("======================");
     }
 
-    /** This method visualizes that there is no guarantee the exact order of the threads!
-     **/
+    /** This method visualizes that there is no guarantee the exact order of the threads! */
     private static void threadScheduling() {
         final int incrementNumber = 1_000;
 

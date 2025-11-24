@@ -7,7 +7,7 @@ public class Counter {
     private final Object lock = new Object();
     private long number;
 
-    public void incrementNotSync() {
+    public void increment() {
         this.number++;
     }
 
