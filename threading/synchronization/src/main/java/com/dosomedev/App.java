@@ -10,18 +10,31 @@ import java.util.function.Function;
 public class App {
 
     private static final int INCREMENT_NUMBER = 1_000_000;
+
     private static final int THREAD_NUMBER = 2;
 
     static void main(String[] args) throws InterruptedException {
-        counterExample((Counter c) -> { c.increment(); return Optional.empty(); });
+        counterExample((Counter c) -> {
+            c.increment();
+            return Optional.empty();
+        });
 
-//        synchronizedCounterExample((Counter c) -> { c.incrementSyncThis(); return null;});
-//        synchronizedCounterExample((Counter c) -> { c.incrementSyncMethod(); return null;});
-//        synchronizedCounterExample((Counter c) -> { c.incrementSyncOnMonitorObject(); return null;});
+        counterExample((Counter c) -> {
+            c.incrementSyncThis();
+            return Optional.empty();
+        });
+        counterExample((Counter c) -> {
+            c.incrementSyncMethod();
+            return Optional.empty();
+        });
+        counterExample((Counter c) -> {
+            c.incrementSyncOnMonitorObject();
+            return Optional.empty();
+        });
 
-//        threadScheduling();
+        threadSchedulingExample();
 
-//        deadlockExample();
+        deadlockExample();
     }
 
     private static void counterExample(Function<Counter, Optional<?>> function) throws InterruptedException {
@@ -34,27 +47,24 @@ public class App {
             }
         };
 
-        // Start all threads.
         List<Thread> threads = new ArrayList<>(THREAD_NUMBER);
         for (int i = 1; i <= THREAD_NUMBER; i++) {
             threads.add(Thread.ofPlatform().start(r));
         }
 
-        // Wait for all threads to terminate.
         for (Thread thread : threads) {
             thread.join();
         }
 
         var duration = Duration.between(now, LocalDateTime.now());
-        // Print results.
-        System.out.printf("Counter should be: %s%n", String.format("%,d", INCREMENT_NUMBER * THREAD_NUMBER));
-        System.out.printf("Counter is:        %s%n", String.format("%,d", counter.getNumber()));
+        System.out.printf("Counter should be: %s%n", String.format("%,d", INCREMENT_NUMBER * THREAD_NUMBER).replace(",", "_"));
+        System.out.printf("Counter is:        %s%n", String.format("%,d", counter.getNumber()).replace(",", "_"));
         System.out.printf("Duration: %d.%d sec%n", duration.toSecondsPart(), duration.toMillisPart());
         IO.println("======================");
     }
 
     /** This method visualizes that there is no guarantee the exact order of the threads! */
-    private static void threadScheduling() {
+    private static void threadSchedulingExample() {
         final int incrementNumber = 1_000;
 
         final var exchanger = new SynchronizedExchanger();
@@ -71,6 +81,7 @@ public class App {
         });
     }
 
+    /** Deadlock occurs after short time. */
     private static void deadlockExample() {
         final var counter = new DeadLockCounter();
 
