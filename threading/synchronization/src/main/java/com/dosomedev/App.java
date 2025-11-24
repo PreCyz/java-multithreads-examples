@@ -1,49 +1,39 @@
 package com.dosomedev;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 public class App {
 
     private static final int INCREMENT_NUMBER = 1_000_000;
 
-    private static final int THREAD_NUMBER = 2;
+    //TODO: Show what will happen if threads number is increased.
+    private static final int THREAD_NUMBER = 100;
 
     static void main(String[] args) throws InterruptedException {
-        counterExample((Counter c) -> {
-            c.increment();
-            return Optional.empty();
-        });
+        counterExample(Counter::increment);
 
-        counterExample((Counter c) -> {
-            c.incrementSyncThis();
-            return Optional.empty();
-        });
-        counterExample((Counter c) -> {
-            c.incrementSyncMethod();
-            return Optional.empty();
-        });
-        counterExample((Counter c) -> {
-            c.incrementSyncOnMonitorObject();
-            return Optional.empty();
-        });
+        counterExample(Counter::incrementSyncThis);
+        counterExample(Counter::incrementSyncMethod);
+        counterExample(Counter::incrementSyncOnMonitorObject);
 
         threadSchedulingExample();
 
         deadlockExample();
     }
 
-    private static void counterExample(Function<Counter, Optional<?>> function) throws InterruptedException {
+    private static void counterExample(Consumer<Counter> consumer) throws InterruptedException {
         final var now = LocalDateTime.now();
         final var counter = new Counter();
 
         Runnable r = () -> {
             for (int i = 1; i <= INCREMENT_NUMBER; i++) {
-                function.apply(counter);
+                consumer.accept(counter);
             }
         };
 
@@ -57,8 +47,8 @@ public class App {
         }
 
         var duration = Duration.between(now, LocalDateTime.now());
-        System.out.printf("Counter should be: %s%n", String.format("%,d", INCREMENT_NUMBER * THREAD_NUMBER).replace(",", "_"));
-        System.out.printf("Counter is:        %s%n", String.format("%,d", counter.getNumber()).replace(",", "_"));
+        System.out.printf("Counter should be: %s%n", df(' ').format(INCREMENT_NUMBER * THREAD_NUMBER));
+        System.out.printf("Counter is:        %s%n", df(' ').format(counter.getNumber()));
         System.out.printf("Duration: %d.%d sec%n", duration.toSecondsPart(), duration.toMillisPart());
         IO.println("======================");
     }
@@ -111,5 +101,13 @@ public class App {
 
         Thread.ofPlatform().start(r1);
         Thread.ofPlatform().start(r2);
+    }
+
+    private static DecimalFormat df(char separator) {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setGroupingSeparator(separator);
+        DecimalFormat df = new DecimalFormat("#,###");
+        df.setDecimalFormatSymbols(symbols);
+        return df;
     }
 }
