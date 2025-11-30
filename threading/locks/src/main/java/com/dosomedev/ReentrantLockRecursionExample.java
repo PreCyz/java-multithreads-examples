@@ -1,20 +1,26 @@
 package com.dosomedev;
 
-import lombok.Getter;
-
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ReentrantLockExample implements Runnable {
+public class ReentrantLockRecursionExample implements Runnable {
 
     private final ReentrantLock lock = new ReentrantLock();
 
-    @Getter
-    private int count;
-
-    public void increment() {
+    public void recursion() {
         lock.lock();
+        Thread thread = Thread.currentThread();
+        System.out.printf("%nThread: %s enters recursion %d time(s)%n", thread.getName(), lock.getHoldCount());
+        printLockDetails(thread);
         try {
-            count++;
+            TimeUnit.SECONDS.sleep(2);
+            if (lock.isLocked() && lock.getHoldCount() < 5) {
+                recursion();
+            } else {
+                System.out.println(thread.getName() + " finished recursion.");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace(System.err);
         } finally {
             lock.unlock();
         }
@@ -22,24 +28,21 @@ public class ReentrantLockExample implements Runnable {
 
     @Override
     public void run() {
-        int countUntil = 100000;
-        ReentrantLockExample counter = new ReentrantLockExample();
-
-        Thread thread1 = Thread.ofPlatform().name("t1").start(runnable(countUntil, counter));
-        Thread thread2 = Thread.ofPlatform().name("t2").start(runnable(countUntil, counter));
+        ReentrantLockRecursionExample rrre = new ReentrantLockRecursionExample();
+        Thread thread1 = Thread.ofPlatform().name("t1").start(rrre::recursion);
+        Thread thread2 = Thread.ofPlatform().name("t2").start(rrre::recursion);
 
         try {
             thread1.join();
             thread2.join();
         } catch (InterruptedException e) {
             e.printStackTrace(System.err);
+        } finally {
+            printLockDetails(Thread.currentThread());
         }
-
-        IO.println("Count: " + counter.getCount());
     }
 
     private void printLockDetails(final Thread thread) {
-        System.out.printf("Thread: %s%n", thread.getName());
         System.out.printf("HoldCount: %d%n", lock.getHoldCount());
         System.out.printf("QueueLength: %d%n", lock.getQueueLength());
         System.out.printf("HasQueuedThread: %b%n", lock.hasQueuedThread(thread));
@@ -47,14 +50,5 @@ public class ReentrantLockExample implements Runnable {
         System.out.printf("Fair: %b%n", lock.isFair());
         System.out.printf("Locked: %b%n", lock.isLocked());
         System.out.printf("HeldByCurrentThread: %b%n", lock.isHeldByCurrentThread());
-    }
-
-    private Runnable runnable(final int countUntil, final ReentrantLockExample counter) {
-        return () -> {
-            for (int i = 0; i < countUntil; i++) {
-                counter.increment();
-            }
-            printLockDetails(Thread.currentThread());
-        };
     }
 }

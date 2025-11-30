@@ -54,7 +54,6 @@ public class ReentrantReadWriteLockExample implements Runnable {
             });
         }
 
-        // Start threads.
         for (Thread reader : readers) {
             reader.start();
         }
@@ -62,7 +61,6 @@ public class ReentrantReadWriteLockExample implements Runnable {
             writer.start();
         }
 
-        // Wait for all threads to finish.
         for (Thread reader : readers) {
             try {
                 reader.join();

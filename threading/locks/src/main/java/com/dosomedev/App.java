@@ -1,17 +1,11 @@
 package com.dosomedev;
 
 public class App {
-    public static void main(String[] args) {
-        ReentrantLockExample example1 = new ReentrantLockExample();
-        example1.run();
-
-        ConditionExample example2 = new ConditionExample();
-        example2.run();
-
-        ReentrantReadWriteLockExample example3 = new ReentrantReadWriteLockExample();
-        example3.run();
-
-        StampedLockExample example4 = new StampedLockExample();
-        example4.run();
+    static void main(String[] args) {
+//        new ReentrantLockExample().run();
+        new ReentrantLockRecursionExample().run();
+//        new ConditionExample().run();
+//        new ReentrantReadWriteLockExample().run();
+//        new StampedLockExample().run();
     }
 }
