@@ -12,9 +12,9 @@ public class AtomicExample implements Runnable {
 
     private final MathContext PRECISION = new MathContext(20000, RoundingMode.HALF_UP);
 
-    private final int THREADPACKETS = 20;
+    private final int THREAD_PACKETS = 20;
 
-    private final int ITERATIONSPERPACKET = 300;
+    private final int ITERATIONS_PER_PACKET = 300;
 
     private final AtomicInteger counter = new AtomicInteger(0);
 
@@ -26,42 +26,38 @@ public class AtomicExample implements Runnable {
 
     private final LongAdder totalCalculationDuration = new LongAdder();
 
+    private static final int CORES = Runtime.getRuntime().availableProcessors();
+
     @Override
     public void run() {
-        // Remember start time.
         Instant startTime = Instant.now();
 
         // Define Euler's Number calculation.
-        Callable<BigDecimal> eulersNumberCalculation = new Callable<BigDecimal>() {
-            @Override
-            public BigDecimal call() throws Exception {
-                return calculateEulersNumber();
-            }
-        };
+        Callable<BigDecimal> eulersNumberCalculation = this::calculateEulersNumber;
 
         // Execute calculation.
-        int cores = Runtime.getRuntime().availableProcessors();
-        ExecutorService executor = Executors.newFixedThreadPool(cores);
-        List<Future<BigDecimal>> eulersNumberFutures = new ArrayList<>();
-        for (int i = 0; i < THREADPACKETS; i++) {
-            eulersNumberFutures.add(executor.submit(eulersNumberCalculation));
-        }
-
-        // Get the values.
-        try {
-            BigDecimal eulersNumber = BigDecimal.ZERO;
-
-            for (Future<BigDecimal> eulersNumberFuture : eulersNumberFutures) {
-                BigDecimal eulersNumberPart = eulersNumberFuture.get();
-                eulersNumber = eulersNumber.add(eulersNumberPart);
+        try (ExecutorService executor = Executors.newFixedThreadPool(CORES)) {
+            List<Future<BigDecimal>> eulersNumberFutures = new ArrayList<>();
+            for (int i = 0; i < THREAD_PACKETS; i++) {
+                eulersNumberFutures.add(executor.submit(eulersNumberCalculation));
             }
 
-            System.out.printf("Euler's Number: %s%n", eulersNumber);
-        } catch (InterruptedException | ExecutionException e) {
-            System.err.println("Calculation of Euler's Number interrupted!");
-        }
+            // Get the values.
+            try {
+                BigDecimal eulersNumber = BigDecimal.ZERO;
 
-        executor.shutdown();
+                for (Future<BigDecimal> eulersNumberFuture : eulersNumberFutures) {
+                    BigDecimal eulersNumberPart = eulersNumberFuture.get();
+                    eulersNumber = eulersNumber.add(eulersNumberPart);
+                }
+
+                System.out.printf("Euler's Number: %s%n", eulersNumber);
+            } catch (InterruptedException | ExecutionException e) {
+                System.err.println("Calculation of Euler's Number interrupted!");
+            }
+
+            executor.shutdown();
+        }
 
         // Remember end time.
         Instant endTime = Instant.now();
@@ -81,8 +77,8 @@ public class AtomicExample implements Runnable {
 
         // Get calculation range.
         BigDecimal result = BigDecimal.ZERO;
-        int lastIteration = this.counter.addAndGet(ITERATIONSPERPACKET);
-        int firstIteration = lastIteration - ITERATIONSPERPACKET;
+        int lastIteration = this.counter.addAndGet(ITERATIONS_PER_PACKET);
+        int firstIteration = lastIteration - ITERATIONS_PER_PACKET;
 
         // Calculate range.
         for (int i = firstIteration; i < lastIteration; i++) {
@@ -98,7 +94,7 @@ public class AtomicExample implements Runnable {
 
         // Remember end time.
         Instant endTime = Instant.now();
-        Long duration = Duration.between(startTime, endTime).toMillis();
+        long duration = Duration.between(startTime, endTime).toMillis();
         minDuration.accumulate(duration);
         maxDuration.accumulate(duration);
         totalCalculationDuration.add(duration);
