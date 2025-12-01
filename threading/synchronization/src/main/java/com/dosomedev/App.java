@@ -18,13 +18,13 @@ public class App {
     static void main(String[] args) throws InterruptedException {
         counterExample(Counter::increment);
 
-        counterExample(Counter::incrementSyncThis);
-        counterExample(Counter::incrementSyncMethod);
-        counterExample(Counter::incrementSyncOnMonitorObject);
-
-        threadSchedulingExample();
-
-        deadlockExample();
+//        counterExample(Counter::incrementSyncThis);
+//        counterExample(Counter::incrementSyncMethod);
+//        counterExample(Counter::incrementSyncOnMonitorObject);
+//
+//        threadSchedulingExample();
+//
+//        deadlockExample();
     }
 
     private static void counterExample(Consumer<Counter> consumer) throws InterruptedException {

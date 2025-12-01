@@ -1,6 +1,8 @@
 package com.dosomedev;
 
-import java.util.concurrent.locks.*;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ConditionExample implements Runnable {
 
@@ -68,7 +70,7 @@ public class ConditionExample implements Runnable {
     public void run() {
         ConditionExample pc = new ConditionExample();
 
-        Thread producer = new Thread(() -> {
+        Thread producer = Thread.ofPlatform().start(() -> {
             for (int i = 1; i <= this.itemQuantity; i++) {
                 try {
                     pc.produce(i);
@@ -78,7 +80,7 @@ public class ConditionExample implements Runnable {
             }
         });
 
-        Thread consumer = new Thread(() -> {
+        Thread consumer = Thread.ofPlatform().start(() -> {
             for (int i = 1; i <= this.itemQuantity; i++) {
                 try {
                     pc.consume();
@@ -87,9 +89,6 @@ public class ConditionExample implements Runnable {
                 }
             }
         });
-
-        producer.start();
-        consumer.start();
 
         try {
             producer.join();

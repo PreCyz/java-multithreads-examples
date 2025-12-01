@@ -1,17 +1,15 @@
 package com.dosomedev;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 
 public class SemaphoreExample implements Runnable {
 
-
-
     @Override
     public void run() {
-        // Create a semaphore with X permits.
         Semaphore semaphore = new Semaphore(5);
 
-        // Create a thread pool.
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
         // Submit tasks to the pool.
