@@ -16,14 +16,20 @@ public class App {
     private static final int THREAD_NUMBER = 100;
 
     static void main(String[] args) throws InterruptedException {
-        counterExample(Counter::increment);
+        //TODO: no synchronization
+//        counterExample(Counter::increment);
 
+        //TODO: properly synchronized
 //        counterExample(Counter::incrementSyncThis);
 //        counterExample(Counter::incrementSyncMethod);
 //        counterExample(Counter::incrementSyncOnMonitorObject);
-//
-//        threadSchedulingExample();
-//
+
+        //TODO: No fairness example
+        threadSchedulingExample();
+
+        //TODO: non-synchronized method is called from synchronized method.
+        nestedMethodExample();
+
 //        deadlockExample();
     }
 
@@ -109,5 +115,41 @@ public class App {
         DecimalFormat df = new DecimalFormat("#,###");
         df.setDecimalFormatSymbols(symbols);
         return df;
+    }
+
+    private static void nestedMethodExample() throws InterruptedException {
+        final var now = LocalDateTime.now();
+        final var counter = new Counter();
+
+        Runnable r1 = () -> {
+            for (int i = 1; i <= INCREMENT_NUMBER; i++) {
+                counter.increment();
+            }
+        };
+
+        Runnable r2 = () -> {
+            for (int i = 1; i <= INCREMENT_NUMBER; i++) {
+                counter.incWait();
+            }
+        };
+
+        List<Thread> threads = new ArrayList<>(THREAD_NUMBER);
+        for (int i = 1; i <= THREAD_NUMBER; i++) {
+            if (i % 2 == 0) {
+                threads.add(Thread.ofPlatform().start(r1));
+            } else {
+                threads.add(Thread.ofPlatform().start(r2));
+            }
+        }
+
+        for (Thread thread : threads) {
+            thread.join();
+        }
+
+        var duration = Duration.between(now, LocalDateTime.now());
+        System.out.printf("Counter should be: %s%n", df(' ').format(INCREMENT_NUMBER * THREAD_NUMBER));
+        System.out.printf("Counter is:        %s%n", df(' ').format(counter.getNumber()));
+        System.out.printf("Duration: %d.%d sec%n", duration.toSecondsPart(), duration.toMillisPart());
+        IO.println("======================");
     }
 }

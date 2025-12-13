@@ -39,4 +39,8 @@ public class Counter {
             this.number++;
         }
     }
+
+    public synchronized void incWait() {
+        increment();
+    }
 }
