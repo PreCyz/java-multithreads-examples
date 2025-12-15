@@ -40,6 +40,23 @@ public class Counter {
         }
     }
 
+
+    /**
+     * End of the synchronized block happens before entry into the subsequent synchronized block,
+     * which is synchronized on the same monitor object.
+     */
+    public void incBy2SyncOnMonitorObject() {
+        synchronized (lock) {
+            this.number++;
+        }
+
+        System.out.print("");
+
+        synchronized (lock) {
+            this.number++;
+        }
+    }
+
     public synchronized void incWait() {
         increment();
     }

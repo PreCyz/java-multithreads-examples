@@ -37,7 +37,7 @@ public class App {
         final var now = LocalDateTime.now();
         final var counter = new Counter();
 
-        Runnable r = () -> {
+        Runnable runnable = () -> {
             for (int i = 1; i <= INCREMENT_NUMBER; i++) {
                 consumer.accept(counter);
             }
@@ -45,7 +45,7 @@ public class App {
 
         List<Thread> threads = new ArrayList<>(THREAD_NUMBER);
         for (int i = 1; i <= THREAD_NUMBER; i++) {
-            threads.add(Thread.ofPlatform().start(r));
+            threads.add(Thread.ofPlatform().start(runnable));
         }
 
         for (Thread thread : threads) {

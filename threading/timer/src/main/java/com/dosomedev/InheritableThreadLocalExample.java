@@ -13,10 +13,7 @@ public class InheritableThreadLocalExample implements Runnable {
                     intVal.get()
             );
 
-            System.out.printf("Thread name: %s, InheritableThreadLocal value: %d%n",
-                    Thread.currentThread().getName(),
-                    intVal.get()
-            );
+            child.run();
 
             Thread.ofPlatform().name("Child").start(child);
 

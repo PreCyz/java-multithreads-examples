@@ -10,13 +10,13 @@ public class ThreadLocalExample implements Runnable {
 
             switch (name) {
                 case "A":
-                    userID.set("alpha");
+                    userID.set("Andrzej");
                     break;
-                case "B":
-                    userID.set("beta");
+                case "C":
+                    userID.set("Claus");
                     break;
                 default:
-                    userID.set("nullus");
+                    userID.set("Pawg");
                     break;
             }
 
@@ -25,7 +25,7 @@ public class ThreadLocalExample implements Runnable {
         };
 
         Thread.ofPlatform().name("A").start(r);
-        Thread.ofPlatform().name("B").start(r);
+        Thread.ofPlatform().name("C").start(r);
         Thread.ofPlatform().start(r);
     }
 }
