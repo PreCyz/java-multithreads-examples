@@ -4,6 +4,6 @@ public class App {
     static void main(String[] args) {
 //        new VolatileExample().run();
 //        new AtomicExample().run();
-        new VolatileFlagExample().run();
+        Thread.ofPlatform().start(new VolatileFlagExample());
     }
 }

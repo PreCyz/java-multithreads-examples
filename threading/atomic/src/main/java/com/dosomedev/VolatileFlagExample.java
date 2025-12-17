@@ -2,27 +2,42 @@ package com.dosomedev;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.function.Function;
 
 public class VolatileFlagExample implements Runnable {
 
-    //TODO 1: volatile running
+    //TODO 1: run application then change running to volatile
     private boolean running = true;
     private int counter = 0;
 
+    /** Case 1 when
+     * running = false;
+     * counter = 1;
+     * then running is flushed to the main memory but counter is not, however there is race going on and in most cases
+     * when the worker thread completed loop and just before printed out the result, somehow the counter is also flashed
+     * to the main memory. If you run the application more than several times you will finally see printout showing
+     * counter 0!
+     * Case 2 when
+     * counter = 1;
+     * running = false;
+     * when false is written to the running then all available variables to that thread at the time of writing to the volatile
+     * 'running' are flushed to the main memory so the worker printout will show always counter 1.
+     */
     @Override
     public void run() {
         var now = LocalDateTime.now();
 
-        Thread workerThread = Thread.ofPlatform().name("worker").start(() -> runnable(now));
+        Function<LocalDateTime, Long> calculateDuration = (LocalDateTime end) -> Duration.between(now, end).toMillis();
+
+        var workerThread = Thread.ofPlatform().name("worker").start(() -> runnable(calculateDuration));
 
         try {
-            Thread.sleep(100);
+            Thread.sleep(15);
 
             //TODO 2: reorder instructions see what will happen
-            //TODO 3: set counter volatile.
             counter = 1;
             running = false;
-            System.out.printf("[%s] changed 'running' to false.%n", Thread.currentThread().getName());
+            System.out.println("[main] changed 'running' to false and counter to 1.");
 
             workerThread.join();
         } catch (InterruptedException e) {
@@ -30,23 +45,20 @@ public class VolatileFlagExample implements Runnable {
         }
     }
 
-    private void runnable(LocalDateTime start) {
-        System.out.printf("[%s] was started.", Thread.currentThread().getName());
-//            System.out.printf("Worker thread was started with counter equals %d.%n", counter);
+    private void runnable(Function<LocalDateTime, Long> duration) {
+        System.out.println("[worker] was started.");
+//            System.out.printf("[worker] thread was started with counter equals %d.%n", counter);
 
         while (running) {
 
             /*synchronized (this) {
-                  //TODO 4: Flushing with synchronized block
-                  System.out.printf("%s waiting for synchronized block, counter %d.%n", Thread.currentThread().getName(), counter);
+                  //TODO 3: Flushing with synchronized block
+                  System.out.printf("[worker] waiting for synchronized block, counter %d.%n", counter);
             }*/
-//            System.out.printf("%s in the loop with counter equals %d.%n", Thread.currentThread().getName(), counter);
+//            System.out.printf("[worker] in the loop with counter equals %d.%n", counter);
         }
+        var tmp = counter;
 
-        System.out.printf("%s is done (%dms). Counter is %d: %n",
-                Thread.currentThread().getName(),
-                Duration.between(start, LocalDateTime.now()).toMillis(),
-                counter
-        );
+        System.out.printf("[worker] is done (%dms). Counter is %d: %n", duration.apply(LocalDateTime.now()), tmp);
     }
 }
