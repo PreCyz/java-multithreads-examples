@@ -34,7 +34,7 @@ public class VolatileFlagExample implements Runnable {
         try {
             Thread.sleep(15);
 
-            //TODO 2: reorder instructions see what will happen
+            //TODO 2: reorder counter with running and check out what will happen.
             counter = 1;
             running = false;
             System.out.println("[main] changed 'running' to false and counter to 1.");
@@ -50,10 +50,10 @@ public class VolatileFlagExample implements Runnable {
 //            System.out.printf("[worker] thread was started with counter equals %d.%n", counter);
 
         while (running) {
-
+            //TODO 3: Reading from main memory at the beginning of the synchronized block and
             /*synchronized (this) {
-                  //TODO 3: Flushing with synchronized block
-                  System.out.printf("[worker] waiting for synchronized block, counter %d.%n", counter);
+              System.out.printf("[worker] waiting for synchronized block, counter %d.%n", counter);
+            //TODO 3: flushing to main memory at the end of synchronized block.
             }*/
 //            System.out.printf("[worker] in the loop with counter equals %d.%n", counter);
         }
