@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3" pages="29">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3" pages="31">
   <diagram name="ForkJoinPool" id="OVYQjjjefhoux5KfJYul">
     <mxGraphModel dx="1826" dy="875" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -2303,36 +2303,36 @@
     </mxGraphModel>
   </diagram>
   <diagram id="hXOXlXQiwmcP-zFrbkWn" name="tomcat-blocking">
-    <mxGraphModel dx="1489" dy="1880" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1665" dy="1795" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <UserObject label="&lt;img src=&quot;https://cs-prod-assets-bucket.s3.ap-south-1.amazonaws.com/Screenshot_2025_03_04_101809_d607276f36.png&quot; alt=&quot;Tomcat Blocking Flow (Synchronous Processing)&quot;&gt;" link="&lt;img src=&quot;https://cs-prod-assets-bucket.s3.ap-south-1.amazonaws.com/Screenshot_2025_03_04_101809_d607276f36.png&quot; alt=&quot;Tomcat Blocking Flow (Synchronous Processing)&quot;&gt;" id="tVeBveGh_TvT_qILlG1e-1">
-          <mxCell style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxCell style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
             <mxGeometry x="11.999987792968739" y="-253.9999755859375" width="28" height="36" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="wEb6U_LYmmYxVw15zxNz-1" value="Tomcat Blocking Flow (Synchronous Processing)" style="text;whiteSpace=wrap;html=1;fontSize=30;" vertex="1" parent="1">
-          <mxGeometry x="317" y="-305" width="680" height="51" as="geometry" />
+        <mxCell id="wEb6U_LYmmYxVw15zxNz-1" value="Tomcat Blocking Flow (Synchronous Processing)" style="text;whiteSpace=wrap;html=1;fontSize=30;" parent="1" vertex="1">
+          <mxGeometry x="317" y="-271" width="680" height="51" as="geometry" />
         </mxCell>
-        <mxCell id="SO15_eHfSoTR7RImyx-n-1" value="Tomcat has different threading modes:&lt;br&gt;&lt;ul&gt;&lt;li&gt;BIO (Blocking I/O):&amp;nbsp;One thread per request (legacy model).&lt;/li&gt;&lt;li&gt;NIO (Non-Blocking I/O):&amp;nbsp;Event-driven fewer threads (default in modern Tomcat).&lt;/li&gt;&lt;li&gt;NIO2 (Asynchronous I/O):&amp;nbsp;Provides a complete asynchronous way of high scalability.&lt;/li&gt;&lt;li&gt;APR (Apache Portable Runtime):&amp;nbsp;Provides slightly better performance on Unix by using OS-level threading.&lt;/li&gt;&lt;/ul&gt;" style="text;whiteSpace=wrap;html=1;fontSize=19;" vertex="1" parent="1">
+        <mxCell id="SO15_eHfSoTR7RImyx-n-1" value="Tomcat has different threading modes:&lt;br&gt;&lt;ul&gt;&lt;li&gt;BIO (Blocking I/O):&amp;nbsp;One thread per request (legacy model).&lt;/li&gt;&lt;li&gt;NIO (Non-Blocking I/O):&amp;nbsp;Event-driven fewer threads (default in modern Tomcat).&lt;/li&gt;&lt;li&gt;NIO2 (Asynchronous I/O):&amp;nbsp;Provides a complete asynchronous way of high scalability.&lt;/li&gt;&lt;li&gt;APR (Apache Portable Runtime):&amp;nbsp;Provides slightly better performance on Unix by using OS-level threading.&lt;/li&gt;&lt;/ul&gt;" style="text;whiteSpace=wrap;html=1;fontSize=19;" parent="1" vertex="1">
           <mxGeometry x="179" y="-528" width="948" height="162.14" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="VUqrdOvPQ5aknbNvMzXM" name="tomcat-non-blocking">
-    <mxGraphModel dx="2003" dy="1563" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2065" dy="1395" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <UserObject label="&lt;img src=&quot;https://cs-prod-assets-bucket.s3.ap-south-1.amazonaws.com/Screenshot_2025_03_04_102316_af277e6c68.png&quot; alt=&quot;Tomcat Async&quot;&gt;" link="&lt;img src=&quot;https://cs-prod-assets-bucket.s3.ap-south-1.amazonaws.com/Screenshot_2025_03_04_102316_af277e6c68.png&quot; alt=&quot;Tomcat Async&quot;&gt;" id="rRw1iN5vwd3QswjcV7xg-1">
-          <mxCell style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxCell style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
             <mxGeometry x="-330.0000122070312" y="-57.99997558593748" width="28" height="36" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="rRw1iN5vwd3QswjcV7xg-3" value="Tomcat Async (Non-blocking) Flow" style="text;whiteSpace=wrap;fontSize=30;" vertex="1" parent="1">
-          <mxGeometry x="34" y="-75.85" width="503.77" height="53.85" as="geometry" />
+        <mxCell id="rRw1iN5vwd3QswjcV7xg-3" value="Tomcat Async (Non-blocking) Flow" style="text;whiteSpace=wrap;fontSize=30;" parent="1" vertex="1">
+          <mxGeometry x="54" y="-34.85" width="466" height="53.85" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
