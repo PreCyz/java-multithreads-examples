@@ -54,7 +54,7 @@ public class ReentrantLockExample implements Runnable {
             for (int i = 0; i < countUntil; i++) {
                 counter.increment();
             }
-            printLockDetails(Thread.currentThread());
+//            printLockDetails(Thread.currentThread());
         };
     }
 }

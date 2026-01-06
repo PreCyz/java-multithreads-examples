@@ -28,9 +28,9 @@ public class ReentrantLockRecursionExample implements Runnable {
 
     @Override
     public void run() {
-        ReentrantLockRecursionExample rrre = new ReentrantLockRecursionExample();
-        Thread thread1 = Thread.ofPlatform().name("t1").start(rrre::recursion);
-        Thread thread2 = Thread.ofPlatform().name("t2").start(rrre::recursion);
+        ReentrantLockRecursionExample rlre = new ReentrantLockRecursionExample();
+        Thread thread1 = Thread.ofPlatform().name("t1").start(rlre::recursion);
+        Thread thread2 = Thread.ofPlatform().name("t2").start(rlre::recursion);
 
         try {
             thread1.join();
@@ -38,6 +38,7 @@ public class ReentrantLockRecursionExample implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace(System.err);
         } finally {
+            IO.println();
             printLockDetails(Thread.currentThread());
         }
     }
