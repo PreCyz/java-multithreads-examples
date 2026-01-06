@@ -3,6 +3,7 @@ package com.dosomedev;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public class FairnessDemo implements Runnable {
@@ -43,11 +44,11 @@ public class FairnessDemo implements Runnable {
 
     @Override
     public void run() {
-        var start = LocalDateTime.now();
         FairnessDemo demo = new FairnessDemo();
-        final Runnable task = demo::lockTask;
         System.out.printf("%nLock fairness: [%s]%n", lock.isFair());
-        activity(task);
+        var start = LocalDateTime.now();
+        final Runnable lockTask = demo::lockTask;
+        activity(lockTask);
         System.out.printf("Duration: %sms%n%n", Duration.between(start, LocalDateTime.now()).toMillis());
 
         IO.println("synchronized");
@@ -59,17 +60,20 @@ public class FairnessDemo implements Runnable {
 
     private void activity(Runnable task) {
         Stream.of(
-                        Thread.ofPlatform().name("Andre").start(task),
-                        Thread.ofPlatform().name("Claus").start(task),
-                        Thread.ofPlatform().name("Pawel").start(task)
-                )
-                .peek(Thread::start)
-                .forEach(t -> {
-                    try {
-                        t.join();
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+            Thread.ofPlatform().name("Andre").start(task),
+            Thread.ofPlatform().name("Claus").start(task),
+            Thread.ofPlatform().name("Pawel").start(task)
+        )
+        .forEach(joinConsumer());
+    }
+
+    private Consumer<Thread> joinConsumer() {
+        return t -> {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        };
     }
 }
