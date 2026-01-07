@@ -12,7 +12,7 @@ public class FairnessDemo implements Runnable {
     public void lockTask() {
         String threadName = Thread.currentThread().getName();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             lock.lock();
             try {
                 IO.println(threadName + " acquired the lock.");
