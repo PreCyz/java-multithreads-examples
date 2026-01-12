@@ -13,7 +13,6 @@
 
   <groupId>com.dosomedev</groupId>
   <artifactId>date-formatting</artifactId>
-  <version>1.0</version>
 
   <name>dateformatting-app</name>
   <url>https://www.dosomedev.com</url>
