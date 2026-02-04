@@ -25,7 +25,7 @@ public class App {
 //        counterExample(Counter::incrementSyncOnMonitorObject);
 
         //TODO: No fairness example
-        threadSchedulingExample();
+//        threadSchedulingExample();
 
         //TODO: non-synchronized method is called from synchronized method.
         nestedMethodExample();

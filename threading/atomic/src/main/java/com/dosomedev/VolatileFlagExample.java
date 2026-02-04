@@ -7,7 +7,7 @@ import java.util.function.Function;
 public class VolatileFlagExample implements Runnable {
 
     //TODO 1: run application then change running to volatile
-    private boolean running = true;
+    private volatile boolean running = true;
     private int counter = 0;
 
     /** Case 1 when
@@ -35,8 +35,9 @@ public class VolatileFlagExample implements Runnable {
             Thread.sleep(15);
 
             //TODO 2: reorder counter with running and check out what will happen.
-            counter = 1;
             running = false;
+            counter = 1;
+            Thread.sleep(5);
             System.out.println("[main] changed 'running' to false and counter to 1.");
 
             workerThread.join();

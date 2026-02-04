@@ -4,10 +4,12 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class FalseSharing implements Runnable {
+
+//    @Contended
     public static class Counter {
-        @jdk.internal.vm.annotation.Contended("g1")
+//        @jdk.internal.vm.annotation.Contended
         public volatile long counter1;
-//        @jdk.internal.vm.annotation.Contended("g2")
+//        @jdk.internal.vm.annotation.Contended
         public volatile long counter2;
     }
 
@@ -24,14 +26,15 @@ public class FalseSharing implements Runnable {
             for (long i = 0; i < iterations; i++) {
                 counter1.counter1++;
             }
-            System.out.printf("total time: %d%n", Duration.between(startTime, LocalDateTime.now()).toMillis());
+            System.out.printf("1 total time: %d millis%n", Duration.between(startTime, LocalDateTime.now()).toMillis());
         });
+
         Thread.ofPlatform().name("t1").start(() -> {
             var startTime = LocalDateTime.now();
             for (long i = 0; i < iterations; i++) {
                 counter2.counter2++;
             }
-            System.out.printf("total time: %d%n", Duration.between(startTime, LocalDateTime.now()).toMillis());
+            System.out.printf("2 total time: %d millis%n", Duration.between(startTime, LocalDateTime.now()).toMillis());
         });
 
     }
