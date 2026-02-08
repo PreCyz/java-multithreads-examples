@@ -11,6 +11,7 @@ public class SemaphoreExample implements Runnable {
         Semaphore semaphore = new Semaphore(5);
 
         ExecutorService executor = Executors.newFixedThreadPool(10);
+//        ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
 
         // Submit tasks to the pool.
         for (int i = 0; i < 10; i++) {
@@ -34,7 +35,6 @@ public class SemaphoreExample implements Runnable {
         }
 
         // Shutdown the executor.
-        executor.shutdown();
         executor.close();
     }
 }

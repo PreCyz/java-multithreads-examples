@@ -5,7 +5,8 @@ public class App {
 //        new CountDownLatchExample().run();
 //        new CyclicBarrierExample().run();
 //        new ExchangerExample().run();
-        new SemaphoreExample().run();
+//        new SemaphoreExample().run();
+        new SemaphoreRecursionExample().run();
 //        new PhaserExample().run();
     }
 }
