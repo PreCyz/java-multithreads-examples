@@ -46,8 +46,8 @@ public class App {
 
     private static void virtual(Game godOfWar, Game witcher, Game jediSurvivor) {
         try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.allSuccessfulOrThrow())) {
-            scope.fork(() -> ScopedValue.where(VALUE, "God of War").run(godOfWar));
-            scope.fork(() -> ScopedValue.where(VALUE, "Witcher").run(witcher));
+            scope.fork(() -> ScopedValue.where(VALUE, "Witcher").run(godOfWar));
+            scope.fork(() -> ScopedValue.where(VALUE, "God of War").run(witcher));
             scope.fork(() -> ScopedValue.where(VALUE, "Jedi Survivor").run(jediSurvivor));
 
             scope.join();

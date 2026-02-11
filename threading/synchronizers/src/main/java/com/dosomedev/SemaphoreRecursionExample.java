@@ -43,14 +43,14 @@ public class SemaphoreRecursionExample implements Runnable {
             });
         }
 
-        //release(executor, semaphore);
+//        release(executor, semaphore);
 
         // Shutdown the executor.
         executor.close();
     }
 
 
-    /** This shows how the same semaphore can be release from different thread, unlike ReentrantLock. */
+    /** This shows how the same semaphore can be released from different thread, unlike ReentrantLock. */
     private void release(ExecutorService executor, Semaphore semaphore) {
         for (int i = 0; i < 15; i++) {
             executor.submit(() -> {
