@@ -22,3 +22,4 @@ out/
 
 *.ps1
 */dependency-reduced-pom.xml
+presentation/*.png
